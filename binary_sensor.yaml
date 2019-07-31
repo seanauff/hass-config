@@ -1,0 +1,6 @@
+# camera motion events
+  - platform: mqtt
+    name: Driveway Camera Motion
+    state_topic: "sensors/motion/camera/driveway"
+    payload_on: "1"
+    payload_off: "0"

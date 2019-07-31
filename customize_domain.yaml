@@ -1,0 +1,4 @@
+  sensor:
+    hidden: true
+  binary_sensor:
+    hidden: true

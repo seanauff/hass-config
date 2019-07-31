@@ -1,0 +1,21 @@
+# sensor.aeotec_dsb09104_home_energy_meter_power_8:
+#   ignored: true
+#   polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_exporting_3:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_exporting_2:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_exporting:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_interval:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_interval_3:
+  ignored: true
+  polling_intensity: 0
+sensor.aeotec_dsb09104_home_energy_meter_interval_2:
+  ignored: true
+  polling_intensity: 0

@@ -1,0 +1,268 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude 
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+  customize_domain: !include customize_domain.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+
+lovelace:
+  mode: yaml
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret http_base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Discover some devices automatically
+#discovery:
+
+# recorder:
+#   exclude:
+#     domains:
+#       - alarm_control_panel
+#       - automation 
+#       - input_boolean
+#       - remote 
+#       - script
+#       - binary_sensor
+#       - climate
+#       - cover
+#       - device_tracker
+#       - fan
+#       - light
+#       - lock
+#       - media_player
+#       - sensor
+#       - switch
+# Allows you to issue voice commands from the frontend in enabled browsers
+#conversation:
+
+# Enables support for tracking state changes over time
+#history:
+
+# View all events in a logbook
+#logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+#weather:
+#  - platform: darksky
+#    api_key: !secret darksky_key
+
+# Text to speech
+#tts:
+#  - platform: google_translate
+#    service_name: google_say 
+
+# includes
+group: !include groups.yaml
+automation: !include_dir_merge_list automation/
+script: !include scripts.yaml
+switch: !include switches.yaml
+sensor: !include_dir_merge_list sensors/
+binary_sensor: !include binary_sensor.yaml
+alexa: !include alexa.yaml
+fan: !include fans.yaml
+light: !include_dir_merge_list lights/
+
+# MQTT Broker Connection
+mqtt:
+  broker: !secret mqtt_broker
+
+climate:
+  - platform: zwave
+
+# ZWave
+zwave:
+#  usb_path: /dev/ttyACM1
+#  network_key: !secret zwave_network_key
+
+# Synology Surveillance Station Connection
+camera:
+  - platform: synology
+    url: !secret synology_camera_url
+    username: !secret synology_username
+    password: !secret synology_password
+    timeout: 30
+    verify_ssl: true
+   
+# Samsung Smart TV
+media_player:
+  - platform: samsungtv
+    host: !secret media_player_samsungtv_host
+    port: 8001
+    mac: !secret media_player_samsungtv_mac
+   
+# Garage door opener
+cover:
+  - platform: myq
+    username: !secret myq_username
+    password: !secret myq_password
+    type: chamberlain
+    scan_interval: 30
+
+# device_tracker:
+#   - platform: google_maps
+#     username: !secret google_username
+#     password: !secret google_password
+#     max_gps_accuracy: 200
+
+# can't get this to work
+# notify:
+#   - platform: synology_chat
+#     name: hass_synchat
+#     resource: !secret notify_synology_chat_resource
+
+speedtestdotnet:
+  monitored_conditions:
+    #- ping
+    - download
+    - upload
+
+tplink:
+  discovery: false
+  switch:
+#     - host: 192.168.6.50
+#     - host: 192.168.6.51
+#     - host: 192.168.6.52
+#     - host: 192.168.6.54
+    - host: 192.168.20.217
+
+octoprint:
+  - host: 192.168.20.122
+    port: 1337
+    api_key: !secret octoprint_api_key
+    name: "Ender 3"
+    bed: true
+    number_of_tools: 1
+
+influxdb:
+  host: !secret influxdb_host
+  port: 8086
+  database: home_assistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  #ssl: false
+  #verify_ssl: false
+  max_retries: 3
+  #default_measurement: state
+  # exclude:
+  #   entities:
+  #      - entity.id1
+  #      - entity.id2
+  #   domains:
+  #      - automation
+  include:
+    entities:
+      #  - binary_sensor.wan_connection
+      #  - binary_sensor.wan_dns_connection
+      #  - sensor.aeotec_dsb09104_home_energy_meter_power_4
+      #  - sensor.aeotec_dsb09104_home_energy_meter_power_7
+      #  - sensor.aeotec_dsb09104_home_energy_meter_power_8
+      #  - sensor.aeotec_dsb09104_home_energy_meter_energy
+      #  - sensor.aeotec_dsb09104_home_energy_meter_power
+       - sensor.bedroom_humidity
+       - sensor.bedroom_temperature
+       - sensor.bedroom_enthalpy
+       - sensor.boston_room_humidity
+       - sensor.boston_room_temperature
+       - sensor.boston_room_enthalpy
+       - sensor.dark_sky_apparent_temperature
+       - sensor.dark_sky_cloud_coverage
+       - sensor.dark_sky_daily_max_precip_intensity
+       - sensor.dark_sky_daytime_high_apparent_temperature
+       - sensor.dark_sky_daytime_high_temperature
+       - sensor.dark_sky_dew_point
+       - sensor.dark_sky_humidity
+       - sensor.darksky_bos_humidity
+       - sensor.dark_sky_moon_phase
+       - sensor.dark_sky_overnight_low_apparent_temperature
+       - sensor.dark_sky_overnight_low_temperature
+       - sensor.dark_sky_ozone
+       - sensor.dark_sky_precip_accumulation
+       - sensor.dark_sky_precip_intensity
+       - sensor.dark_sky_precip_probability
+       - sensor.dark_sky_pressure
+       - sensor.dark_sky_temperature
+       - sensor.darksky_bos_temperature
+       - sensor.dark_sky_uv_index
+       - sensor.dark_sky_visibility
+       - sensor.dark_sky_wind_bearing
+       - sensor.dark_sky_wind_speed
+       - sensor.darksky_enthalpy
+       - sensor.darksky_bos_enthalpy
+      #  - sensor.edgerouter_wan_bytes_in
+      #  - sensor.edgerouter_wan_bytes_out
+       - sensor.electric_meter_consumption
+       - sensor.garage_humidity
+       - sensor.garage_temperature
+       - sensor.garage_enthalpy
+       - sensor.gas_meter_consumption
+       - sensor.kitchen_humidity
+       - sensor.kitchen_temperature
+       - sensor.kitchen_enthalpy
+       - sensor.living_room_humidity
+       - sensor.living_room_temperature
+       - sensor.living_room_enthalpy
+       - sensor.loft_humidity
+       - sensor.loft_temperature
+       - sensor.loft_enthalpy
+       - sensor.lower_attic_humidity
+       - sensor.lower_attic_temperature
+       - sensor.lower_attic_enthalpy
+       - sensor.phase_1_power
+       - sensor.phase_2_power
+       - sensor.safe_humidity
+       - sensor.safe_temperature
+       - sensor.safe_enthalpy
+       - sensor.speedtest_download
+       - sensor.speedtest_ping
+       - sensor.speedtest_upload
+       - sensor.total_power
+       - sensor.waqi_charleston_public_works_south_carolina_usa
+       - sensor.water_meter_consumption
+       - sensor.water_pressure
+       - sun.sun
+       - switch.hs110_1
+       - switch.hs110_2
+       - switch.hs110_3
+       - switch.hs105_1
+
+    # domains:
+    #   - sensor  
+  # tags:
+  #   instance: prod
+  #   source: hass    

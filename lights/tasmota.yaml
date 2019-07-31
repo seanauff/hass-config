@@ -1,0 +1,38 @@
+  # - platform: mqtt
+  #   name: "Sky Interior"
+  #   command_topic: "tasmota/skyinterior/cmnd/Power"
+  #   state_topic: "tasmota/skyinterior/stat/RESULT"
+  #   state_value_template: "{{ value_json.POWER }}"
+  #   payload_on: "ON"
+  #   payload_off: "OFF"
+  #   on_command_type: "brightness"
+  #   brightness_command_topic: "tasmota/skyinterior/cmnd/Dimmer"
+  #   brightness_state_topic: "tasmota/skyinterior/stat/RESULT"
+  #   brightness_value_template: "{{ value_json.Dimmer }}"
+  #   brightness_scale: 100
+  #   rgb_command_topic: "tasmota/skyinterior/cmnd/Color"
+  #   rgb_command_template: "{{ [red,green,blue] | join(',')}}"
+  #   rgb_state_topic: "tasmota/skyinterior/stat/RESULT"
+  #   rgb_value_template: "{{ value_json.Color }}"
+  #   #color_temp_command_topic:
+  #   #color_temp_state_topic:
+  #   #color_temp_value_template:
+  #   effect_command_topic: "tasmota/skyinterior/cmnd/Scheme"
+  #   effect_state_topic: "tasmota/skyinterior/stat/RESULT"
+  #   effect_value_template: "{{ value_json.Scheme }}"
+  #   effect_list:
+  #     - 0
+  #     - 2
+  #     - 4
+  #     - 6
+  #     - 7
+  #     - 8
+  #     - 9
+  #     - 10
+  #     - 11
+  #     - 12
+  #   availability_topic: "tasmota/skyinterior/tele/LWT"
+  #   payload_available: "Online"
+  #   payload_not_available: "Offline"
+  #   qos: 0
+  #   optimistic: false

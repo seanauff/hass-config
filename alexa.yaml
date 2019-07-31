@@ -1,0 +1,137 @@
+#Alexa integration via HAASKA
+  smart_home:
+    filter:
+      include_entities:
+        - media_player.samsung_tv_remote
+        - light.bedroom_fan_alexa
+        - light.living_room_fan_alexa
+        - light.office_fan_alexa
+        - sensor.bedroom_temperature
+        - sensor.garage_temperature
+        - sensor.kitchen_temperature
+        - sensor.living_room_temperature
+        - sensor.loft_temperature
+        - sensor.trane_model_tzemt524aa21ma_temperature
+        - sensor.trane_model_tzemt524aa21ma_temperature_2
+        - switch.caitlin_s_computer_wol
+        - switch.grace_s_computer_wol
+        - switch.nouzar_s_computer_wol
+        - switch.HS1051
+        - switch.sean_s_computer_wol
+        - switch.sean_s_speakers
+        - switch.studio_monitors
+        - switch.reverse_bedroom_fan
+        - switch.reverse_living_room_fan
+        - switch.reverse_office_fan
+        - light.bedroom_fan_light
+        - light.living_room_fan_light
+        - light.zooz_zen24_bedroom
+        - light.zooz_zen24_kitchen
+        - light.zooz_zen24_livingroom
+        - light.zooz_zen24_loft
+        #- light.sky_interior
+    entity_config:
+      media_player.samsung_tv_remote:
+        name: TV
+        description: The Samsung TV
+      light.bedroom_fan_alexa:
+        name: Bedroom Fan
+        description: The Bedroom Fan
+        display_categories: SWITCH
+      light.living_room_fan_alexa:
+        name: Living Room Fan
+        description: The Living Room Fan
+        display_categories: SWITCH
+      light.office_fan_alexa:
+        name: Office Fan
+        description: The Office Fan
+        display_categories: SWITCH
+      sensor.bedroom_temperature:
+        name: Bedroom
+        description: Bedroom Temperature Sensor
+      sensor.garage_temperature:
+        name: Garage
+        description: Garage Temperature Sensor
+      sensor.kitchen_temperature:
+        name: Kitchen
+        description: Kitchen Temperature Sesnor
+      sensor.living_room_temperature:
+        name: Living Room
+        description: Living Room Temperature Sensor
+      sensor.loft_temperature:
+        name: Office
+        description: Loft Temperature Sensor
+      sensor.trane_model_tzemt524aa21ma_temperature:
+        name: Downstairs Thermostat
+        description: Downstairs Thermostat Temperature Sensor
+      sensor.trane_model_tzemt524aa21ma_temperature_2:
+        name: Upstairs Thermostat
+        description: Upstairs Thermostat Temperature Sensor
+      switch.caitlin_s_computer_wol:
+        name: Caitlin's Computer
+        description: Caitlin's Computer
+        display_categories: SWITCH
+      switch.grace_s_computer_wol:
+        name: Grace's Computer
+        description: Grace's Computer
+        display_categories: SWITCH
+      switch.nouzar_s_computer_wol:
+        name: Nouzar's Computer
+        description: Nouzar's Computer
+        display_categories: SWITCH
+      switch.HS1051:
+        name: Christmas Tree
+        description: Christmas Tree
+        display_categories: SWITCH  
+      switch.sean_s_computer_wol:
+        name: Sean's Computer
+        description: Sean's Computer
+        display_categories: SWITCH
+      switch.sean_s_speakers:
+        name: Sean's Speakers
+        description: Sean's Speakers
+        display_categories: SWITCH
+      switch.studio_monitors:
+        name: Studio Monitors
+        description: Studio Monitors
+        display_categories: SWITCH
+      switch.reverse_bedroom_fan:
+        name: Reverse Bedroom Fan
+        description: Reverse Bedroom Fan
+        display_categories: SWITCH
+      switch.reverse_living_room_fan:
+        name: Reverse Living Room Fan
+        description: Reverse Living Room Fan
+        display_categories: SWITCH
+      switch.reverse_office_fan:
+        name: Reverse Office Fan
+        description: Reverse Office Fan
+        display_categories: SWITCH
+      light.bedroom_fan_light:
+        name: Bedroom Fan Light
+        description: Bedroom Fan Light
+        display_categories: LIGHT
+      light.living_room_fan_light:
+        name: Living Room Fan Light
+        description: Living Room Fan Light
+        display_categories: LIGHT
+      light.zooz_zen24_bedroom:
+        name: Bedroom Light
+        description: Bedroom Light
+        display_categories: LIGHT
+      light.zooz_zen24_kitchen:
+        name: Kitchen Light
+        description: Kitchen Light
+        display_categories: LIGHT
+      light.zooz_zen24_livingroom:
+        name: Living Room Light
+        description: Living Room Light
+        display_categories: LIGHT
+      light.zooz_zen24_loft:
+        name: Office Light
+        description: Office Light
+        display_categories: LIGHT
+      light.sky_interior:
+        name: Sky Interior
+        description: Sky Interior
+        display_categories: LIGHT  

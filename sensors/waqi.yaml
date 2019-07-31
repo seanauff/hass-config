@@ -1,0 +1,6 @@
+  - platform: waqi
+    token: !secret waqi_apikey
+    locations:
+      - south carolina
+    stations:
+      - Charleston Public Works, South Carolina, USA
