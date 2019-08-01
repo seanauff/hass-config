@@ -2,7 +2,7 @@
     token: !secret waqi_apikey
     locations:
       - south carolina
-      - massachusettes
+      - massachusetts
     stations:
       - Charleston Public Works, South Carolina, USA
       - Boston
