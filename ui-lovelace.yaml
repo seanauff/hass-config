@@ -7,55 +7,88 @@ resources:
     type: css
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
-background: center / cover no-repeat url("/background.png") fixed
+#background: center / cover no-repeat url("/background.png") fixed
 
 views:
     # View tab title.
-  - title: Example
+  - title: South Carolina
     # Unique path for direct access /lovelace/${path}
-    path: example
+    path: southcarolina
     # Optional background (overwrites the global background).
-    background: radial-gradient(crimson, skyblue)
+    #background: radial-gradient(crimson, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.
-    theme: dark-mode
+    #theme: slate
     # The cards to show on this view.
     cards:
-        # The filter card will filter entities for their state
-      - type: entity-filter
+      - type: vertical-stack
+        cards:
+        - type: picture-entity
+          entity: camera.driveway_cam
+          show_name: false
+          show_state: false
+        - type: picture-entity
+          entity: camera.backyard_cam
+          show_name: false
+          show_state: false
+      - type: media-control
+        entity: media_player.samsung_tv_remote
+      - type: vertical-stack
+        cards:
+        - type: thermostat
+          entity: climate.trane_model_tzemt524aa21ma_cooling_1
+        - type: thermostat
+          entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
+      - type: entities
+        title: Lights
+        show_header_toggle: false
         entities:
-          - device_tracker.paulus
-          - device_tracker.anne_there
-        state_filter:
-          - 'home'
-        card:
-          type: glance
-          title: People that are home
-
-        # The picture entity card will represent an entity with a picture
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.bed_light
+          - light.zooz_zen24_bedroom
+          - light.zooz_zen24_kitchen
+          - light.zooz_zen24_livingroom
+          - light.zooz_zen24_loft
+          - light.living_room_fan_light
+          - light.bedroom_fan_light
+          - switch.aeotec_dsc26103_micro_switch_2nd_edition_switch
+          - switch.aeotec_dsc26103_micro_switch_2nd_edition_switch_2
+      - type: entities
+        title: Computers
+        show_header_toggle: false
+        entities:
+          - switch.grace_s_computer_wol
+          - switch.nouzar_s_computer_wol
+      - type: entities
+        title: Fans
+        show_header_toggle: false
+        entities:
+          - fan.bedroom_fan
+          - switch.reverse_bedroom_fan
+          - fan.living_room_fan
+          - switch.reverse_living_room_fan
+          - fan.office_fan
+          - switch.reverse_office_fan
+      
 
     # Specify a tab icon if you want the view tab to be an icon.
-  - icon: mdi:home-assistant
+  - title: Boston
     # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
+    #title: Second view
     cards:
         # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
-        title: Example
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+        title: Computers
+        show_header_toggle: false
         entities:
-          - light.kitchen
-          - switch.ac
-          - entity: light.living_room
-            # Override the name to use
-            name: LR Lights
-
-        # The markdown card will render markdown text.
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
+          - switch.caitlin_s_computer_wol
+          - switch.sean_s_computer_wol
+      - type: vertical-stack
+        cards:
+          - type: light
+            entity: light.all_bedroom_lights
+          - type: light
+            entity: light.bedside_2
+          - type: light
+            entity: light.boston
+          - type: light
+            entity: light.stair
+          - type: light
+            entity: light.study
