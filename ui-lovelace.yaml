@@ -5,6 +5,8 @@ resources:
     type: js
   - url: /local/my-webfont.css
     type: css
+  - url: /local/simple-thermostat.js?v=1
+    type: module
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
 #background: center / cover no-repeat url("/background.png") fixed
@@ -34,10 +36,42 @@ views:
         entity: media_player.samsung_tv_remote
       - type: vertical-stack
         cards:
-        - type: thermostat
+        - type: custom:simple-thermostat
           entity: climate.trane_model_tzemt524aa21ma_cooling_1
-        - type: thermostat
+          step_size: 1
+          icon:
+            heat: mdi:fire
+            cool: mdi:snowflake
+            eco: mdi:leaf
+            off: mdi:power
+            auto: mdi:autorenew
+            idle: mdi:power
+            away: mdi:leaf
+          sensors:
+            - entity: sensor.living_room_temperature
+              name: Temperature
+            - entity: sensor.living_room_humidity
+              name: Humidity
+        #- type: thermostat
+        #  entity: climate.trane_model_tzemt524aa21ma_cooling_1
+        - type: custom:simple-thermostat
           entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
+          step_size: 1
+          icon:
+            heat: mdi:fire
+            cool: mdi:snowflake
+            eco: mdi:leaf
+            off: mdi:power
+            auto: mdi:autorenew
+            idle: mdi:power
+            away: mdi:leaf
+          sensors:
+            - entity: sensor.loft_temperature
+              name: Temperature
+            - entity: sensor.loft_humidity
+              name: Humidity
+        #- type: thermostat
+        #  entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
       - type: entities
         title: Lights
         show_header_toggle: false
