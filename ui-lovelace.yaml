@@ -39,6 +39,8 @@ views:
         - type: custom:simple-thermostat
           entity: climate.trane_model_tzemt524aa21ma_cooling_1
           step_size: 1
+          hide:
+            temperature: true
           icon:
             heat: mdi:fire
             cool: mdi:snowflake
@@ -57,6 +59,8 @@ views:
         - type: custom:simple-thermostat
           entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
           step_size: 1
+          hide:
+            temperature: true
           icon:
             heat: mdi:fire
             cool: mdi:snowflake
