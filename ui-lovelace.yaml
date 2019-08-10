@@ -116,8 +116,8 @@ views:
         title: Computers
         show_header_toggle: false
         entities:
-          - switch.caitlin_s_computer_wol
-          - switch.sean_s_computer_wol
+          - switch.caitlins_computer_wol_proxy
+          - switch.seans_computer_wol_proxy
       - type: vertical-stack
         cards:
           - type: light
