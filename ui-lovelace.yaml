@@ -121,12 +121,6 @@ views:
       - type: vertical-stack
         cards:
           - type: light
-            entity: light.all_bedroom_lights
-          - type: light
             entity: light.bedside_2
           - type: light
             entity: light.boston
-          - type: light
-            entity: light.stair
-          - type: light
-            entity: light.study
