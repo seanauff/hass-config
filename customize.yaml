@@ -64,8 +64,10 @@
     #  hidden: true
     switch.hs110_2:
       hidden: true
+    switch.hs110_3:
+      hidden: true  
     switch.hs105_1:
-      friendly_name: "Christmas Tree" 
+      friendly_name: "Coffee Maker" 
     zwave.aeotec_dsc26103_micro_switch_2nd_edition:
       hidden: true
     zwave.aeotec_dsb09104_home_energy_meter:

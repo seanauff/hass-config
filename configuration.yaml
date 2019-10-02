@@ -158,8 +158,9 @@ tplink:
 #     - host: 192.168.6.50
 #     - host: 192.168.6.51
 #     - host: 192.168.6.52
-#     - host: 192.168.6.54
+    - host: 192.168.20.135
     - host: 192.168.20.217
+    - host: 192.168.20.215
 
 octoprint:
   - host: 192.168.20.122
@@ -197,6 +198,11 @@ influxdb:
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
+       - sensor.bos_living_room_eco2
+       - sensor.bos_living_room_humidity
+       - sensor.bos_living_room_temperature
+       - sensor.bos_living_room_tvoc
+       - sensor.boston_living_room_enthalpy
        - sensor.boston_room_humidity
        - sensor.boston_room_temperature
        - sensor.boston_room_enthalpy
