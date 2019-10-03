@@ -152,6 +152,10 @@ speedtestdotnet:
     - download
     - upload
 
+iperf3:
+  hosts:
+    - host: 192.168.20.1
+
 tplink:
   discovery: false
   switch:
@@ -230,6 +234,7 @@ influxdb:
        - sensor.dark_sky_wind_speed
        - sensor.darksky_enthalpy
        - sensor.darksky_bos_enthalpy
+       - sensor.download_192_168_20_1
       #  - sensor.edgerouter_wan_bytes_in
       #  - sensor.edgerouter_wan_bytes_out
        - sensor.electric_meter_consumption
