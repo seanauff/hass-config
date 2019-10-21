@@ -4,6 +4,8 @@
       include_entities:
         - media_player.samsung_tv_remote
         - light.bedroom_fan_alexa
+        - light.bedside
+        - light.boston
         - light.living_room_fan_alexa
         - light.office_fan_alexa
         - sensor.bedroom_temperature
@@ -38,6 +40,14 @@
         name: Bedroom Fan
         description: The Bedroom Fan
         display_categories: SWITCH
+      light.bedside:
+        name: Bedside
+        description: Bedside Lights
+        display_categories: LIGHT
+      light.boston:
+        name: Boston
+        description: Boston Living Room Lights
+        display_categories: LIGHT  
       light.living_room_fan_alexa:
         name: Living Room Fan
         description: The Living Room Fan
