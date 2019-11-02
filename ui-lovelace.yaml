@@ -77,6 +77,11 @@ views:
         #- type: thermostat
         #  entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
       - type: entities
+        title: Garage Door
+        show_header_toggle: false
+        entities:
+          - cover.garage_door_opener_2
+      - type: entities
         title: Lights
         show_header_toggle: false
         entities:
