@@ -152,9 +152,10 @@ speedtestdotnet:
     - download
     - upload
 
-iperf3:
-  hosts:
-    - host: 192.168.20.1
+# getting error on this
+#iperf3:
+#  hosts:
+#    - host: 192.168.20.1
 
 tplink:
   discovery: false
