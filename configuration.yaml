@@ -235,6 +235,9 @@ influxdb:
        - sensor.dark_sky_wind_speed
        - sensor.darksky_enthalpy
        - sensor.darksky_bos_enthalpy
+       - sensor.dcp_l2550dw_black_toner_remaining
+       - sensor.dcp_l2550dw_drum_remaining_life
+       - sensor.dcp_l2550dw_page_counter
        - sensor.download_192_168_20_1
       #  - sensor.edgerouter_wan_bytes_in
       #  - sensor.edgerouter_wan_bytes_out
