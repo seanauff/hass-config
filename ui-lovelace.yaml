@@ -37,7 +37,8 @@ views:
       - type: vertical-stack
         cards:
         - type: custom:simple-thermostat
-          entity: climate.trane_model_tzemt524aa21ma_cooling_1
+          entity: climate.trane_model_tzemt524aa21ma_mode
+          name: Downstairs Thermostat
           step_size: 1
           hide:
             temperature: true
@@ -57,7 +58,8 @@ views:
         #- type: thermostat
         #  entity: climate.trane_model_tzemt524aa21ma_cooling_1
         - type: custom:simple-thermostat
-          entity: climate.trane_model_tzemt524aa21ma_cooling_1_2
+          entity: climate.trane_model_tzemt524aa21ma_mode_2
+          name: Upstairs Thermostat
           step_size: 1
           hide:
             temperature: true
