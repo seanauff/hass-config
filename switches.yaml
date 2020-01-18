@@ -43,13 +43,13 @@
   - platform: wake_on_lan
     name: Grace's Computer WOL
     host: 192.168.1.177
-    mac_address: !secret wake_on_lan_graces_computer_mac
+    mac: !secret wake_on_lan_graces_computer_mac
     broadcast_address: 192.168.1.255
 
   - platform: wake_on_lan
     name: Nouzar's Computer WOL
     host: 192.168.1.137
-    mac_address: !secret wake_on_lan_nouzars_computer_mac
+    mac: !secret wake_on_lan_nouzars_computer_mac
     broadcast_address: 192.168.1.255
 
 # WOL-proxy items
