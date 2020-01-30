@@ -168,7 +168,7 @@ tplink:
     - host: 192.168.20.215
 
 octoprint:
-  - host: atomicpi.boston.auffinger.local
+  - host: orangepizero.boston.auffinger.local
     port: 1337
     api_key: !secret octoprint_api_key
     name: "Ender 3"
