@@ -167,13 +167,13 @@ tplink:
     - host: 192.168.20.217
     - host: 192.168.20.215
 
-octoprint:
-  - host: orangepizero.boston.auffinger.local
-    port: 1337
-    api_key: !secret octoprint_api_key
-    name: "Ender 3"
-    bed: true
-    number_of_tools: 1
+# octoprint:
+#   - host: orangepizero.boston.auffinger.local
+#     port: 1337
+#     api_key: !secret octoprint_api_key
+#     name: "Ender 3"
+#     bed: true
+#     number_of_tools: 1
 
 influxdb:
   host: !secret influxdb_host
