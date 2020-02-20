@@ -125,6 +125,7 @@ views:
         entities:
           - switch.caitlins_computer_wol_proxy
           - switch.seans_computer_wol_proxy
+          - switch.esw01_2_relay
       - type: vertical-stack
         cards:
           - type: light
