@@ -2,6 +2,8 @@
   smart_home:
     filter:
       include_entities:
+        - climate.trane_model_tzemt524aa21ma_mode
+        - climate.trane_model_tzemt524aa21ma_mode_2
         - media_player.samsung_tv_remote
         - light.bedroom_fan_alexa
         - light.bedside
@@ -13,8 +15,6 @@
         - sensor.kitchen_temperature
         - sensor.living_room_temperature
         - sensor.loft_temperature
-        - sensor.trane_model_tzemt524aa21ma_temperature
-        - sensor.trane_model_tzemt524aa21ma_temperature_2
         - switch.caitlin_s_computer_wol
         - switch.esw01_2_relay
         - switch.grace_s_computer_wol
@@ -32,13 +32,22 @@
         - light.zooz_zen24_loft
         #- light.sky_interior
     entity_config:
+      climate.trane_model_tzemt524aa21ma_mode:
+        name: Downstairs Thermostat
+        description: Downstairs Thermostat
+        display_categories: THERMOSTAT
+      climate.trane_model_tzemt524aa21ma_mode_2:
+        name: Upstairs Thermostat
+        description: Upstairs Thermostat
+        display_categories: THERMOSTAT
       media_player.samsung_tv_remote:
         name: TV
         description: The Samsung TV
+        display_categories: TV
       light.bedroom_fan_alexa:
         name: Bedroom Fan
         description: The Bedroom Fan
-        display_categories: SWITCH
+        display_categories: FAN
       light.bedside:
         name: Bedside
         description: Bedside Lights
@@ -50,32 +59,31 @@
       light.living_room_fan_alexa:
         name: Living Room Fan
         description: The Living Room Fan
-        display_categories: SWITCH
+        display_categories: FAN
       light.office_fan_alexa:
         name: Office Fan
         description: The Office Fan
-        display_categories: SWITCH
+        display_categories: FAN
       sensor.bedroom_temperature:
         name: Bedroom
         description: Bedroom Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       sensor.garage_temperature:
         name: Garage
         description: Garage Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       sensor.kitchen_temperature:
         name: Kitchen
-        description: Kitchen Temperature Sesnor
+        description: Kitchen Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       sensor.living_room_temperature:
         name: Living Room
         description: Living Room Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       sensor.loft_temperature:
         name: Office
         description: Loft Temperature Sensor
-      sensor.trane_model_tzemt524aa21ma_temperature:
-        name: Downstairs Thermostat
-        description: Downstairs Thermostat Temperature Sensor
-      sensor.trane_model_tzemt524aa21ma_temperature_2:
-        name: Upstairs Thermostat
-        description: Upstairs Thermostat Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       switch.caitlin_s_computer_wol:
         name: Caitlin's Computer
         description: Caitlin's Computer
@@ -87,7 +95,7 @@
       switch.esw01_2_relay:
         name: Bathroom Light
         description: Bathroom Light
-        display_categories: SWITCH
+        display_categories: LIGHT
       switch.nouzar_s_computer_wol:
         name: Nouzar's Computer
         description: Nouzar's Computer
@@ -95,7 +103,7 @@
       switch.HS1051:
         name: Coffee Maker
         description: Coffee Maker
-        display_categories: SWITCH  
+        display_categories: SWITCH
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
@@ -136,4 +144,3 @@
         name: Office Light
         description: Office Light
         display_categories: LIGHT
-        
