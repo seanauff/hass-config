@@ -118,13 +118,19 @@ camera:
     password: !secret synology_password
     timeout: 30
     verify_ssl: true
-   
+
+# enable WOL integration    
+wake_on_lan:    
+
 # Samsung Smart TV
-media_player:
-  - platform: samsungtv
-    host: !secret media_player_samsungtv_host
+samsungtv:
+  - host: !secret media_player_samsungtv_host
     port: 8001
-    mac: !secret media_player_samsungtv_mac
+    name: "Living Room TV"
+    turn_on_action:
+      - service: wake_on_lan.send_magic_packet
+        data:
+          mac: !secret media_player_samsungtv_mac
    
 # Garage door opener
 cover:
