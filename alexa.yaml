@@ -16,12 +16,11 @@
         - sensor.trane_model_tzemt524aa21ma_temperature
         - sensor.trane_model_tzemt524aa21ma_temperature_2
         - switch.caitlin_s_computer_wol
+        - switch.esw01_2_relay
         - switch.grace_s_computer_wol
         - switch.nouzar_s_computer_wol
         - switch.HS1051
         - switch.sean_s_computer_wol
-        - switch.sean_s_speakers
-        - switch.studio_monitors
         - switch.reverse_bedroom_fan
         - switch.reverse_living_room_fan
         - switch.reverse_office_fan
@@ -85,25 +84,21 @@
         name: Grace's Computer
         description: Grace's Computer
         display_categories: SWITCH
+      switch.esw01_2_relay:
+        name: Bathroom Light
+        description: Bathroom Light
+        display_categories: SWITCH
       switch.nouzar_s_computer_wol:
         name: Nouzar's Computer
         description: Nouzar's Computer
         display_categories: SWITCH
       switch.HS1051:
-        name: Christmas Tree
-        description: Christmas Tree
+        name: Coffee Maker
+        description: Coffee Maker
         display_categories: SWITCH  
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
-        display_categories: SWITCH
-      switch.sean_s_speakers:
-        name: Sean's Speakers
-        description: Sean's Speakers
-        display_categories: SWITCH
-      switch.studio_monitors:
-        name: Studio Monitors
-        description: Studio Monitors
         display_categories: SWITCH
       switch.reverse_bedroom_fan:
         name: Reverse Bedroom Fan
@@ -141,7 +136,4 @@
         name: Office Light
         description: Office Light
         display_categories: LIGHT
-      light.sky_interior:
-        name: Sky Interior
-        description: Sky Interior
-        display_categories: LIGHT  
+        
