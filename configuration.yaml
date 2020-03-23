@@ -118,6 +118,37 @@ camera:
     password: !secret synology_password
     timeout: 30
     verify_ssl: true
+  - platform: local_file
+    file_path: /tmp/driveway_cam_doods_latest.jpg
+    name: "Driveway Cam Objects Detected"
+  - platform: local_file
+    file_path: /tmp/backyard_cam_doods_latest.jpg
+    name: "Backyard Cam Objects Detected"
+
+image_processing:
+  - platform: doods
+    scan_interval: 10000
+    url: "http://192.168.20.193:8080"
+    timeout: 60
+    detector: default
+    source:
+      - entity_id: camera.driveway_cam
+      - entity_id: camera.backyard_cam
+    file_out:
+      - "/tmp/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+     # - "/tmp/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 50
+    labels:
+      - person
+      - bicycle
+      - car
+      - motorcycle
+      - truck
+      - bird
+      - cat
+      - dog
+      - chair
+      - couch
 
 # enable WOL integration    
 wake_on_lan:    
