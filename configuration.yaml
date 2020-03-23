@@ -156,7 +156,6 @@ wake_on_lan:
 # Samsung Smart TV
 samsungtv:
   - host: !secret media_player_samsungtv_host
-    port: 8001
     name: "Living Room TV"
     turn_on_action:
       - service: wake_on_lan.send_magic_packet
