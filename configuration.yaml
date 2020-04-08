@@ -203,14 +203,6 @@ tplink:
     - host: 192.168.20.217
     - host: 192.168.20.215
 
-# octoprint:
-#   - host: orangepizero.boston.auffinger.local
-#     port: 1337
-#     api_key: !secret octoprint_api_key
-#     name: "Ender 3"
-#     bed: true
-#     number_of_tools: 1
-
 influxdb:
   host: !secret influxdb_host
   port: 8086
@@ -229,13 +221,6 @@ influxdb:
   #      - automation
   include:
     entities:
-      #  - binary_sensor.wan_connection
-      #  - binary_sensor.wan_dns_connection
-      #  - sensor.aeotec_dsb09104_home_energy_meter_power_4
-      #  - sensor.aeotec_dsb09104_home_energy_meter_power_7
-      #  - sensor.aeotec_dsb09104_home_energy_meter_power_8
-      #  - sensor.aeotec_dsb09104_home_energy_meter_energy
-      #  - sensor.aeotec_dsb09104_home_energy_meter_power
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
@@ -274,9 +259,6 @@ influxdb:
        - sensor.dcp_l2550dw_black_toner_remaining
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
-       - sensor.download_192_168_20_1
-      #  - sensor.edgerouter_wan_bytes_in
-      #  - sensor.edgerouter_wan_bytes_out
        - sensor.electric_meter_consumption
        - sensor.garage_humidity
        - sensor.garage_temperature
@@ -300,7 +282,7 @@ influxdb:
        - sensor.safe_temperature
        - sensor.safe_enthalpy
        - sensor.speedtest_download
-       - sensor.speedtest_ping
+       #- sensor.speedtest_ping
        - sensor.speedtest_upload
        - sensor.total_power
        - sensor.waqi_charleston_public_works_south_carolina_usa
