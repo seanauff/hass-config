@@ -33,7 +33,7 @@ views:
           show_name: false
           show_state: false
       - type: media-control
-        entity: media_player.samsung_tv_remote
+        entity: media_player.living_room_tv
       - type: vertical-stack
         cards:
         - type: custom:simple-thermostat

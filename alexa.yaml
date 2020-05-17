@@ -4,7 +4,7 @@
       include_entities:
         - climate.trane_model_tzemt524aa21ma_mode
         - climate.trane_model_tzemt524aa21ma_mode_2
-        - media_player.samsung_tv_remote
+        - media_player.living_room_tv
         - light.bedroom_fan_alexa
         - light.bedside
         - light.boston
@@ -40,9 +40,9 @@
         name: Upstairs Thermostat
         description: Upstairs Thermostat
         display_categories: THERMOSTAT
-      media_player.samsung_tv_remote:
+      media_player.living_room_tv:
         name: TV
-        description: The Samsung TV
+        description: The Living Room TV
         display_categories: TV
       light.bedroom_fan_alexa:
         name: Bedroom Fan
