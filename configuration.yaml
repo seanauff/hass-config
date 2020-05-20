@@ -29,8 +29,8 @@ config:
 http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  base_url: !secret http_base_url
+  internal_url: !secret http_internal_url
+  external_url: !secret http_external_url
 
 # Checks for available updates
 # Note: This component will send some information about your system to
