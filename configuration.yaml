@@ -13,6 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   customize_domain: !include customize_domain.yaml
+  internal_url: !secret http_internal_url
+  external_url: !secret http_external_url
 
 # Show links to resources in log and frontend
 # introduction:
@@ -29,8 +31,7 @@ config:
 http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret http_password
-  internal_url: !secret http_internal_url
-  external_url: !secret http_external_url
+
 
 # Checks for available updates
 # Note: This component will send some information about your system to
