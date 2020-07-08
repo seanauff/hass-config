@@ -31,8 +31,8 @@ config:
 http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret http_password
-
-
+system_health:
+mobile_app:
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
@@ -184,10 +184,7 @@ cover:
 #     resource: !secret notify_synology_chat_resource
 
 speedtestdotnet:
-  monitored_conditions:
-    #- ping
-    - download
-    - upload
+
 
 # getting error on this
 #iperf3:
