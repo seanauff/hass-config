@@ -177,14 +177,7 @@ cover:
 #     password: !secret google_password
 #     max_gps_accuracy: 200
 
-# can't get this to work
-# notify:
-#   - platform: synology_chat
-#     name: hass_synchat
-#     resource: !secret notify_synology_chat_resource
-
 speedtestdotnet:
-
 
 # getting error on this
 #iperf3:
