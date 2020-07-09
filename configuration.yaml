@@ -138,7 +138,7 @@ image_processing:
     file_out:
       - "/tmp/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
      # - "/tmp/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 50
+    confidence: 75
     labels:
       - person
       - bicycle
