@@ -145,7 +145,7 @@ image_processing:
     file_out:
       - "/tmp/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
      # - "/tmp/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 70
+    confidence: 75
     labels:
       - person
       - bicycle
@@ -257,6 +257,7 @@ influxdb:
        - sensor.dcp_l2550dw_black_toner_remaining
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
+       - sensor.dexcom_glucose_value
        - sensor.electric_meter_consumption
        - sensor.garage_humidity
        - sensor.garage_temperature
