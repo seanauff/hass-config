@@ -113,12 +113,12 @@ zwave:
 
 # Synology Surveillance Station Connection
 camera:
-  - platform: synology
-    url: !secret synology_camera_url
-    username: !secret synology_username
-    password: !secret synology_password
-    timeout: 30
-    verify_ssl: true
+  # - platform: synology
+  #   url: !secret synology_camera_url
+  #   username: !secret synology_username
+  #   password: !secret synology_password
+  #   timeout: 30
+  #   verify_ssl: true
   - platform: local_file
     file_path: /tmp/driveway_cam_doods_latest.jpg
     name: "Driveway Cam Objects Detected"
