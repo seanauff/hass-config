@@ -1,5 +1,5 @@
-  boston:
-    name: Boston
-    entities:
-      - light.boston
-      - light.bedside
+  # boston:
+  #   name: Boston
+  #   entities:
+  #     - light.boston
+  #     - light.bedside

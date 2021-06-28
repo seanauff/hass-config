@@ -31,6 +31,9 @@ config:
 http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret http_password
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
 system_health:
 mobile_app:
 # Checks for available updates
@@ -39,9 +42,7 @@ mobile_app:
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
-use_x_forwarded_for: true
-trusted_proxies:
-  - 127.0.0.1
+
 
 # Discover some devices automatically
 #discovery:
@@ -172,34 +173,12 @@ samsungtv:
         data:
           mac: !secret media_player_samsungtv_mac
    
-# Garage door opener
-# cover:
-#   - platform: myq
-#     username: !secret myq_username
-#     password: !secret myq_password
-#     type: chamberlain
-#     scan_interval: 30
-
-# device_tracker:
-#   - platform: google_maps
-#     username: !secret google_username
-#     password: !secret google_password
-#     max_gps_accuracy: 200
-
-speedtestdotnet:
-
-# getting error on this
-#iperf3:
-#  hosts:
-#    - host: 192.168.20.1
-
 tplink:
   discovery: false
   switch:
      - host: 192.168.6.50
      - host: 192.168.6.51
      - host: 192.168.6.52
-
 
 influxdb:
   host: !secret influxdb_host
@@ -222,14 +201,6 @@ influxdb:
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
-       - sensor.bos_living_room_eco2
-       - sensor.bos_living_room_humidity
-       - sensor.bos_living_room_temperature
-       - sensor.bos_living_room_tvoc
-       - sensor.boston_living_room_enthalpy
-       - sensor.boston_room_humidity
-       - sensor.boston_room_temperature
-       - sensor.boston_room_enthalpy
        - sensor.dark_sky_apparent_temperature
        - sensor.dark_sky_cloud_coverage
        - sensor.dark_sky_daily_max_precip_intensity
@@ -237,7 +208,6 @@ influxdb:
        - sensor.dark_sky_daytime_high_temperature
        - sensor.dark_sky_dew_point
        - sensor.dark_sky_humidity
-       - sensor.darksky_bos_humidity
        - sensor.dark_sky_moon_phase
        - sensor.dark_sky_overnight_low_apparent_temperature
        - sensor.dark_sky_overnight_low_temperature
@@ -247,13 +217,11 @@ influxdb:
        - sensor.dark_sky_precip_probability
        - sensor.dark_sky_pressure
        - sensor.dark_sky_temperature
-       - sensor.darksky_bos_temperature
        - sensor.dark_sky_uv_index
        - sensor.dark_sky_visibility
        - sensor.dark_sky_wind_bearing
        - sensor.dark_sky_wind_speed
        - sensor.darksky_enthalpy
-       - sensor.darksky_bos_enthalpy
        - sensor.dcp_l2550dw_black_toner_remaining
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter

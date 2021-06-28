@@ -2,115 +2,78 @@
 ## Switches
 #################################################################
 
-# Tasmota Switches
-  # - platform: mqtt
-  #   name: "Studio Monitors"
-  #   state_topic: "tasmota/ESW01-1/stat/POWER"
-  #   command_topic: "tasmota/ESW01-1/cmnd/POWER"
-  #   availability_topic: "tasmota/ESW01-1/tele/LWT"
-  #   qos: 1
-  #   payload_on: "ON"
-  #   payload_off: "OFF"
-  #   payload_available: "Online"
-  #   payload_not_available: "Offline"
-  #   retain: false
-
-  - platform: mqtt
-    name: "Sean's Speakers"
-    state_topic: "tasmota/ESW01-2/stat/POWER"
-    command_topic: "tasmota/ESW01-2/cmnd/POWER"
-    availability_topic: "tasmota/ESW01-2/tele/LWT"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    retain: false
-
 # WOL items
-  # - platform: wake_on_lan
-  #   name: Sean's Computer WOL
-  #   host: 192.168.20.105
-  #   mac_address: !secret wake_on_lan_seans_computer_mac
-  #   broadcast_address: 192.168.1.255
-
-  # - platform: wake_on_lan
-  #   name: Caitlin's Computer WOL
-  #   host: 192.168.20.133
-  #   mac_address: !secret wake_on_lan_caitlins_computer_mac
-  #   broadcast_address: 192.168.1.255
-
   - platform: wake_on_lan
-    name: Grace's Computer WOL
-    host: 192.168.1.177
-    mac: !secret wake_on_lan_graces_computer_mac
+    name: Sean's Computer WOL
+    host: 192.168.1.105
+    mac: !secret wake_on_lan_seans_computer_mac
     broadcast_address: 192.168.1.255
 
   - platform: wake_on_lan
-    name: Nouzar's Computer WOL
-    host: 192.168.1.137
-    mac: !secret wake_on_lan_nouzars_computer_mac
+    name: Caitlin's Computer WOL
+    host: 192.168.1.133
+    mac: !secret wake_on_lan_caitlins_computer_mac
     broadcast_address: 192.168.1.255
 
 # WOL-proxy items
 
-  # template switch that combines the mqtt switch and a binary sensor
-  - platform: template
-    switches:
-      seans_computer_wol_proxy:
-        friendly_name: "Sean's Computer WOL"
-        value_template: "{{ is_state('binary_sensor.seans_computer_ping', 'on') }}"
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.seans_computer_wol_proxy_mqtt
-        turn_off: 
-          service: system_log.write
-          data:
-            message: "seans_computer_wol_proxy does not support turning off"
-            level: warning
+  # # template switch that combines the mqtt switch and a binary sensor
+  # - platform: template
+  #   switches:
+  #     seans_computer_wol_proxy:
+  #       friendly_name: "Sean's Computer WOL"
+  #       value_template: "{{ is_state('binary_sensor.seans_computer_ping', 'on') }}"
+  #       turn_on:
+  #         service: switch.turn_on
+  #         data:
+  #           entity_id: switch.seans_computer_wol_proxy_mqtt
+  #       turn_off: 
+  #         service: system_log.write
+  #         data:
+  #           message: "seans_computer_wol_proxy does not support turning off"
+  #           level: warning
 
-  # MQTT switch that controls WOL-proxy
-  - platform: mqtt
-    name: "Seans Computer WOL-proxy mqtt"
-    command_topic: "WOL-proxy/command"
-    availability_topic: "WOL-proxy/status"
-    payload_on: !secret wake_on_lan_seans_computer_mac
-    # payload_off: "OFF" # this does nothing
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    optimistic: true
-    qos: 0
-    retain: false
+  # # MQTT switch that controls WOL-proxy
+  # - platform: mqtt
+  #   name: "Seans Computer WOL-proxy mqtt"
+  #   command_topic: "WOL-proxy/command"
+  #   availability_topic: "WOL-proxy/status"
+  #   payload_on: !secret wake_on_lan_seans_computer_mac
+  #   # payload_off: "OFF" # this does nothing
+  #   payload_available: "Online"
+  #   payload_not_available: "Offline"
+  #   optimistic: true
+  #   qos: 0
+  #   retain: false
 
-  # template switch that combines the mqtt switch and a binary sensor
-  - platform: template
-    switches:
-      caitlins_computer_wol_proxy:
-        friendly_name: "Caitlin's Computer WOL"
-        value_template: "{{ is_state('binary_sensor.caitlins_computer_ping', 'on') }}"
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.caitlins_computer_wol_proxy_mqtt
-        turn_off: 
-          service: system_log.write
-          data:
-            message: "caitlins_computer_wol_proxy does not support turning off"
-            level: warning
+  # # template switch that combines the mqtt switch and a binary sensor
+  # - platform: template
+  #   switches:
+  #     caitlins_computer_wol_proxy:
+  #       friendly_name: "Caitlin's Computer WOL"
+  #       value_template: "{{ is_state('binary_sensor.caitlins_computer_ping', 'on') }}"
+  #       turn_on:
+  #         service: switch.turn_on
+  #         data:
+  #           entity_id: switch.caitlins_computer_wol_proxy_mqtt
+  #       turn_off: 
+  #         service: system_log.write
+  #         data:
+  #           message: "caitlins_computer_wol_proxy does not support turning off"
+  #           level: warning
 
-  # MQTT switch that controls WOL-proxy
-  - platform: mqtt
-    name: "Caitlins Computer WOL-proxy mqtt"
-    command_topic: "WOL-proxy/command"
-    availability_topic: "WOL-proxy/status"
-    payload_on: !secret wake_on_lan_caitlins_computer_mac
-    # payload_off: "OFF" # this does nothing
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    optimistic: true
-    qos: 0
-    retain: false
+  # # MQTT switch that controls WOL-proxy
+  # - platform: mqtt
+  #   name: "Caitlins Computer WOL-proxy mqtt"
+  #   command_topic: "WOL-proxy/command"
+  #   availability_topic: "WOL-proxy/status"
+  #   payload_on: !secret wake_on_lan_caitlins_computer_mac
+  #   # payload_off: "OFF" # this does nothing
+  #   payload_available: "Online"
+  #   payload_not_available: "Offline"
+  #   optimistic: true
+  #   qos: 0
+  #   retain: false
 
 # Fan Reversers
   - platform: mqtt
