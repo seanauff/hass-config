@@ -99,8 +99,8 @@ views:
         title: Computers
         show_header_toggle: false
         entities:
-          - switch.grace_s_computer_wol
-          - switch.nouzar_s_computer_wol
+          - switch.sean_s_computer_wol
+          - switch.caitlin_s_computer_wol
       - type: entities
         title: Fans
         show_header_toggle: false
