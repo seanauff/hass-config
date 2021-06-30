@@ -37,7 +37,7 @@ views:
       - type: vertical-stack
         cards:
         - type: custom:simple-thermostat
-          entity: climate.trane_model_tzemt524aa21ma_mode
+          entity: climate.nodeid_2_climate
           name: Downstairs Thermostat
           step_size: 1
           hide:
@@ -58,7 +58,7 @@ views:
         #- type: thermostat
         #  entity: climate.trane_model_tzemt524aa21ma_cooling_1
         - type: custom:simple-thermostat
-          entity: climate.trane_model_tzemt524aa21ma_mode_2
+          entity: climate.nodeid_3_climate
           name: Upstairs Thermostat
           step_size: 1
           hide:
@@ -93,9 +93,8 @@ views:
           - light.zooz_zen24_loft
           - light.living_room_fan_light
           - light.bedroom_fan_light
-          - switch.aeotec_dsc26103_micro_switch_2nd_edition_switch
-          - switch.aeotec_dsc26103_micro_switch_2nd_edition_switch_2
-      - type: entities
+          - switch.nodeid_9_switch
+          - switch.nodeid_16_switch
         title: Computers
         show_header_toggle: false
         entities:
@@ -111,24 +110,3 @@ views:
           - switch.reverse_living_room_fan
           - fan.office_fan
           - switch.reverse_office_fan
-      
-
-    # Specify a tab icon if you want the view tab to be an icon.
-  - title: Boston
-    # Title of the view. Will be used as the tooltip for tab icon
-    #title: Second view
-    cards:
-        # Entities card will take a list of entities and show their state.
-      - type: entities
-        title: Computers
-        show_header_toggle: false
-        entities:
-          - switch.caitlins_computer_wol_proxy
-          - switch.seans_computer_wol_proxy
-          - switch.esw01_2_relay
-      - type: vertical-stack
-        cards:
-          - type: light
-            entity: light.bedside
-          - type: light
-            entity: light.boston

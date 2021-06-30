@@ -110,7 +110,7 @@ mqtt:
 #   - platform: zwave
 
 # ZWave
-zwave:
+#zwave:
 #  usb_path: /dev/ttyACM1
 #  network_key: !secret zwave_network_key
 
