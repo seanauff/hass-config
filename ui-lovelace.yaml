@@ -87,14 +87,15 @@ views:
         title: Lights
         show_header_toggle: false
         entities:
-          - light.zooz_zen24_bedroom
-          - light.zooz_zen24_kitchen
-          - light.zooz_zen24_livingroom
-          - light.zooz_zen24_loft
+          # - light.zooz_zen24_bedroom
+          # - light.zooz_zen24_kitchen
+          # - light.zooz_zen24_livingroom
+          # - light.zooz_zen24_loft
           - light.living_room_fan_light
           - light.bedroom_fan_light
           - switch.nodeid_9_switch
           - switch.nodeid_16_switch
+      - type: entities  
         title: Computers
         show_header_toggle: false
         entities:
