@@ -13,9 +13,9 @@ resources:
 
 views:
     # View tab title.
-  - title: South Carolina
+  - title: Home
     # Unique path for direct access /lovelace/${path}
-    path: southcarolina
+    path: home
     # Optional background (overwrites the global background).
     #background: radial-gradient(crimson, skyblue)
     # Each view can have a different theme applied. Theme should be defined in the frontend.

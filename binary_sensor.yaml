@@ -8,7 +8,7 @@
 # WOL-proxy helpers
   - platform: ping
     name: "Seans Computer Ping"
-    host: 192.168.20.105
+    host: 192.168.1.12
     count: 3
     scan_interval: 15
 

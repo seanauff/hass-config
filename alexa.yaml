@@ -2,12 +2,11 @@
   smart_home:
     filter:
       include_entities:
-        - climate.trane_model_tzemt524aa21ma_mode
-        - climate.trane_model_tzemt524aa21ma_mode_2
+        - climate.nodeid_2_climate
+        - climate.nodeid_3_climate
         - media_player.living_room_tv
         - light.bedroom_fan_alexa
         - light.bedside
-        - light.boston
         - light.living_room_fan_alexa
         - light.office_fan_alexa
         - sensor.bedroom_temperature
@@ -16,27 +15,23 @@
         - sensor.living_room_temperature
         - sensor.loft_temperature
         - switch.caitlin_s_computer_wol
-        - switch.esw01_2_relay
-        - switch.grace_s_computer_wol
-        - switch.nouzar_s_computer_wol
-        - switch.HS1051
         - switch.sean_s_computer_wol
         - switch.reverse_bedroom_fan
         - switch.reverse_living_room_fan
         - switch.reverse_office_fan
         - light.bedroom_fan_light
         - light.living_room_fan_light
-        - light.zooz_zen24_bedroom
-        - light.zooz_zen24_kitchen
-        - light.zooz_zen24_livingroom
-        - light.zooz_zen24_loft
+        # - light.zooz_zen24_bedroom
+        # - light.zooz_zen24_kitchen
+        # - light.zooz_zen24_livingroom
+        # - light.zooz_zen24_loft
         #- light.sky_interior
     entity_config:
-      climate.trane_model_tzemt524aa21ma_mode:
+      climate.nodeid_2_climate:
         name: Downstairs Thermostat
         description: Downstairs Thermostat
         display_categories: THERMOSTAT
-      climate.trane_model_tzemt524aa21ma_mode_2:
+      climate.nodeid_3_climate:
         name: Upstairs Thermostat
         description: Upstairs Thermostat
         display_categories: THERMOSTAT
@@ -52,10 +47,6 @@
         name: Bedside
         description: Bedside Lights
         display_categories: LIGHT
-      light.boston:
-        name: Boston
-        description: Boston Living Room Lights
-        display_categories: LIGHT  
       light.living_room_fan_alexa:
         name: Living Room Fan
         description: The Living Room Fan
@@ -88,22 +79,14 @@
         name: Caitlin's Computer
         description: Caitlin's Computer
         display_categories: SWITCH
-      switch.grace_s_computer_wol:
-        name: Grace's Computer
-        description: Grace's Computer
-        display_categories: SWITCH
-      switch.esw01_2_relay:
-        name: Bathroom Light
-        description: Bathroom Light
-        display_categories: LIGHT
-      switch.nouzar_s_computer_wol:
-        name: Nouzar's Computer
-        description: Nouzar's Computer
-        display_categories: SWITCH
-      switch.HS1051:
-        name: Coffee Maker
-        description: Coffee Maker
-        display_categories: SWITCH
+      # switch.esw01_2_relay:
+      #   name: Bathroom Light
+      #   description: Bathroom Light
+      #   display_categories: LIGHT
+      # switch.HS1051:
+      #   name: Coffee Maker
+      #   description: Coffee Maker
+      #   display_categories: SWITCH
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
@@ -128,19 +111,19 @@
         name: Living Room Fan Light
         description: Living Room Fan Light
         display_categories: LIGHT
-      light.zooz_zen24_bedroom:
-        name: Bedroom Light
-        description: Bedroom Light
-        display_categories: LIGHT
-      light.zooz_zen24_kitchen:
-        name: Kitchen Light
-        description: Kitchen Light
-        display_categories: LIGHT
-      light.zooz_zen24_livingroom:
-        name: Living Room Light
-        description: Living Room Light
-        display_categories: LIGHT
-      light.zooz_zen24_loft:
-        name: Office Light
-        description: Office Light
-        display_categories: LIGHT
+      # light.zooz_zen24_bedroom:
+      #   name: Bedroom Light
+      #   description: Bedroom Light
+      #   display_categories: LIGHT
+      # light.zooz_zen24_kitchen:
+      #   name: Kitchen Light
+      #   description: Kitchen Light
+      #   display_categories: LIGHT
+      # light.zooz_zen24_livingroom:
+      #   name: Living Room Light
+      #   description: Living Room Light
+      #   display_categories: LIGHT
+      # light.zooz_zen24_loft:
+      #   name: Office Light
+      #   description: Office Light
+      #   display_categories: LIGHT
