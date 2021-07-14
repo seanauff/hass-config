@@ -106,14 +106,6 @@ mqtt:
   broker: !secret mqtt_broker
   discovery: True
 
-# climate:
-#   - platform: zwave
-
-# ZWave
-#zwave:
-#  usb_path: /dev/ttyACM1
-#  network_key: !secret zwave_network_key
-
 # Synology Surveillance Station Connection
 camera:
   # - platform: synology
