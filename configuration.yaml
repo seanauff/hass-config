@@ -106,14 +106,7 @@ mqtt:
   broker: !secret mqtt_broker
   discovery: True
 
-# Synology Surveillance Station Connection
 camera:
-  # - platform: synology
-  #   url: !secret synology_camera_url
-  #   username: !secret synology_username
-  #   password: !secret synology_password
-  #   timeout: 30
-  #   verify_ssl: true
   - platform: local_file
     file_path: /tmp/driveway_cam_doods_latest.jpg
     name: "Driveway Cam Objects Detected"
@@ -157,13 +150,13 @@ image_processing:
 wake_on_lan:    
 
 # Samsung Smart TV
-samsungtv:
-  - host: !secret media_player_samsungtv_host
-    name: "Living Room TV"
-    turn_on_action:
-      - service: wake_on_lan.send_magic_packet
-        data:
-          mac: !secret media_player_samsungtv_mac
+# samsungtv:
+#   - host: !secret media_player_samsungtv_host
+#     name: "Living Room TV"
+#     turn_on_action:
+#       - service: wake_on_lan.send_magic_packet
+#         data:
+#           mac: !secret media_player_samsungtv_mac
    
 tplink:
   discovery: false
