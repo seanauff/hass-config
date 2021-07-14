@@ -168,9 +168,9 @@ samsungtv:
 tplink:
   discovery: false
   switch:
-     - host: 192.168.6.50
+    #  - host: 192.168.6.50
      - host: 192.168.6.51
-     - host: 192.168.6.52
+    #  - host: 192.168.6.52
 
 influxdb:
   host: !secret influxdb_host
