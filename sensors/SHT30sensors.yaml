@@ -104,17 +104,17 @@
     state_topic: "sensors/D1_Mini_08/enthalpySHT30"
     unit_of_measurement: 'kJ/kg'
 
-  - platform: mqtt
-    name: "Boston Room Humidity"
-    state_topic: "sensors/D1_Mini_09/humiditySHT30"
-    unit_of_measurement: '%'
+  # - platform: mqtt
+  #   name: "Boston Room Humidity"
+  #   state_topic: "sensors/D1_Mini_09/humiditySHT30"
+  #   unit_of_measurement: '%'
 
-  - platform: mqtt
-    name: "Boston Room Temperature"
-    state_topic: "sensors/D1_Mini_09/temperatureSHT30"
-    unit_of_measurement: '°F'
+  # - platform: mqtt
+  #   name: "Boston Room Temperature"
+  #   state_topic: "sensors/D1_Mini_09/temperatureSHT30"
+  #   unit_of_measurement: '°F'
 
-  - platform: mqtt
-    name: "Boston Room Enthalpy"
-    state_topic: "sensors/D1_Mini_09/enthalpySHT30"
-    unit_of_measurement: 'kJ/kg'
+  # - platform: mqtt
+  #   name: "Boston Room Enthalpy"
+  #   state_topic: "sensors/D1_Mini_09/enthalpySHT30"
+  #   unit_of_measurement: 'kJ/kg'
