@@ -2,13 +2,8 @@
   smart_home:
     filter:
       include_entities:
-        - climate.nodeid_2_climate
-        - climate.nodeid_3_climate
         - media_player.living_room_tv
-        - light.bedroom_fan_alexa
         - light.bedside
-        - light.living_room_fan_alexa
-        - light.office_fan_alexa
         - sensor.bedroom_temperature
         - sensor.garage_temperature
         - sensor.kitchen_temperature
@@ -16,45 +11,20 @@
         - sensor.loft_temperature
         - switch.caitlin_s_computer_wol
         - switch.sean_s_computer_wol
-        - switch.reverse_bedroom_fan
-        - switch.reverse_living_room_fan
-        - switch.reverse_office_fan
-        - light.bedroom_fan_light
-        - light.living_room_fan_light
         # - light.zooz_zen24_bedroom
         # - light.zooz_zen24_kitchen
         # - light.zooz_zen24_livingroom
         # - light.zooz_zen24_loft
         #- light.sky_interior
     entity_config:
-      climate.nodeid_2_climate:
-        name: Downstairs Thermostat
-        description: Downstairs Thermostat
-        display_categories: THERMOSTAT
-      climate.nodeid_3_climate:
-        name: Upstairs Thermostat
-        description: Upstairs Thermostat
-        display_categories: THERMOSTAT
       media_player.living_room_tv:
         name: TV
         description: The Living Room TV
         display_categories: TV
-      light.bedroom_fan_alexa:
-        name: Bedroom Fan
-        description: The Bedroom Fan
-        display_categories: FAN
       light.bedside:
         name: Bedside
         description: Bedside Lights
         display_categories: LIGHT
-      light.living_room_fan_alexa:
-        name: Living Room Fan
-        description: The Living Room Fan
-        display_categories: FAN
-      light.office_fan_alexa:
-        name: Office Fan
-        description: The Office Fan
-        display_categories: FAN
       sensor.bedroom_temperature:
         name: Bedroom
         description: Bedroom Temperature Sensor
@@ -91,26 +61,6 @@
         name: Sean's Computer
         description: Sean's Computer
         display_categories: SWITCH
-      switch.reverse_bedroom_fan:
-        name: Reverse Bedroom Fan
-        description: Reverse Bedroom Fan
-        display_categories: SWITCH
-      switch.reverse_living_room_fan:
-        name: Reverse Living Room Fan
-        description: Reverse Living Room Fan
-        display_categories: SWITCH
-      switch.reverse_office_fan:
-        name: Reverse Office Fan
-        description: Reverse Office Fan
-        display_categories: SWITCH
-      light.bedroom_fan_light:
-        name: Bedroom Fan Light
-        description: Bedroom Fan Light
-        display_categories: LIGHT
-      light.living_room_fan_light:
-        name: Living Room Fan Light
-        description: Living Room Fan Light
-        display_categories: LIGHT
       # light.zooz_zen24_bedroom:
       #   name: Bedroom Light
       #   description: Bedroom Light
