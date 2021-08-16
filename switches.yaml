@@ -75,39 +75,39 @@
   #   qos: 0
   #   retain: false
 
-# Fan Reversers
-  - platform: mqtt
-    name: "Reverse Office Fan"
-    # state_topic: "tasmota/ESW01-1/stat/POWER"
-    command_topic: "esp/fanimation/fan1/cmnd"
-    # availability_topic: "tasmota/ESW01-1/tele/LWT"
-    qos: 1
-    payload_on: "R"
-    payload_off: "R"
-    # payload_available: "Online"
-    # payload_not_available: "Offline"
-    retain: false
+# # Fan Reversers
+#   - platform: mqtt
+#     name: "Reverse Office Fan"
+#     # state_topic: "tasmota/ESW01-1/stat/POWER"
+#     command_topic: "esp/fanimation/fan1/cmnd"
+#     # availability_topic: "tasmota/ESW01-1/tele/LWT"
+#     qos: 1
+#     payload_on: "R"
+#     payload_off: "R"
+#     # payload_available: "Online"
+#     # payload_not_available: "Offline"
+#     retain: false
 
-  - platform: mqtt
-    name: "Reverse Bedroom Fan"
-    # state_topic: "tasmota/ESW01-1/stat/POWER"
-    command_topic: "esp/fanimation/fan2/cmnd"
-    # availability_topic: "tasmota/ESW01-1/tele/LWT"
-    qos: 1
-    payload_on: "R"
-    payload_off: "R"
-    # payload_available: "Online"
-    # payload_not_available: "Offline"
-    retain: false
+#   - platform: mqtt
+#     name: "Reverse Bedroom Fan"
+#     # state_topic: "tasmota/ESW01-1/stat/POWER"
+#     command_topic: "esp/fanimation/fan2/cmnd"
+#     # availability_topic: "tasmota/ESW01-1/tele/LWT"
+#     qos: 1
+#     payload_on: "R"
+#     payload_off: "R"
+#     # payload_available: "Online"
+#     # payload_not_available: "Offline"
+#     retain: false
 
-  - platform: mqtt
-    name: "Reverse Living Room Fan"
-    # state_topic: "tasmota/ESW01-1/stat/POWER"
-    command_topic: "esp/fanimation/fan3/cmnd"
-    # availability_topic: "tasmota/ESW01-1/tele/LWT"
-    qos: 1
-    payload_on: "R"
-    payload_off: "R"
-    # payload_available: "Online"
-    # payload_not_available: "Offline"
-    retain: false
+#   - platform: mqtt
+#     name: "Reverse Living Room Fan"
+#     # state_topic: "tasmota/ESW01-1/stat/POWER"
+#     command_topic: "esp/fanimation/fan3/cmnd"
+#     # availability_topic: "tasmota/ESW01-1/tele/LWT"
+#     qos: 1
+#     payload_on: "R"
+#     payload_off: "R"
+#     # payload_available: "Online"
+#     # payload_not_available: "Offline"
+#     retain: false

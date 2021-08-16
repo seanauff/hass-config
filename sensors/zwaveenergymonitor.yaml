@@ -1,17 +1,17 @@
-  - platform: mqtt
-    name: "Total Power"
-    state_topic: "sensors/energymeter"
-    unit_of_measurement: "VA"
-    value_template: "{{value_json['total']}}"
+  # - platform: mqtt
+  #   name: "Total Power"
+  #   state_topic: "sensors/energymeter"
+  #   unit_of_measurement: "VA"
+  #   value_template: "{{value_json['total']}}"
 
-  - platform: mqtt
-    name: "Phase 1 Power"
-    state_topic: "sensors/energymeter"
-    unit_of_measurement: "VA"
-    value_template: "{{value_json['phase1']}}"
+  # - platform: mqtt
+  #   name: "Phase 1 Power"
+  #   state_topic: "sensors/energymeter"
+  #   unit_of_measurement: "VA"
+  #   value_template: "{{value_json['phase1']}}"
 
-  - platform: mqtt
-    name: "Phase 2 Power"
-    state_topic: "sensors/energymeter"
-    unit_of_measurement: "VA"
-    value_template: "{{value_json['phase2']}}"  
+  # - platform: mqtt
+  #   name: "Phase 2 Power"
+  #   state_topic: "sensors/energymeter"
+  #   unit_of_measurement: "VA"
+  #   value_template: "{{value_json['phase2']}}"  

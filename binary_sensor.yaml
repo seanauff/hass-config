@@ -5,15 +5,15 @@
     payload_on: "1"
     payload_off: "0"
 
-# WOL-proxy helpers
-  - platform: ping
-    name: "Seans Computer Ping"
-    host: 192.168.1.12
-    count: 3
-    scan_interval: 15
+# # WOL-proxy helpers
+#   - platform: ping
+#     name: "Seans Computer Ping"
+#     host: 192.168.1.12
+#     count: 3
+#     scan_interval: 15
 
-  - platform: ping
-    name: "Caitlins Computer Ping"
-    host: 192.168.20.133
-    count: 3
-    scan_interval: 15  
+#   - platform: ping
+#     name: "Caitlins Computer Ping"
+#     host: 192.168.20.133
+#     count: 3
+#     scan_interval: 15  
