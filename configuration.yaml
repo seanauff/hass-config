@@ -9,7 +9,7 @@ homeassistant:
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: America/New_York
+  time_zone: America/Denver
   # Customization file
   customize: !include customize.yaml
   customize_domain: !include customize_domain.yaml
@@ -24,7 +24,7 @@ frontend:
   themes: !include themes.yaml
 
 lovelace:
-  mode: yaml
+#  mode: yaml
 # Enables configuration UI
 config:
 
@@ -162,7 +162,7 @@ tplink:
   discovery: false
   switch:
     #  - host: 192.168.6.50
-     - host: 192.168.6.51
+    # - host: 192.168.6.51
     #  - host: 192.168.6.52
 
 influxdb:
@@ -228,6 +228,7 @@ influxdb:
        - sensor.lower_attic_humidity
        - sensor.lower_attic_temperature
        - sensor.lower_attic_enthalpy
+       - sensor.myip
        - sensor.phase_1_power
        - sensor.phase_2_power
        - sensor.safe_humidity
@@ -237,7 +238,8 @@ influxdb:
        #- sensor.speedtest_ping
        - sensor.speedtest_upload
        - sensor.total_power
-       - sensor.waqi_charleston_public_works_south_carolina_usa
+       - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
+       - sensor.u_s_air_quality_index
        - sensor.water_meter_consumption
        - sensor.water_pressure
        - sun.sun
