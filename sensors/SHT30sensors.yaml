@@ -30,17 +30,17 @@
     unit_of_measurement: 'kJ/kg'
 
   - platform: mqtt
-    name: "Lower Attic Humidity"
+    name: "Attic Humidity"
     state_topic: "sensors/D1_Mini_04/humiditySHT30"
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: "Lower Attic Temperature"
+    name: "Attic Temperature"
     state_topic: "sensors/D1_Mini_04/temperatureSHT30"
     unit_of_measurement: '°F'
 
   - platform: mqtt
-    name: "Lower Attic Enthalpy"
+    name: "Attic Enthalpy"
     state_topic: "sensors/D1_Mini_04/enthalpySHT30"
     unit_of_measurement: 'kJ/kg'
 
