@@ -43,6 +43,7 @@ mobile_app:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
 
+zeroconf:
 
 # Discover some devices automatically
 #discovery:
@@ -211,6 +212,10 @@ influxdb:
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
        - sensor.dexcom_glucose_value
+       - sensor.ecobee_thermostat_current_humidity
+       - sensor.ecobee_thermostat_current_temperature
+       - sensor.ecobee_upstairs_sensor_battery
+       - sensor.ecobee_upstairs_sensor_temperature
        - sensor.electric_meter_consumption
        - sensor.garage_humidity
        - sensor.garage_temperature
