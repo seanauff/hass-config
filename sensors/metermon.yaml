@@ -1,15 +1,21 @@
 # Metermon Sensors
-  -  platform: mqtt
-     name: "Electric Meter Consumption"
-     state_topic: "sensors/metermon/electric/consumption"
-     unit_of_measurement: 'kWh'
+#   -  platform: mqtt
+#      name: "Electric Meter Consumption"
+#      state_topic: "sensors/metermon/electric/consumption"
+#      unit_of_measurement: 'kWh'
 
   -  platform: mqtt
      name: "Gas Meter Consumption"
-     state_topic: "sensors/metermon/gas/consumption"
+     state_topic: !secret gas_meter_topic
+     value_template: "{{ value_json.Consumption }}"
      unit_of_measurement: 'ft^3'
+     availability:
+      - topic: "metermon/status"
+     payload_available: "Online"
+     payload_not_available: "Offline"
+     json_attributes_topic: !secret gas_meter_topic
 
-  -  platform: mqtt
-     name: "Water Meter Consumption"
-     state_topic: "sensors/metermon/water/consumption"
-     unit_of_measurement: 'gal'   
+#   -  platform: mqtt
+#      name: "Water Meter Consumption"
+#      state_topic: "sensors/metermon/water/consumption"
+#      unit_of_measurement: 'gal'   
