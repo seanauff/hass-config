@@ -234,6 +234,10 @@ influxdb:
        - sensor.lower_attic_temperature
        - sensor.lower_attic_enthalpy
        - sensor.myip
+       - sensor.office_enthalpy
+       - sensor.office_humidity
+       - sensor.office_temperature
+       - sensor.office_tvoc
        - sensor.phase_1_power
        - sensor.phase_2_power
        - sensor.safe_humidity
