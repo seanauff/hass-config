@@ -45,6 +45,8 @@ updater:
 
 zeroconf:
 
+energy:
+
 # Discover some devices automatically
 #discovery:
 
