@@ -166,6 +166,21 @@ tplink:
     # - host: 192.168.6.51
     #  - host: 192.168.6.52
 
+utility_meter:
+  daily_gas:
+    source: sensor.gas_meter_consumption
+    name: Daily Gas Usage
+    cycle: daily
+  monthly_gas:
+    source: sensor.gas_meter_consumption
+    name: Monthly Gas Usage
+    cycle: monthly
+    offset:
+    # At least one of these must be specified:
+    days: 13
+    hours: 0
+    minutes: 0
+
 influxdb:
   host: !secret influxdb_host
   port: 8086
