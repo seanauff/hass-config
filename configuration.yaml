@@ -179,9 +179,9 @@ utility_meter:
     cycle: monthly
     offset:
     # At least one of these must be specified:
-    days: 13
-    hours: 0
-    minutes: 0
+      days: 13
+      hours: 0
+      minutes: 0
 
 influxdb:
   host: !secret influxdb_host
