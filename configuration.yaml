@@ -238,6 +238,15 @@ influxdb:
        - sensor.garage_temperature
        - sensor.garage_enthalpy
        - sensor.gas_meter_consumption
+       - sensor.hs110_1_power
+       - sensor.hs110_2_power
+       - sensor.hs110_3_power
+       - sensor.hs110_1_today_s_consumption
+       - sensor.hs110_2_today_s_consumption
+       - sensor.hs110_3_today_s_consumption
+       - sensor.hs110_1_total_consumption
+       - sensor.hs110_2_total_consumption
+       - sensor.hs110_3_total_consumption
        - sensor.kitchen_humidity
        - sensor.kitchen_temperature
        - sensor.kitchen_enthalpy
@@ -269,10 +278,6 @@ influxdb:
        - sensor.water_meter_consumption
        - sensor.water_pressure
        - sun.sun
-       - switch.hs110_1
-       - switch.hs110_2
-       - switch.hs110_3
-       - switch.hs105_1
 
     # domains:
     #   - sensor  
