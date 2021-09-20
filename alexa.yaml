@@ -2,8 +2,7 @@
   smart_home:
     filter:
       include_entities:
-        - media_player.living_room_tv
-        - light.bedside
+        - media_player.samsung_tv
         - sensor.bedroom_temperature
         - sensor.garage_temperature
         - sensor.kitchen_temperature
@@ -11,20 +10,12 @@
         - sensor.loft_temperature
         - switch.caitlin_s_computer_wol
         - switch.sean_s_computer_wol
-        # - light.zooz_zen24_bedroom
-        # - light.zooz_zen24_kitchen
-        # - light.zooz_zen24_livingroom
-        # - light.zooz_zen24_loft
-        #- light.sky_interior
+        - light.front_porch_lights
     entity_config:
-      media_player.living_room_tv:
+      media_player.samsung_tv:
         name: TV
         description: The Living Room TV
         display_categories: TV
-      light.bedside:
-        name: Bedside
-        description: Bedside Lights
-        display_categories: LIGHT
       sensor.bedroom_temperature:
         name: Bedroom
         description: Bedroom Temperature Sensor
@@ -53,27 +44,12 @@
       #   name: Bathroom Light
       #   description: Bathroom Light
       #   display_categories: LIGHT
-      # switch.HS1051:
-      #   name: Coffee Maker
-      #   description: Coffee Maker
-      #   display_categories: SWITCH
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
         display_categories: SWITCH
-      # light.zooz_zen24_bedroom:
-      #   name: Bedroom Light
-      #   description: Bedroom Light
-      #   display_categories: LIGHT
-      # light.zooz_zen24_kitchen:
-      #   name: Kitchen Light
-      #   description: Kitchen Light
-      #   display_categories: LIGHT
-      # light.zooz_zen24_livingroom:
-      #   name: Living Room Light
-      #   description: Living Room Light
-      #   display_categories: LIGHT
-      # light.zooz_zen24_loft:
-      #   name: Office Light
-      #   description: Office Light
-      #   display_categories: LIGHT
+      light.front_porch_lights:
+        name: Front Porch Lights
+        description: Front Porch Lights
+        display_categories: LIGHT
+
