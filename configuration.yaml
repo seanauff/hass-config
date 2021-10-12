@@ -162,13 +162,13 @@ wake_on_lan:
 #         data:
 #           mac: !secret media_player_samsungtv_mac
    
-tplink:
-  discovery: false
-  switch:
-    - host: 192.168.6.50
-    - host: 192.168.6.51
-    - host: 192.168.6.52
-    - host: 192.168.6.54
+# tplink:
+#   discovery: false
+#   switch:
+#     - host: 192.168.6.50
+#     - host: 192.168.6.51
+#     - host: 192.168.6.52
+#     - host: 192.168.6.54
 
 utility_meter:
   daily_gas:
