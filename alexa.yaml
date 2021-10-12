@@ -8,6 +8,7 @@
       include_entities:
         - cover.garage_door
         - light.front_porch_lights
+        - light.entry
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
         - sensor.bedroom_temperature
@@ -25,6 +26,10 @@
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
+        display_categories: LIGHT
+      light.entry:
+        name: Entry Lights
+        description: Entry Lights
         display_categories: LIGHT
       lock.touchscreen_deadbolt_z_wave_plus:
         name: Front Door
