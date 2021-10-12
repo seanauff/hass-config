@@ -103,6 +103,7 @@ binary_sensor: !include binary_sensor.yaml
 alexa: !include alexa.yaml
 fan: !include fans.yaml
 light: !include_dir_merge_list lights/
+template: !include templates.yaml
 
 # MQTT Broker Connection
 mqtt:
@@ -202,6 +203,9 @@ influxdb:
   #      - automation
   include:
     entities:
+       - device_tracker.pixel_3
+       - device_tracker.sean_s_s20
+       - device_tracker.the_jag
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
@@ -273,6 +277,9 @@ influxdb:
        - sensor.speedtest_download
        #- sensor.speedtest_ping
        - sensor.speedtest_upload
+       - sensor.the_jag_battery
+       - sensor.the_jag_odometer
+       - sensor.the_jag_range
        - sensor.total_power
        - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
        - sensor.u_s_air_quality_index

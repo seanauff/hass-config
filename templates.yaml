@@ -1,0 +1,7 @@
+  - sensor:
+    - name: "The Jag Odometer"
+      unit_of_measurement: "mi"
+      state: "{{ state_attr('sensor.the_jag_info','Odometer') }}"
+  - binary_sensor:
+    - name: "The Jag Charging"
+      state: "{{ state_attr('sensor.the_jag_battery','Charging') }}"
