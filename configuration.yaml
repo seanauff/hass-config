@@ -184,6 +184,14 @@ utility_meter:
       days: 13
       hours: 0
       minutes: 0
+  daily_jag_mileage:
+    source: sensor.the_jag_odometer
+    name: Daily Jag Mileage
+    cycle: daily
+  monthly_jag_mileage:
+    source: sensor.the_jag_odometer
+    name: Monthly Jag Mileage
+    cycle: monthly
 
 influxdb:
   host: !secret influxdb_host
@@ -280,6 +288,7 @@ influxdb:
        - sensor.the_jag_battery
        - sensor.the_jag_odometer
        - sensor.the_jag_range
+       - sensor.the_jag_tyres
        - sensor.total_power
        - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
        - sensor.u_s_air_quality_index
