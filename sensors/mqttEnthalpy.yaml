@@ -1,0 +1,4 @@
+  - platform: mqtt
+    name: "Airthings Basement Enthalpy"
+    state_topic: "airthings/d8:71:4d:96:08:7f/enthalpy"
+    unit_of_measurement: 'kJ/kg'
