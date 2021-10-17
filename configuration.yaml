@@ -214,6 +214,14 @@ influxdb:
        - device_tracker.pixel_3
        - device_tracker.sean_s_s20
        - device_tracker.the_jag
+       - sensor.airthings_basement_co2
+       - sensor.airthings_basement_enthalpy
+       - sensor.airthings_basement_humidity
+       - sensor.airthings_basement_pressure
+       - sensor.airthings_basement_radon_1_day_avg
+       - sensor.airthings_basement_radon_longterm_avg
+       - sensor.airthings_basement_temperature
+       - sensor.airthings_basement_voc
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
