@@ -11,11 +11,15 @@
         - light.entry
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
+        - sensor.airthings_basement_temperature
+        - sensor.attic_temperature
         - sensor.bedroom_temperature
         - sensor.garage_temperature
+        - sensor.guest_room_temperature
         - sensor.kitchen_temperature
         - sensor.living_room_temperature
         - sensor.loft_temperature
+        - sensor.office_temperrature
         - switch.caitlin_s_computer_wol
         - switch.sean_s_computer_wol
     entity_config:
@@ -39,6 +43,14 @@
         name: TV
         description: The Living Room TV
         display_categories: TV
+      sensor.airthings_basement_temperature:
+        name: Basement
+        description: Basement Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
+      sensor.attic_temperature:
+        name: Attic
+        description: Attic Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
       sensor.bedroom_temperature:
         name: Bedroom
         description: Bedroom Temperature Sensor
@@ -46,6 +58,10 @@
       sensor.garage_temperature:
         name: Garage
         description: Garage Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
+      sensor.guest_room_temperature:
+        name: Guest Room
+        description: Guest Room Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
       sensor.kitchen_temperature:
         name: Kitchen
@@ -56,8 +72,12 @@
         description: Living Room Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
       sensor.loft_temperature:
-        name: Office
+        name: Loft
         description: Loft Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
+      sensor.office_temperature:
+        name: Office
+        description: Office Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
       switch.caitlin_s_computer_wol:
         name: Caitlin's Computer

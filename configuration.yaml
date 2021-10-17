@@ -259,6 +259,9 @@ influxdb:
        - sensor.garage_temperature
        - sensor.garage_enthalpy
        - sensor.gas_meter_consumption
+       - sensor.guest_room_enthalpy
+       - sensor.guest_room_humidity
+       - sensor.guest_room_temperature
        - sensor.hs110_1_power
        - sensor.hs110_2_power
        - sensor.hs110_3_power
