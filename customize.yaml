@@ -1,6 +1,6 @@
     # Add an entry for each entity that you want to overwrite.
  
-    switch.hs105_1:
-      friendly_name: "Coffee Maker" 
-    switch.esw01_2_relay:
-      friendly_name: "Bathroom Light"
+    # switch.hs105_1:
+    #   friendly_name: "Coffee Maker" 
+    # switch.esw01_2_relay:
+    #   friendly_name: "Bathroom Light"
