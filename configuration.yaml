@@ -304,7 +304,8 @@ influxdb:
        - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
        - sensor.u_s_air_quality_index
        - sensor.upstairs_aq_radiation_cpm
-       - sensor.upstairs_aq_radiation_cpm_meter
+       - sensor.upstairs_aq_radiation_dose_rate
+       - sensor.upstairs_aq_total_radiation_counts
        - sensor.water_meter_consumption
        - sensor.water_pressure
        - sun.sun
