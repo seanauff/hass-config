@@ -1,0 +1,3 @@
+#dummy script to get jag battery status via Alexa TTS
+  alexa_jag_battery_status:
+    sequence:

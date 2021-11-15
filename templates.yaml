@@ -2,6 +2,9 @@
     - name: "The Jag Odometer"
       unit_of_measurement: "mi"
       state: "{{ state_attr('sensor.the_jag_info','Odometer') }}"
+    - name: "The Jag Max SOC int"
+      unit_of_measurement: "%"
+      state: "{{ states('input_number.the_jag_max_soc')|int }}"
   - binary_sensor:
     - name: "The Jag Charging"
       state: "{{ state_attr('sensor.the_jag_battery','Charging') }}"
