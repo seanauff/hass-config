@@ -7,10 +7,12 @@
     filter:
       include_entities:
         - cover.garage_door
+        - light.brew_sign
         - light.front_porch_lights
         - light.entry
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
+        - script.alexa_jag_battery_status
         - sensor.airthings_basement_temperature
         - sensor.attic_temperature
         - sensor.bedroom_temperature
@@ -28,6 +30,10 @@
         name: Garage Door
         description: The Garage Door
         display_categories: GARAGE_DOOR
+      light.brew_sign:
+        name: Brew Sign
+        description: Brew Sign
+        display_categories: LIGHT
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
@@ -42,8 +48,12 @@
         display_categories: SMARTLOCK
       media_player.samsung_tv:
         name: TV
-        description: The Living Room TV
+        description: The Loft TV
         display_categories: TV
+      script.alexa_jag_battery_status:
+        name: Whats the Jags battery status
+        description: reports the current state of the jag battery and charging
+        display_categories: SWITCH
       sensor.airthings_basement_temperature:
         name: Basement
         description: Basement Temperature Sensor
