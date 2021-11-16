@@ -310,6 +310,10 @@ influxdb:
        - sensor.total_power
        - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
        - sensor.u_s_air_quality_index
+       - sensor.upstairs_aq_pm_10um_mass_concentration
+       - sensor.upstairs_aq_pm_1um_mass_concentration
+       - sensor.upstairs_aq_pm_2_5um_mass_concentration
+       - sensor.upstairs_aq_pm_4um_mass_concentration
        - sensor.upstairs_aq_radiation_cpm
        - sensor.upstairs_aq_radiation_dose_rate
        - sensor.upstairs_aq_total_radiation_counts
