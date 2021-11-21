@@ -7,9 +7,11 @@
     filter:
       include_entities:
         - cover.garage_door
+        - light.bathroom_lights
         - light.brew_sign
+        - light.entry_lights
         - light.front_porch_lights
-        - light.entry
+        - light.loft_lights
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
         - script.alexa_jag_battery_status
@@ -22,25 +24,35 @@
         - sensor.living_room_temperature
         - sensor.loft_temperature
         - sensor.office_temperrature
+        - switch.back_porch_light
         - switch.caitlin_s_computer_wol
         - switch.esw01_2_relay
+        - switch.garage_light
         - switch.sean_s_computer_wol
     entity_config:
       cover.garage_door:
         name: Garage Door
         description: The Garage Door
         display_categories: GARAGE_DOOR
+      light.bathroom_lights:
+        name: Bathroom Lights
+        description: Bathroom Lights
+        display_categories: LIGHT
       light.brew_sign:
         name: Brew Sign
         description: Brew Sign
         display_categories: LIGHT
+      light.entry_lights:
+        name: Entry Lights
+        description: Entry Lights
+        display_categories: LIGHT
+      light.loft_lights:
+        name: Loft Lights
+        description: Loft Lights
+        display_categories: LIGHT
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
-        display_categories: LIGHT
-      light.entry:
-        name: Entry Lights
-        description: Entry Lights
         display_categories: LIGHT
       lock.touchscreen_deadbolt_z_wave_plus:
         name: Front Door
@@ -90,6 +102,10 @@
         name: Office
         description: Office Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
+      switch.back_porch_light:
+        name: Back Porch Light
+        description: Back Porch Light
+        display_categories: LIGHT
       switch.caitlin_s_computer_wol:
         name: Caitlin's Computer
         description: Caitlin's Computer
@@ -98,6 +114,10 @@
         name: Christmas Tree
         description: Christmas Tree
         display_categories: CHRISTMAS_TREE
+      switch.garage_light:
+        name: Garage Light
+        description: Garage Light
+        display_categories: LIGHT
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
