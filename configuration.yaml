@@ -35,7 +35,9 @@ http:
   trusted_proxies:
     - 127.0.0.1
 system_health:
+
 mobile_app:
+
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
@@ -82,11 +84,6 @@ map:
 
 # Track the sun
 sun:
-
-# Weather prediction
-#weather:
-#  - platform: darksky
-#    api_key: !secret darksky_key
 
 # Text to speech
 #tts:
@@ -159,23 +156,6 @@ mqtt:
 
 # enable WOL integration    
 wake_on_lan:    
-
-# Samsung Smart TV
-# samsungtv:
-#   - host: !secret media_player_samsungtv_host
-#     name: "Living Room TV"
-#     turn_on_action:
-#       - service: wake_on_lan.send_magic_packet
-#         data:
-#           mac: !secret media_player_samsungtv_mac
-   
-# tplink:
-#   discovery: false
-#   switch:
-#     - host: 192.168.6.50
-#     - host: 192.168.6.51
-#     - host: 192.168.6.52
-#     - host: 192.168.6.54
 
 utility_meter:
   daily_gas:
