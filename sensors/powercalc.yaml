@@ -3,4 +3,29 @@
   - platform: powercalc
     entity_id: light.expanse
   - platform: powercalc
-    entity_id: light.living_room    
+    entity_id: light.living_room
+  - platform: powercalc
+    entity_id: light.bedside
+  - platform: powercalc
+    entity_id: light.bathroom_lights
+    linear:
+      min_power: 0
+      max_power: 6
+    multiply_factor: 6
+  - platform: powercalc
+    entity_id: light.loft_lights
+    linear:
+      min_power: 0
+      max_power: 8.8
+    multiply_factor: 3
+  - platform: powercalc
+    entity_id: light.front_porch_lights
+    linear:
+      min_power: 0
+      max_power: 24
+  - platform: powercalc
+    entity_id: light.entry_lights
+    linear:
+      min_power: 0
+      max_power: 8.8
+    multiply_factor: 3
