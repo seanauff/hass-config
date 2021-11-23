@@ -1,11 +1,23 @@
   - platform: powercalc
     entity_id: light.kitchen
+    manufacturer: signify
+    model: LTW010
+    multiply_factor: 6
   - platform: powercalc
     entity_id: light.expanse
+    manufacturer: signify
+    model: LTW001
+    multiply_factor: 1
   - platform: powercalc
     entity_id: light.living_room
+    manufacturer: signify
+    model: LTW001
+    multiply_factor: 1
   - platform: powercalc
     entity_id: light.bedside
+    model: LCT015
+    multiply_factor: 2
+    manufacturer: signify
   - platform: powercalc
     entity_id: light.bathroom_lights
     linear:
