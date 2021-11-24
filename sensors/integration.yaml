@@ -31,3 +31,13 @@
     unit_time: h
     round: 3
     method: trapezoidal
+
+## Calculated Jag home charging rate
+
+  - platform: integration
+    source: sensor.the_jag_home_charging_rate
+    name: the_jag_home_charging_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
