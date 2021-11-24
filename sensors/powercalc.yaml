@@ -94,4 +94,13 @@
     entity_id: input_boolean.radon_fan
     fixed:
       power: "{{states('input_number.radon_fan_power_consumption')}}"
-  
+  # HVAC System
+  - platform: powercalc
+    entity_id: climate.ecobee_cloud_thermostat
+    name: HVAC System
+    fixed:
+      power: 18.84
+      states_power:
+        equipment_running|fan: 388
+        equipment_running|auxHeat1,fan: 561
+
