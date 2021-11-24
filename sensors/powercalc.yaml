@@ -51,6 +51,7 @@
       power: 10
   - platform: powercalc
     entity_id: media_player.samsung_tv
+    standby_power: 0.7
     fixed:
       power: 110
   - platform: powercalc
@@ -64,3 +65,27 @@
     entity_id: switch.esw01_2_relay
     fixed:
       power: 16.8
+  # Irrigation System
+  - platform: powercalc
+    create_group: Irrigation System
+    entities:
+      - entity_id: binary_sensor.back_left_fence_station_running
+        standby_power: 0.5
+        fixed:
+          power: 3.7
+      - entity_id: binary_sensor.back_left_station_running
+        standby_power: 0.5
+        fixed:
+          power: 3.7
+      - entity_id: binary_sensor.back_right_station_running
+        standby_power: 0.5
+        fixed:
+          power: 3.7
+      - entity_id: binary_sensor.front_left_station_running
+        standby_power: 0.5
+        fixed:
+          power: 3.7
+      - entity_id: binary_sensor.front_right_station_running
+        standby_power: 0.5
+        fixed:
+          power: 3.7
