@@ -52,7 +52,7 @@
   - platform: powercalc
     entity_id: media_player.samsung_tv
     fixed:
-      power: 70
+      power: 110
   - platform: powercalc
     entity_id: light.brew_sign
     linear:
