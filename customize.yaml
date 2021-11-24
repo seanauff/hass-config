@@ -2,3 +2,5 @@ sensor.s31_1_energy:
   friendly_name: Main Fridge Energy
 sensor.s31_2_energy:
   friendly_name: Garage Fridge Energy
+sensor.the_jag_home_charging_energy:
+  friendly_name: The Jag Home Charging Energy
