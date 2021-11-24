@@ -53,7 +53,7 @@
     entity_id: media_player.samsung_tv
     standby_power: 0.7
     fixed:
-      power: 110
+      power: 112
   - platform: powercalc
     entity_id: light.brew_sign
     linear:
