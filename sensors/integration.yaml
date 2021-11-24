@@ -1,0 +1,33 @@
+## Sonoff S31 plugs flashed with esphome
+
+  - platform: integration
+    source: sensor.s31_1_power
+    name: s31_1_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.s31_2_power
+    name: s31_2_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.s31_3_power
+    name: s31_3_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.s31_4_power
+    name: s31_4_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
