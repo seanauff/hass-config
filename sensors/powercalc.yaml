@@ -89,3 +89,9 @@
         standby_power: 0.5
         fixed:
           power: 3.7
+  # Radon Fan
+  - platform: powercalc
+    entity_id: input_boolean.radon_fan
+    fixed:
+      power: "{{states('input_number.radon_fan_power_consumption')}}"
+  
