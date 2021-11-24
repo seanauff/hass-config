@@ -41,3 +41,26 @@
       min_power: 0
       max_power: 8.8
     multiply_factor: 3
+  - platform: powercalc
+    entity_id: switch.garage_light
+    fixed:
+      power: 80
+  - platform: powercalc
+    entity_id: switch.back_porch_light
+    fixed:
+      power: 10
+  - platform: powercalc
+    entity_id: media_player.samsung_tv
+    fixed:
+      power: 70
+  - platform: powercalc
+    entity_id: light.brew_sign
+    linear:
+      min_power: 0.35
+      max_power: 0.55
+    standby_power: 0.35
+  # Christmas Tree
+  - platform: powercalc
+    entity_id: switch.esw01_2_relay
+    fixed:
+      power: 16.8
