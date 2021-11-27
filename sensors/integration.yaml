@@ -32,6 +32,22 @@
     round: 3
     method: trapezoidal
 
+  - platform: integration
+    source: sensor.s31_5_power
+    name: s31_5_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.s31_6_power
+    name: s31_6_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+
 ## Calculated Jag home charging rate
 
   - platform: integration
