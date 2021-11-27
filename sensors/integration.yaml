@@ -35,7 +35,7 @@
 ## Calculated Jag home charging rate
 
   - platform: integration
-    source: sensor.the_jag_home_charging_rate
+    source: sensor.the_jag_home_charging_power
     name: the_jag_home_charging_energy
     unit_prefix: k
     unit_time: h
