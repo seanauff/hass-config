@@ -237,6 +237,8 @@ influxdb:
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
        - sensor.dexcom_glucose_value
+       - sensor.diskstation_network_down
+       - sensor.diskstation_network_up
        - sensor.ecobee_thermostat_current_humidity
        - sensor.ecobee_thermostat_current_temperature
        - sensor.ecobee_upstairs_sensor_battery
@@ -290,6 +292,9 @@ influxdb:
        - sensor.total_power
        - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
        - sensor.u_s_air_quality_index
+       - sensor.ups_battery_charge
+       - sensor.ups_battery_runtime
+       - sensor.ups_load
        - sensor.upstairs_aq_pm_10um_mass_concentration
        - sensor.upstairs_aq_pm_1um_mass_concentration
        - sensor.upstairs_aq_pm_2_5um_mass_concentration
