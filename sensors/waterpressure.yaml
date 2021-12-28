@@ -1,5 +1,0 @@
-  # - platform: mqtt
-  #   name: "Water Pressure"
-  #   state_topic: "sensors/waterpressure"
-  #   unit_of_measurement: "psi"
-  #   value_template: "{{value_json['pressureTransducer']['pressure']}}"
