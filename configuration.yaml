@@ -288,6 +288,7 @@ influxdb:
        #- sensor.speedtest_ping
        - sensor.speedtest_upload
        - sensor.the_jag_battery
+       - sensor.the_jag_battery_soc_kwh
        - sensor.the_jag_odometer
        - sensor.the_jag_range
        - sensor.the_jag_tyres

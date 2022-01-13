@@ -5,6 +5,11 @@
     - name: "The Jag Max SOC int"
       unit_of_measurement: "%"
       state: "{{ states('input_number.the_jag_max_soc')|int }}"
+    - name: "The Jag Battery SOC kWh"
+      unit_of_measurement: "kWh"
+      state: "{{ state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 }}"
+      attributes:
+        SOC: "{{ state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge }}"
   - binary_sensor:
     - name: "The Jag Charging"
       state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
