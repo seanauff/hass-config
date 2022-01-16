@@ -10,6 +10,10 @@
       state: "{{ state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 }}"
       attributes:
         SOC: "{{ state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge }}"
+        battery_optimization: >
+          {% set SOC = state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge | float %}
+          {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
+          {{(SOC_kWh / SOC * 100 / 86 * 100) | round(1)}}
   - binary_sensor:
     - name: "The Jag Charging"
       state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
