@@ -1,0 +1,4 @@
+  - platform: derivative
+    source: sensor.the_jag_battery_soc_kwh
+    name: The Jag Battery Rate of Change
+    unit: kW
