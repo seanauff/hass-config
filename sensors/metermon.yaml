@@ -1,8 +1,14 @@
 # Metermon Sensors
-#   -  platform: mqtt
-#      name: "Electric Meter Consumption"
-#      state_topic: "sensors/metermon/electric/consumption"
-#      unit_of_measurement: 'kWh'
+  -  platform: mqtt
+     name: "Electric Meter Consumption"
+     state_topic: !secret electric_meter_topic
+     value_template: "{{ value_json.Consumption }}"
+     unit_of_measurement: 'kWh'
+     availability:
+      - topic: "metermon/status"
+        payload_available: "Online"
+        payload_not_available: "Offline"
+     json_attributes_topic: !secret electric_meter_topic
 
   -  platform: mqtt
      name: "Gas Meter Consumption"
@@ -11,8 +17,8 @@
      unit_of_measurement: 'ft^3'
      availability:
       - topic: "metermon/status"
-     payload_available: "Online"
-     payload_not_available: "Offline"
+        payload_available: "Online"
+        payload_not_available: "Offline"
      json_attributes_topic: !secret gas_meter_topic
 
 #   -  platform: mqtt

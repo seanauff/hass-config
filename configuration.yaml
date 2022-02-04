@@ -160,6 +160,19 @@ mqtt:
 wake_on_lan:    
 
 utility_meter:
+  daily_electricity:
+    source: sensor.electric_meter_consumption
+    name: Daily Electricity Usage
+    cycle: daily
+  monthly_electricity:
+    source: sensor.electric_meter_consumption
+    name: Monthly Electricity Usage
+    cycle: monthly
+    offset:
+    # At least one of these must be specified:
+      days: 13
+      hours: 0
+      minutes: 0
   daily_gas:
     source: sensor.gas_meter_consumption
     name: Daily Gas Usage
