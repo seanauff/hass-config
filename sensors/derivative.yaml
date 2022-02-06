@@ -2,3 +2,12 @@
     source: sensor.the_jag_battery_soc_kwh
     name: The Jag Battery Rate of Change
     unit: kW
+
+  - platform: derivative
+    source: sensor.electric_meter_consumption
+    name: Electric Meter Power
+    round: 0
+    unit_prefix: m
+    unit_time: h
+    unit: W
+    time_window: "00:05:00"
