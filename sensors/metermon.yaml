@@ -25,7 +25,15 @@
         payload_not_available: "Offline"
      json_attributes_topic: !secret gas_meter_topic
 
-#   -  platform: mqtt
-#      name: "Water Meter Consumption"
-#      state_topic: "sensors/metermon/water/consumption"
-#      unit_of_measurement: 'gal'   
+   # -  platform: mqtt
+   #    name: "Water Meter Consumption"
+   #    state_topic: !secret water_meter_topic
+   #    value_template: "{{ value_json.Consumption }}"
+   #    unit_of_measurement: 'gal'
+   #    #device_class:
+   #    state_class: 'total_increasing'
+   #    availability:
+   #     - topic: "metermon/status"
+   #       payload_available: "Online"
+   #       payload_not_available: "Offline"
+   #    json_attributes_topic: !secret water_meter_topic
