@@ -71,10 +71,10 @@
       max_power: 0.55
     standby_power: 0.35
   # Christmas Tree
-  - platform: powercalc
-    entity_id: switch.esw01_2_relay
-    fixed:
-      power: 16.8
+  # - platform: powercalc
+  #   entity_id: switch.esw01_2_relay
+  #   fixed:
+  #     power: 16.8
   # Irrigation System
   - platform: powercalc
     create_group: Irrigation System
@@ -111,6 +111,6 @@
     fixed:
       power: 18.84
       states_power:
-        equipment_running|fan: 388
-        equipment_running|auxHeat1,fan: 561
+        equipment_running|fan: 388 # fan only
+        equipment_running|auxHeat1,fan: 561 # heat (gas furnace)
 
