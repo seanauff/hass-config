@@ -112,6 +112,11 @@ fan: !include fans.yaml
 light: !include_dir_merge_list lights/
 template: !include templates.yaml
 
+#schluter
+schluter:
+  username: !secret schluter_username
+  password: !secret schluter_password
+
 # MQTT Broker Connection
 mqtt:
   broker: !secret mqtt_broker
