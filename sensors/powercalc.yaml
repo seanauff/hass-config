@@ -113,4 +113,11 @@
       states_power:
         equipment_running|fan: 388 # fan only
         equipment_running|auxHeat1,fan: 561 # heat (gas furnace)
-
+  # Headted Floor Kids bath
+  - platform: powercalc
+    entity_id: climate.kids_bath
+    name: Kids Bath Heated Floor
+    fixed:
+      power: 0.5
+      states_power:
+        hvac_action|heating: 323 # heater on
