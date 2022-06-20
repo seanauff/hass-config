@@ -195,13 +195,17 @@ utility_meter:
     cycle: monthly
 
 influxdb:
+  api_version: 2
+  ssl: false
   host: !secret influxdb_host
   port: 8086
-  database: home_assistant
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  #ssl: false
-  #verify_ssl: false
+  #database: home_assistant
+  #username: !secret influxdb_username
+  #password: !secret influxdb_password
+  verify_ssl: false
+  token: !secret influxdb_token
+  organization: Auffinger
+  bucket: home_assistant/autogen
   max_retries: 3
   #default_measurement: state
   # exclude:
