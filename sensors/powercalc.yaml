@@ -121,12 +121,20 @@
     fixed:
       power: 0.5
       states_power:
-        hvac_action|heating: 318 # heater on
+        hvac_action|heating: 323 # heater on
   # Heated Floor Master Bath
   - platform: powercalc
     entity_id: climate.master_bath
-    name: master Bath Heated Floor
+    name: Master Bath Heated Floor
     fixed:
       power: 0.5
       states_power:
-        hvac_action|heating: 657 # heater on
+        hvac_action|heating: 612 # heater on
+  # Heated Floor Guest Bath
+  - platform: powercalc
+    entity_id: climate.guest_bath
+    name: Guest Bath Heated Floor
+    fixed:
+      power: 0.5
+      states_power:
+        hvac_action|heating: 95 # heater on
