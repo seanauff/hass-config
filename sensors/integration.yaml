@@ -57,3 +57,13 @@
     unit_time: h
     round: 3
     method: trapezoidal
+
+## Chargepoint charging station
+
+  - platform: integration
+    source: sensor.cph50_power_output
+    name: cph50_total_energy
+    #unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
