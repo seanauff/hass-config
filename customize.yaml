@@ -10,3 +10,5 @@ sensor.s31_5_energy:
   friendly_name: Washer Energy  
 sensor.the_jag_home_charging_energy:
   friendly_name: The Jag Home Charging Energy
+sensor.cph50_total_energy:
+  friendly_name: Chargepoint EVSE Energy
