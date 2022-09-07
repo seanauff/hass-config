@@ -11,12 +11,11 @@
         - light.brew_sign
         - light.entry_lights
         - light.front_porch_lights
-        - light.loft_lights
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
         - script.alexa_jag_battery_status
         - sensor.airthings_basement_temperature
-        - sensor.attic_temperature
+        # - sensor.attic_temperature
         - sensor.bedroom_temperature
         - sensor.garage_temperature
         - sensor.guest_room_temperature
@@ -46,10 +45,6 @@
         name: Entry Lights
         description: Entry Lights
         display_categories: LIGHT
-      light.loft_lights:
-        name: Loft Lights
-        description: Loft Lights
-        display_categories: LIGHT
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
@@ -70,10 +65,10 @@
         name: Basement
         description: Basement Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
-      sensor.attic_temperature:
-        name: Attic
-        description: Attic Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
+      # sensor.attic_temperature:
+      #   name: Attic
+      #   description: Attic Temperature Sensor
+      #   display_categories: TEMPERATURE_SENSOR
       sensor.bedroom_temperature:
         name: Bedroom
         description: Bedroom Temperature Sensor
