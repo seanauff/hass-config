@@ -114,6 +114,51 @@ schluter:
 mqtt:
   broker: !secret mqtt_broker
   discovery: True
+  binary_sensor:
+    - name: Driveway Camera Motion
+      state_topic: "sensors/motion/camera/driveway"
+      payload_on: "1"
+      payload_off: "0"
+  sensor:
+    - name: "darksky Enthalpy"
+      state_topic: "sensors/darksky/enthalpy"
+      unit_of_measurement: 'kJ/kg'
+    - name: "Electric Meter Consumption"
+      state_topic: !secret electric_meter_topic
+      value_template: "{{ value_json.Consumption }}"
+      unit_of_measurement: 'kWh'
+      device_class: 'energy'
+      state_class: 'total_increasing'
+      availability:
+        - topic: "metermon/status"
+          payload_available: "Online"
+          payload_not_available: "Offline"
+      json_attributes_topic: !secret electric_meter_topic
+    - name: "Gas Meter Consumption"
+      state_topic: !secret gas_meter_topic
+      value_template: "{{ value_json.Consumption }}"
+      unit_of_measurement: 'ft³'
+      device_class: 'gas'
+      state_class: 'total_increasing'
+      availability:
+        - topic: "metermon/status"
+          payload_available: "Online"
+          payload_not_available: "Offline"
+      json_attributes_topic: !secret gas_meter_topic
+   # -  name: "Water Meter Consumption"
+   #    state_topic: !secret water_meter_topic
+   #    value_template: "{{ value_json.Consumption }}"
+   #    unit_of_measurement: 'gal'
+   #    #device_class:
+   #    state_class: 'total_increasing'
+   #    availability:
+   #     - topic: "metermon/status"
+   #       payload_available: "Online"
+   #       payload_not_available: "Offline"
+   #    json_attributes_topic: !secret water_meter_topic
+    - name: "Airthings Basement Enthalpy"
+      state_topic: "airthings/d8:71:4d:96:08:7f/enthalpy"
+      unit_of_measurement: 'kJ/kg'
 
 device_tracker:
   - platform: google_maps

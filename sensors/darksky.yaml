@@ -28,7 +28,7 @@
       - moon_phase
     scan_interval: '00:05'
 
-  - platform: mqtt
-    name: "darksky Enthalpy"
-    state_topic: "sensors/darksky/enthalpy"
-    unit_of_measurement: 'kJ/kg'
+  # - platform: mqtt
+  #   name: "darksky Enthalpy"
+  #   state_topic: "sensors/darksky/enthalpy"
+  #   unit_of_measurement: 'kJ/kg'
