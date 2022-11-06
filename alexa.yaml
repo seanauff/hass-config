@@ -28,6 +28,7 @@
         - switch.esw01_2_relay
         - switch.garage_light
         - switch.sean_s_computer_wol
+        - switch.peter_auffinger_timer
     entity_config:
       cover.garage_door:
         name: Garage Door
@@ -117,5 +118,7 @@
         name: Sean's Computer
         description: Sean's Computer
         display_categories: COMPUTER
-
-
+      switch.peter_auffinger_timer:
+        name: Peter Timer
+        description: Peter Timer
+        display_categories: SWITCH
