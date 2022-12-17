@@ -27,6 +27,7 @@
         - switch.caitlin_s_computer_wol
         - switch.esw01_2_relay
         - switch.garage_light
+        - switch.hs105_1
         - switch.sean_s_computer_wol
         - switch.peter_auffinger_timer
     entity_config:
@@ -114,6 +115,10 @@
         name: Garage Light
         description: Garage Light
         display_categories: LIGHT
+      switch.hs105_1:
+        name: Charlie Brown
+        description: Charlie Brown Christmas Tree
+        display_categories: CHRISTMAS_TREE
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
