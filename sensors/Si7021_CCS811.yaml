@@ -1,28 +1,28 @@
-  - platform: mqtt
-    name: "Office Temperature"
-    state_topic: "sensors/multisensor"
-    unit_of_measurement: "°F"
-    value_template: "{{value_json['Si7021']['Temperature']}}"
+  # - platform: mqtt
+  #   name: "Office Temperature"
+  #   state_topic: "sensors/multisensor"
+  #   unit_of_measurement: "°F"
+  #   value_template: "{{value_json['Si7021']['Temperature']}}"
 
-  - platform: mqtt
-    name: "Office Humidity"
-    state_topic: "sensors/multisensor"
-    unit_of_measurement: "%"
-    value_template: "{{value_json['Si7021']['Humidity']}}"
+  # - platform: mqtt
+  #   name: "Office Humidity"
+  #   state_topic: "sensors/multisensor"
+  #   unit_of_measurement: "%"
+  #   value_template: "{{value_json['Si7021']['Humidity']}}"
 
-  - platform: mqtt
-    name: "Office eCO2"
-    state_topic: "sensors/multisensor"
-    unit_of_measurement: "ppm"
-    value_template: "{{value_json['CCS811']['eCO2']}}"
+  # - platform: mqtt
+  #   name: "Office eCO2"
+  #   state_topic: "sensors/multisensor"
+  #   unit_of_measurement: "ppm"
+  #   value_template: "{{value_json['CCS811']['eCO2']}}"
 
-  - platform: mqtt
-    name: "Office TVOC"
-    state_topic: "sensors/multisensor"
-    unit_of_measurement: "ppb"
-    value_template: "{{value_json['CCS811']['TVOC']}}"
+  # - platform: mqtt
+  #   name: "Office TVOC"
+  #   state_topic: "sensors/multisensor"
+  #   unit_of_measurement: "ppb"
+  #   value_template: "{{value_json['CCS811']['TVOC']}}"
 
-  - platform: mqtt
-    name: "Office Enthalpy"
-    state_topic: "sensors/multisensor/enthalpySi7021"
-    unit_of_measurement: 'kJ/kg'
+  # - platform: mqtt
+  #   name: "Office Enthalpy"
+  #   state_topic: "sensors/multisensor/enthalpySi7021"
+  #   unit_of_measurement: 'kJ/kg'
