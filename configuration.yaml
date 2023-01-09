@@ -112,8 +112,8 @@ schluter:
 
 # MQTT Broker Connection
 mqtt:
-  broker: !secret mqtt_broker
-  discovery: True
+  #broker: !secret mqtt_broker
+  #discovery: True
   binary_sensor:
     - name: Driveway Camera Motion
       state_topic: "sensors/motion/camera/driveway"
