@@ -1,0 +1,33 @@
+# forum thread here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/66
+
+ - platform: command_line
+   #unique_id: xcelsmartmeterconsumption
+   name: "Smart Electric Meter Consumption"
+   command: "/usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/3/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+   unit_of_measurement: "kWh"
+   value_template: "{{ value | multiply(0.001) | round(3)}}"
+   scan_interval: 5
+   command_timeout: 5
+
+ - platform: derivative
+   name: "Smart Electric Meter Consumption Power"
+   source: sensor.smart_electric_meter_consumption
+   round: 0
+   unit_prefix: m
+   unit: W
+
+ - platform: command_line
+   #unique_id: xcelsmartmeterreturn
+   name: "Smart Electric Meter Return"
+   command: "/usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+   unit_of_measurement: "kWh"
+   value_template: "{{ value | multiply(0.001) | round(3)}}"
+   scan_interval: 5
+   command_timeout: 5
+
+ - platform: derivative
+   name: "Smart Electric Meter Return Power"
+   source: sensor.smart_electric_meter_return
+   round: 0
+   unit_prefix: m
+   unit: W

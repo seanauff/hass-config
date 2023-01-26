@@ -19,6 +19,8 @@ homeassistant:
   external_url: !secret http_external_url
   # included for keymaster
   packages: !include_dir_named packages
+  allowlist_external_dirs:
+   - /config
 
 # Show links to resources in log and frontend
 # introduction:
