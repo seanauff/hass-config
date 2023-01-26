@@ -12,3 +12,9 @@ sensor.the_jag_home_charging_energy:
   friendly_name: The Jag Home Charging Energy
 sensor.cph50_total_energy:
   friendly_name: Chargepoint EVSE Energy
+sensor.smart_electric_meter_consumption:
+  device_class: 'energy'
+  state_class: 'total_increasing'
+sensor.smart_electric_meter_return:
+  device_class: 'energy'
+  state_class: 'total_increasing'

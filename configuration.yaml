@@ -126,17 +126,17 @@ mqtt:
     - name: "darksky Enthalpy"
       state_topic: "sensors/darksky/enthalpy"
       unit_of_measurement: 'kJ/kg'
-    - name: "Electric Meter Consumption"
-      state_topic: !secret electric_meter_topic
-      value_template: "{{ value_json.Consumption }}"
-      unit_of_measurement: 'kWh'
-      device_class: 'energy'
-      state_class: 'total_increasing'
-      availability:
-        - topic: "metermon/status"
-          payload_available: "Online"
-          payload_not_available: "Offline"
-      json_attributes_topic: !secret electric_meter_topic
+    # - name: "Electric Meter Consumption"
+    #   state_topic: !secret electric_meter_topic
+    #   value_template: "{{ value_json.Consumption }}"
+    #   unit_of_measurement: 'kWh'
+    #   device_class: 'energy'
+    #   state_class: 'total_increasing'
+    #   availability:
+    #     - topic: "metermon/status"
+    #       payload_available: "Online"
+    #       payload_not_available: "Offline"
+    #   json_attributes_topic: !secret electric_meter_topic
     - name: "Gas Meter Consumption"
       state_topic: !secret gas_meter_topic
       value_template: "{{ value_json.Consumption }}"
@@ -305,11 +305,11 @@ wake_on_lan:
 
 utility_meter:
   daily_electricity:
-    source: sensor.electric_meter_consumption
+    source: sensor.smart_electric_meter_consumption
     name: Daily Electricity Usage
     cycle: daily
   monthly_electricity:
-    source: sensor.electric_meter_consumption
+    source: sensor.smart_electric_meter_consumption
     name: Monthly Electricity Usage
     cycle: monthly
     offset:
@@ -403,7 +403,7 @@ influxdb:
        - sensor.ecobee_thermostat_current_temperature
        - sensor.ecobee_upstairs_sensor_battery
        - sensor.ecobee_upstairs_sensor_temperature
-       - sensor.electric_meter_consumption
+      #  - sensor.electric_meter_consumption
        - sensor.garage_humidity
        - sensor.garage_temperature
        - sensor.garage_enthalpy
@@ -442,6 +442,9 @@ influxdb:
        - sensor.safe_humidity
        - sensor.safe_temperature
        - sensor.safe_enthalpy
+       - sensor.smart_electric_meter_consumption
+       - sensor.smart_electric_meter_power
+       - sensor.smart_electric_meter_return
        - sensor.speedtest_download
        #- sensor.speedtest_ping
        - sensor.speedtest_upload
