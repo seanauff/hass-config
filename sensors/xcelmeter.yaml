@@ -2,19 +2,19 @@
 # add static DHCP IP mapping for meter
  - platform: command_line
    name: "Smart Electric Meter Power"
-   command: "/usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/1/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+   command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/1/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
    unit_of_measurement: "W"
-   #device_class: 'power'
+   device_class: 'power'
    scan_interval: 5
    command_timeout: 5
 
  - platform: command_line
    name: "Smart Electric Meter Consumption"
-   command: "/usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/3/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+   command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/3/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
    unit_of_measurement: "kWh"
    value_template: "{{ value | multiply(0.001) | round(3)}}"
-   #device_class: 'energy'
-   #state_class: 'total_increasing'
+   device_class: 'energy'
+   state_class: 'total_increasing'
    scan_interval: 5
    command_timeout: 5
 
@@ -29,11 +29,11 @@
 
  - platform: command_line
    name: "Smart Electric Meter Return"
-   command: "/usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+   command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
    unit_of_measurement: "kWh"
    value_template: "{{ value | multiply(0.001) | round(3)}}"
-   #device_class: 'energy'
-   #state_class: 'total_increasing'
+   device_class: 'energy'
+   state_class: 'total_increasing'
    scan_interval: 5
    command_timeout: 5
 
