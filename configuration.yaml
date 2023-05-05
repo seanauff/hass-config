@@ -123,20 +123,6 @@ mqtt:
       payload_on: "1"
       payload_off: "0"
   sensor:
-    - name: "darksky Enthalpy"
-      state_topic: "sensors/darksky/enthalpy"
-      unit_of_measurement: 'kJ/kg'
-    # - name: "Electric Meter Consumption"
-    #   state_topic: !secret electric_meter_topic
-    #   value_template: "{{ value_json.Consumption }}"
-    #   unit_of_measurement: 'kWh'
-    #   device_class: 'energy'
-    #   state_class: 'total_increasing'
-    #   availability:
-    #     - topic: "metermon/status"
-    #       payload_available: "Online"
-    #       payload_not_available: "Offline"
-    #   json_attributes_topic: !secret electric_meter_topic
     - name: "Gas Meter Consumption"
       state_topic: !secret gas_meter_topic
       value_template: "{{ value_json.Consumption }}"
@@ -372,27 +358,6 @@ influxdb:
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
        - sensor.bedroom_enthalpy
-       - sensor.dark_sky_apparent_temperature
-       - sensor.dark_sky_cloud_coverage
-       - sensor.dark_sky_daily_max_precip_intensity
-       - sensor.dark_sky_daytime_high_apparent_temperature
-       - sensor.dark_sky_daytime_high_temperature
-       - sensor.dark_sky_dew_point
-       - sensor.dark_sky_humidity
-       - sensor.dark_sky_moon_phase
-       - sensor.dark_sky_overnight_low_apparent_temperature
-       - sensor.dark_sky_overnight_low_temperature
-       - sensor.dark_sky_ozone
-       - sensor.dark_sky_precip_accumulation
-       - sensor.dark_sky_precip_intensity
-       - sensor.dark_sky_precip_probability
-       - sensor.dark_sky_pressure
-       - sensor.dark_sky_temperature
-       - sensor.dark_sky_uv_index
-       - sensor.dark_sky_visibility
-       - sensor.dark_sky_wind_bearing
-       - sensor.dark_sky_wind_speed
-       - sensor.darksky_enthalpy
        - sensor.dcp_l2550dw_black_toner_remaining
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
@@ -403,7 +368,6 @@ influxdb:
        - sensor.ecobee_thermostat_current_temperature
        - sensor.ecobee_upstairs_sensor_battery
        - sensor.ecobee_upstairs_sensor_temperature
-      #  - sensor.electric_meter_consumption
        - sensor.garage_humidity
        - sensor.garage_temperature
        - sensor.garage_enthalpy
@@ -446,7 +410,6 @@ influxdb:
        - sensor.smart_electric_meter_power
        - sensor.smart_electric_meter_return
        - sensor.speedtest_download
-       #- sensor.speedtest_ping
        - sensor.speedtest_upload
        - sensor.the_jag_battery
        - sensor.the_jag_battery_soc_kwh
@@ -468,11 +431,5 @@ influxdb:
        - sensor.upstairs_aq_radiation_dose_rate
        - sensor.upstairs_aq_total_radiation_counts
        - sensor.water_meter_consumption
-       - sensor.water_pressure
        - sun.sun
-
-    # domains:
-    #   - sensor  
-  # tags:
-  #   instance: prod
-  #   source: hass    
+  
