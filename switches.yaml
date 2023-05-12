@@ -14,3 +14,13 @@
     host: 192.168.1.14
     mac: !secret wake_on_lan_caitlins_computer_mac
     broadcast_address: 192.168.1.255
+
+# Bluetti Bluetooth service on/off
+  - platform: command_line
+    switches:
+      bluetti_mqtt_service:
+        command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl start bluetti-mqtt.service'"
+        command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl stop bluetti-mqtt.service'"
+        command_state: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl is-active bluetti-mqtt.service'"
+        value_template: '{{ value == "active" }}'
+        unique_id: 81b5fff4-12f5-4e3d-85a6-6b12fd092b06
