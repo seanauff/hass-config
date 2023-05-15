@@ -1,15 +1,3 @@
-sensor.s31_1_energy:
-  friendly_name: Main Fridge Energy
-sensor.s31_2_energy:
-  friendly_name: Garage Fridge Energy
-sensor.s31_3_energy:
-  friendly_name: Homelab Energy
-sensor.s31_4_energy:
-  friendly_name: Dishwasher Energy
-sensor.s31_5_energy:
-  friendly_name: Washer Energy
-sensor.s31_6_energy:
-  friendly_name: Microwave Energy 
 sensor.the_jag_home_charging_energy:
   friendly_name: The Jag Home Charging Energy
 sensor.cph50_total_energy:
