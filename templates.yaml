@@ -1,4 +1,8 @@
   - sensor:
+    - name: envoy_202316037787_current_power_production_inverted
+      unit_of_measurement: "W"
+      device_class: power
+      state: "{{states('sensor.envoy_202316037787_current_power_production')|int * -1}}"
     - name: "The Jag Odometer"
       unit_of_measurement: "mi"
       state: "{{ state_attr('sensor.the_jag_info','Odometer') }}"
