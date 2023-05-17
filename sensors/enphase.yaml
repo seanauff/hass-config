@@ -74,7 +74,7 @@
 
   - platform: integration
     source: sensor.envoy_202316037787_inverter_202240150037
-    name: senvoy_202316037787_inverter_202240150037_energy
+    name: envoy_202316037787_inverter_202240150037_energy
     unit_prefix: k
     unit_time: h
     round: 3
