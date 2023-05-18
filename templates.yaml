@@ -8,7 +8,14 @@
     - name: Calculated Total Power Consumption
       unit_of_measurement: "W"
       device_class: power
-      state: "{{states('sensor.smart_electric_meter_power')|int - -1 * states('sensor.envoy_202316037787_current_power_production_inverted')|int}}"
+      state: >
+        {% set m = states('sensor.smart_electric_meter_power')|int %}
+        {% set p = states('sensor.envoy_202316037787_current_power_production_inverted')|int %}
+        {% if p >= 0 %}
+          {{m + p}}
+        {% else %}
+          {{m - p}}
+        {% endif %}
       unique_id: d54d9ea3-ffa5-4f58-a287-b957c0e2266a
     - name: "The Jag Odometer"
       unit_of_measurement: "mi"
