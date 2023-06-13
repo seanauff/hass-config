@@ -6,7 +6,7 @@
   - platform: powercalc
     entity_id: light.expanse
     manufacturer: signify
-    model: LTW001
+    model: LCA008
     multiply_factor: 1
   - platform: powercalc
     entity_id: light.living_room
@@ -22,14 +22,14 @@
     entity_id: light.stairway
     manufacturer: signify
     model: LTW010
-    multiply_factor: 4
+    multiply_factor: 3
   - platform: powercalc
     entity_id: light.bedroom
     manufacturer: signify
     model: LTW010
     multiply_factor: 1
   - platform: powercalc
-    entity_id: light.bathroom_lights
+    entity_id: light.bathroom_lights_internal
     linear:
       min_power: 0
       max_power: 6
@@ -44,7 +44,8 @@
     entity_id: light.front_porch_lights
     linear:
       min_power: 0
-      max_power: 24
+      max_power: 6
+    multiply_factor: 4
   - platform: powercalc
     entity_id: light.entry_lights
     linear:
