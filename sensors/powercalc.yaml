@@ -24,6 +24,16 @@
     model: LTW010
     multiply_factor: 3
   - platform: powercalc
+    entity_id: light.loft
+    manufacturer: signify
+    model: LCB001
+    multiply_factor: 2
+  - platform: powercalc
+    entity_id: light.shower
+    manufacturer: signify
+    model: LTW010
+    multiply_factor: 2
+  - platform: powercalc
     entity_id: light.bedroom
     manufacturer: signify
     model: LTW010
