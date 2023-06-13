@@ -1,12 +1,23 @@
-# most automations now live in node-red
-
-# Set theme on HA start
-  - alias: Set theme at startup
-    initial_state: 'on'
-    trigger:
-     - platform: homeassistant
-       event: start
-    action:
-      service: frontend.set_theme
-      data:
-        name: slate
+- alias: Set theme at startup
+  id: 8bec1ccd-a9e8-4502-8b55-39a947c0ecb7
+  initial_state: 'on'
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: slate
+- id: '1686672318328'
+  alias: Pura X Clean on Tag Scan
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 7761d19e-7a07-40dd-b4f4-d79d1dd76ddf
+  condition: []
+  action:
+  - service: button.press
+    data: {}
+    target:
+      entity_id: button.pura_x_start_resume_cleaning
+  mode: single
