@@ -51,13 +51,13 @@
       max_power: 7
     multiply_factor: 4
   - platform: powercalc
-    entity_id: light.front_porch_lights
+    entity_id: light.front_porch_lights_internal
     linear:
       min_power: 0
       max_power: 6
     multiply_factor: 4
   - platform: powercalc
-    entity_id: light.entry_lights
+    entity_id: light.entry_lights_internal
     linear:
       min_power: 0
       max_power: 8.8
