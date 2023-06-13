@@ -35,11 +35,11 @@
       max_power: 6
     multiply_factor: 6
   - platform: powercalc
-    entity_id: light.loft_lights
+    entity_id: light.office_lights_internal
     linear:
       min_power: 0
-      max_power: 8.8
-    multiply_factor: 3
+      max_power: 7
+    multiply_factor: 7
   - platform: powercalc
     entity_id: light.front_porch_lights
     linear:
