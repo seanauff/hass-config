@@ -158,12 +158,12 @@ mqtt:
     - name: "Garage Temperature"
       state_topic: "sensors/D1_Mini_03/temperatureSHT30"
       unit_of_measurement: '°F'
-    - name: "Attic Humidity"
-      state_topic: "sensors/D1_Mini_04/humiditySHT30"
-      unit_of_measurement: '%'
-    - name: "Attic Temperature"
-      state_topic: "sensors/D1_Mini_04/temperatureSHT30"
-      unit_of_measurement: '°F'
+    # - name: "Attic Humidity"
+    #   state_topic: "sensors/D1_Mini_04/humiditySHT30"
+    #   unit_of_measurement: '%'
+    # - name: "Attic Temperature"
+    #   state_topic: "sensors/D1_Mini_04/temperatureSHT30"
+    #   unit_of_measurement: '°F'
     - name: "Living Room Humidity"
       state_topic: "sensors/D1_Mini_05/humiditySHT30"
       unit_of_measurement: '%'
