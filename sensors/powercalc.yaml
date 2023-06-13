@@ -39,7 +39,7 @@
     linear:
       min_power: 0
       max_power: 7
-    multiply_factor: 7
+    multiply_factor: 4
   - platform: powercalc
     entity_id: light.front_porch_lights
     linear:
