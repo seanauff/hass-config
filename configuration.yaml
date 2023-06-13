@@ -315,7 +315,7 @@ influxdb:
   #      - automation
   include:
     entities:
-       - device_tracker.pixel_3
+       - device_tracker.caitlin_s21
        - device_tracker.sean_s_s20
        - device_tracker.the_jag
        - sensor.airthings_basement_co2
@@ -328,7 +328,7 @@ influxdb:
        - sensor.airthings_basement_voc
        - sensor.bedroom_humidity
        - sensor.bedroom_temperature
-       - sensor.bedroom_enthalpy
+       - sensor.bedroom_thermal_comfort_moist_air_enthalpy
        - sensor.dcp_l2550dw_black_toner_remaining
        - sensor.dcp_l2550dw_drum_remaining_life
        - sensor.dcp_l2550dw_page_counter
@@ -341,9 +341,9 @@ influxdb:
        - sensor.ecobee_upstairs_sensor_temperature
        - sensor.garage_humidity
        - sensor.garage_temperature
-       - sensor.garage_enthalpy
+       - sensor.garage_thermal_comfort_moist_air_enthalpy
        - sensor.gas_meter_consumption
-       - sensor.guest_room_enthalpy
+       - sensor.guest_room_thermal_comfort_moist_air_enthalpy
        - sensor.guest_room_humidity
        - sensor.guest_room_temperature
        - sensor.hs110_1_power
@@ -357,26 +357,21 @@ influxdb:
        - sensor.hs110_3_total_consumption
        - sensor.kitchen_humidity
        - sensor.kitchen_temperature
-       - sensor.kitchen_enthalpy
+       - sensor.kitchen_thermal_comfort_moist_air_enthalpy
        - sensor.living_room_humidity
        - sensor.living_room_temperature
-       - sensor.living_room_enthalpy
+       - sensor.living_room_thermal_comfort_moist_air_enthalpy
        - sensor.loft_humidity
        - sensor.loft_temperature
-       - sensor.loft_enthalpy
-       - sensor.lower_attic_humidity
-       - sensor.lower_attic_temperature
-       - sensor.lower_attic_enthalpy
+       - sensor.loft_thermal_comfort_moist_air_enthalpy
        - sensor.myip
-       - sensor.office_enthalpy
+       - sensor.office_thermal_comfort_moist_air_enthalpy
        - sensor.office_humidity
        - sensor.office_temperature
        - sensor.office_tvoc
-       - sensor.phase_1_power
-       - sensor.phase_2_power
        - sensor.safe_humidity
        - sensor.safe_temperature
-       - sensor.safe_enthalpy
+       - sensor.safe_thermal_comfort_moist_air_enthalpy
        - sensor.smart_electric_meter_consumption
        - sensor.smart_electric_meter_power
        - sensor.smart_electric_meter_return
