@@ -1,16 +1,10 @@
   - sensor:
-    # temporary helper because the CT is backwards
-    - name: envoy_202316037787_current_power_production_inverted
-      unit_of_measurement: "W"
-      device_class: power
-      state: "{{states('sensor.envoy_202316037787_current_power_production')|int * -1}}"
-      unique_id: eac1406f-343e-465a-bcc6-98fc7bc2c792
     - name: Calculated Total Power Consumption
       unit_of_measurement: "W"
       device_class: power
       state: >
         {% set m = states('sensor.smart_electric_meter_power')|int %}
-        {% set p = states('sensor.envoy_202316037787_current_power_production_inverted')|int %}
+        {% set p = states('sensor.envoy_202316037787_current_power_production')|int %}
         {% if p >= 0 %}
           {{m + p}}
         {% else %}
