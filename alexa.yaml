@@ -12,6 +12,7 @@
         - light.brew_sign
         - light.entry_lights
         - light.front_porch_lights
+        - light.office_lights
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
         - script.alexa_jag_battery_status
@@ -27,7 +28,6 @@
         - switch.caitlin_s_computer_wol
         - switch.esw01_2_relay
         - switch.garage_light
-        - switch.hs105_1
         - switch.sean_s_computer_wol
         - switch.peter_auffinger_timer
     entity_config:
@@ -54,6 +54,10 @@
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
+        display_categories: LIGHT
+      light.office_lights:
+        name: Office Lights
+        description: Office Lights
         display_categories: LIGHT
       lock.touchscreen_deadbolt_z_wave_plus:
         name: Front Door
@@ -108,17 +112,13 @@
         description: Caitlin's Computer
         display_categories: COMPUTER
       switch.esw01_2_relay:
-        name: Christmas Tree
-        description: Christmas Tree
-        display_categories: CHRISTMAS_TREE
+        name: Office Lamp
+        description: Office Lamp
+        display_categories: LIGHT
       switch.garage_light:
         name: Garage Light
         description: Garage Light
         display_categories: LIGHT
-      switch.hs105_1:
-        name: Charlie Brown
-        description: Charlie Brown Christmas Tree
-        display_categories: CHRISTMAS_TREE
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
