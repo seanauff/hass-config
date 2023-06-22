@@ -1,6 +1,7 @@
-    ## Xcel Energy Smart Meter via network
-    # forum thread here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/66
-    # add static DHCP IP mapping to router for meter
+### Xcel Energy Smart Meter via network ###
+# forum thread here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/66
+# add static DHCP IP mapping to router for meter
+    # Instantaneous Power Reading
   - sensor:
       name: "Smart Electric Meter Power"
       command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/1/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[-]?[0-9]+'"
@@ -10,6 +11,7 @@
       command_timeout: 5
       unique_id: 8cb84c17-27ff-4313-9ebc-ecf3b2fbecf1
  
+  # Lifetime Consumption
   - sensor:
       name: "Smart Electric Meter Consumption"
       command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/3/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
@@ -21,6 +23,7 @@
       command_timeout: 5
       unique_id: aea01677-762f-4d1f-a5be-2fea4f9d6637
 
+  # Lifetime Consumption
   - sensor:
       name: "Smart Electric Meter Return"
       command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
@@ -31,3 +34,16 @@
       scan_interval: 5
       command_timeout: 5
       unique_id: 325ce10f-9dc2-4c56-bde3-699ff9243101
+
+### Bluetti Bluetooth service running on AtomicPi ###
+  - switch:
+      name: Bluetti MQTT Service
+      command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl start bluetti-mqtt.service'"
+      command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl stop bluetti-mqtt.service'"
+      command_state: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl is-active bluetti-mqtt.service'"
+      value_template: '{{ value == "active" }}'
+      # icon_template: >
+      #   {% if value == "active" %} mdi:toggle-switch
+      #   {% else %} mdi:toggle-switch-off
+      #   {% endif %}
+      unique_id: 81b5fff4-12f5-4e3d-85a6-6b12fd092b06
