@@ -1,0 +1,87 @@
+  sensor:
+    - name: "Gas Meter Consumption"
+      state_topic: !secret gas_meter_topic
+      value_template: "{{ value_json.Consumption }}"
+      unit_of_measurement: 'ft³'
+      device_class: 'gas'
+      state_class: 'total_increasing'
+      availability:
+        - topic: "metermon/status"
+          payload_available: "Online"
+          payload_not_available: "Offline"
+      json_attributes_topic: !secret gas_meter_topic
+    - name: "Water Meter Consumption"
+      state_topic: !secret water_meter_topic
+      value_template: "{{ value_json.Consumption }}"
+      unit_of_measurement: 'gal'
+      #device_class:
+      state_class: 'total_increasing'
+      availability:
+       - topic: "metermon/status"
+         payload_available: "Online"
+         payload_not_available: "Offline"
+      json_attributes_topic: !secret water_meter_topic
+    - name: "Bedroom Humidity"
+      state_topic: "sensors/D1_Mini_02/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Bedroom Temperature"
+      state_topic: "sensors/D1_Mini_02/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Garage Humidity"
+      state_topic: "sensors/D1_Mini_03/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Garage Temperature"
+      state_topic: "sensors/D1_Mini_03/temperatureSHT30"
+      unit_of_measurement: '°F'
+    # - name: "Attic Humidity"
+    #   state_topic: "sensors/D1_Mini_04/humiditySHT30"
+    #   unit_of_measurement: '%'
+    # - name: "Attic Temperature"
+    #   state_topic: "sensors/D1_Mini_04/temperatureSHT30"
+    #   unit_of_measurement: '°F'
+    - name: "Living Room Humidity"
+      state_topic: "sensors/D1_Mini_05/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Living Room Temperature"
+      state_topic: "sensors/D1_Mini_05/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Loft Humidity"
+      state_topic: "sensors/D1_Mini_06/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Loft Temperature"
+      state_topic: "sensors/D1_Mini_06/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Kitchen Humidity"
+      state_topic: "sensors/D1_Mini_07/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Kitchen Temperature"
+      state_topic: "sensors/D1_Mini_07/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Safe Humidity"
+      state_topic: "sensors/D1_Mini_08/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Safe Temperature"
+      state_topic: "sensors/D1_Mini_08/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Guest Room Humidity"
+      state_topic: "sensors/D1_Mini_09/humiditySHT30"
+      unit_of_measurement: '%'
+    - name: "Guest Room Temperature"
+      state_topic: "sensors/D1_Mini_09/temperatureSHT30"
+      unit_of_measurement: '°F'
+    - name: "Office Temperature"
+      state_topic: "sensors/multisensor"
+      unit_of_measurement: "°F"
+      value_template: "{{value_json['Si7021']['Temperature']}}"
+    - name: "Office Humidity"
+      state_topic: "sensors/multisensor"
+      unit_of_measurement: "%"
+      value_template: "{{value_json['Si7021']['Humidity']}}"
+    - name: "Office eCO2"
+      state_topic: "sensors/multisensor"
+      unit_of_measurement: "ppm"
+      value_template: "{{value_json['CCS811']['eCO2']}}"
+    - name: "Office TVOC"
+      state_topic: "sensors/multisensor"
+      unit_of_measurement: "ppb"
+      value_template: "{{value_json['CCS811']['TVOC']}}"
