@@ -1,0 +1,33 @@
+    ## Xcel Energy Smart Meter via network
+    # forum thread here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/66
+    # add static DHCP IP mapping to router for meter
+  - sensor:
+      name: "Smart Electric Meter Power"
+      command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/1/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[-]?[0-9]+'"
+      unit_of_measurement: "W"
+      device_class: 'power'
+      scan_interval: 5
+      command_timeout: 5
+      unique_id: 8cb84c17-27ff-4313-9ebc-ecf3b2fbecf1
+ 
+  - sensor:
+      name: "Smart Electric Meter Consumption"
+      command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/3/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+      unit_of_measurement: "kWh"
+      value_template: "{{ value | multiply(0.001) | round(3)}}"
+      device_class: 'energy'
+      state_class: 'total_increasing'
+      scan_interval: 5
+      command_timeout: 5
+      unique_id: aea01677-762f-4d1f-a5be-2fea4f9d6637
+
+  - sensor:
+      name: "Smart Electric Meter Return"
+      command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
+      unit_of_measurement: "kWh"
+      value_template: "{{ value | multiply(0.001) | round(3)}}"
+      device_class: 'energy'
+      state_class: 'total_increasing'
+      scan_interval: 5
+      command_timeout: 5
+      unique_id: 325ce10f-9dc2-4c56-bde3-699ff9243101

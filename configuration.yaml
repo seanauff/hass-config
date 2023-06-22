@@ -108,6 +108,7 @@ fan: !include fans.yaml
 light: !include_dir_merge_list lights/
 template: !include templates.yaml
 mqtt: !include mqtt.yaml
+command_line: !include command_line.yaml
 
 #schluter
 schluter:
