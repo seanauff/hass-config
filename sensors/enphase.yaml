@@ -1,6 +1,6 @@
 # Enphase Production CT
   - platform: integration
-    source: sensor.envoy_202316037787_current_power_production_inverted
+    source: sensor.envoy_202316037787_current_power_production
     name: envoy_202316037787_total_production_energy
     unit_prefix: k
     unit_time: h
