@@ -205,12 +205,6 @@ mqtt:
       unit_of_measurement: "ppb"
       value_template: "{{value_json['CCS811']['TVOC']}}"
 
-device_tracker:
-  - platform: google_maps
-    username: !secret google_maps_account_1
-  - platform: google_maps
-    username: !secret google_maps_account_2
-
 # camera:
 #   - platform: local_file
 #     file_path: /tmp/driveway_cam_doods_latest.jpg
