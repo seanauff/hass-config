@@ -10,6 +10,7 @@
           payload_available: "Online"
           payload_not_available: "Offline"
       json_attributes_topic: !secret gas_meter_topic
+      unique_id: c33b0b9f-aadf-45d4-b245-d055b2b53614
     - name: "Water Meter Consumption"
       state_topic: !secret water_meter_topic
       value_template: "{{ value_json.Consumption }}"
@@ -21,6 +22,7 @@
          payload_available: "Online"
          payload_not_available: "Offline"
       json_attributes_topic: !secret water_meter_topic
+      unique_id: 815999a5-379a-43ec-bb17-0ccf47219d50
     - name: "Bedroom Humidity"
       state_topic: "sensors/D1_Mini_02/humiditySHT30"
       unit_of_measurement: '%'
