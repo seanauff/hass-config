@@ -15,7 +15,7 @@
       state_topic: !secret water_meter_topic
       value_template: "{{ value_json.Consumption }}"
       unit_of_measurement: 'gal'
-      #device_class:
+      device_class: water
       state_class: 'total_increasing'
       availability:
        - topic: "metermon/status"
