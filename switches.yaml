@@ -5,7 +5,7 @@
 # WOL items
   - platform: wake_on_lan
     name: Sean's Computer WOL
-    host: 192.168.1.12
+    host: 192.168.1.161
     mac: !secret wake_on_lan_seans_computer_mac
     broadcast_address: 192.168.1.255
 
@@ -13,4 +13,10 @@
     name: Caitlin's Computer WOL
     host: 192.168.1.14
     mac: !secret wake_on_lan_caitlins_computer_mac
+    broadcast_address: 192.168.1.255
+
+  - platform: wake_on_lan
+    name: Server WOL
+    host: 192.168.1.12
+    mac: !secret wake_on_lan_server_mac
     broadcast_address: 192.168.1.255
