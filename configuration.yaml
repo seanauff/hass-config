@@ -247,4 +247,7 @@ influxdb:
       - sun.sun
     entity_globs:
       - sensor.envoy_202316037787_*
+      - sensor.sht30_*_humidity
+      - sensor.sht30_*_temperature
+      - sensor.*_thermal_comfort_moist_air_enthalpy
   
