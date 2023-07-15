@@ -116,46 +116,6 @@ schluter:
   username: !secret schluter_username
   password: !secret schluter_password
 
-# camera:
-#   - platform: local_file
-#     file_path: /tmp/driveway_cam_doods_latest.jpg
-#     name: "Driveway Cam Objects Detected"
-#   - platform: local_file
-#     file_path: /tmp/backyard_cam_doods_latest.jpg
-#     name: "Backyard Cam Objects Detected"
-#  - platform: local_file
-#    file_path: /config/www/doods_test_image.jpg
-#    name: "Doods Test Image"
-#  - platform: local_file
-#    file_path: /tmp/doods_test_image_doods_latest.jpg
-#    name: "Doods Test Image Objects Detected"
-
-# image_processing:
-#   - platform: doods
-#     scan_interval: 10000
-#     url: !secret doods_url
-#     timeout: 60
-#     detector: default
-#     source:
-#       - entity_id: camera.driveway_cam
-#       - entity_id: camera.backyard_cam
-# #      - entity_id: camera.doods_test_image
-#     file_out:
-#       - "/tmp/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
-#      # - "/tmp/{{ camera_entity.split('.')[1] }}_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-#     confidence: 75
-#     labels:
-#       - person
-#       - bicycle
-#       #- car
-#       - motorcycle
-#       - truck
-#       - bird
-#       - cat
-#       - dog
-#       - chair
-#       - couch
-
 # enable WOL integration    
 wake_on_lan:    
 
