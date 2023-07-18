@@ -34,16 +34,16 @@ http:
 frontend:
   themes: !include themes.yaml
 
-lovelace:
 config:
-system_health:
-mobile_app:
-zeroconf:
 energy:
-media_source:
+lovelace:
 map:
+media_source:
+mobile_app:
 sun:  
+system_health:
 wake_on_lan:  
+zeroconf:
 
 # inputs
 input_boolean:
@@ -53,19 +53,19 @@ input_select:
 input_text:
 
 # includes
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
-switch: !include switches.yaml
-sensor: !include_dir_merge_list sensors/
-binary_sensor: !include binary_sensor.yaml
 alexa: !include alexa.yaml
-fan: !include fans.yaml
-light: !include_dir_merge_list lights/
-template: !include templates.yaml
-mqtt: !include mqtt.yaml
+automation: !include automations.yaml
+binary_sensor: !include binary_sensor.yaml
 command_line: !include command_line.yaml
+fan: !include fans.yaml
+group: !include groups.yaml
+influxdb: !include influxdb.yaml
+light: !include_dir_merge_list lights/
+mqtt: !include mqtt.yaml
 powercalc: !include powercalc.yaml
 schluter: !include schluter.yaml
+script: !include scripts.yaml
+sensor: !include_dir_merge_list sensors/
+switch: !include switches.yaml
+template: !include templates.yaml
 utility_meter: !include utility_meter.yaml
-influxdb: !include influxdb.yaml
