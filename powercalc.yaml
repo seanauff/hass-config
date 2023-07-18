@@ -1,0 +1,117 @@
+  sensors:
+    - entity_id: light.kitchen
+      manufacturer: signify
+      model: LTW010
+      multiply_factor: 7  
+    - entity_id: light.expanse
+      manufacturer: signify
+      model: LCA008
+      multiply_factor: 1  
+    - entity_id: light.living_room
+      manufacturer: signify
+      model: LTW001
+      multiply_factor: 1 
+    - entity_id: light.bedside
+      model: LCT015
+      multiply_factor: 2
+      manufacturer: signify  
+    - entity_id: light.stairway
+      manufacturer: signify
+      model: LTW010
+      multiply_factor: 3  
+    - entity_id: light.loft
+      manufacturer: signify
+      model: LCB001
+      multiply_factor: 2  
+    - entity_id: light.shower
+      manufacturer: signify
+      model: LTW010
+      multiply_factor: 2  
+    - entity_id: light.bedroom
+      manufacturer: signify
+      model: LTW010
+      multiply_factor: 1  
+    - entity_id: light.bathroom_lights_internal
+      linear:
+        min_power: 0
+        max_power: 6
+      multiply_factor: 6  
+    - entity_id: light.office_lights_internal
+      linear:
+        min_power: 0
+        max_power: 7
+      multiply_factor: 4 
+    - entity_id: light.front_porch_lights_internal
+      linear:
+        min_power: 0
+        max_power: 6
+      multiply_factor: 4  
+    - entity_id: light.entry_lights_internal
+      linear:
+        min_power: 0
+        max_power: 8.8
+      multiply_factor: 3  
+    - entity_id: switch.garage_light
+      fixed:
+        power: 80 
+    - entity_id: switch.back_porch_light
+      fixed:
+        power: 10    
+    - entity_id: light.brew_sign
+      linear:
+        min_power: 0.35
+        max_power: 0.55
+      standby_power: 0.35
+  # Irrigation System 
+    - create_group: Irrigation System
+      entities:
+        - entity_id: binary_sensor.back_left_fence_station_running
+          standby_power: 0.5
+          fixed:
+            power: 3.7
+        - entity_id: binary_sensor.back_left_station_running
+          standby_power: 0.5
+          fixed:
+            power: 3.7
+        - entity_id: binary_sensor.back_right_station_running
+          standby_power: 0.5
+          fixed:
+            power: 3.7
+        - entity_id: binary_sensor.front_left_station_running
+          standby_power: 0.5
+          fixed:
+            power: 3.7
+        - entity_id: binary_sensor.front_right_station_running
+          standby_power: 0.5
+          fixed:
+            power: 3.7
+  # HVAC System 
+    - entity_id: climate.ecobee_cloud_thermostat
+      name: HVAC System
+      fixed:
+        power: 18.84
+        states_power:
+          equipment_running|fan: 388 # fan only
+          equipment_running|auxHeat1,fan: 561 # heat (gas furnace)
+          equipment_running|compCool1,fan: 2848 # AC
+  # Heated Floor Kids Bath  
+    - entity_id: climate.kids_bath
+      name: Kids Bath Heated Floor
+      fixed:
+        power: 0.5
+        states_power:
+          hvac_action|heating: 323 # heater on
+  # Heated Floor Master Bath  
+    - entity_id: climate.master_bath
+      name: Master Bath Heated Floor
+      fixed:
+        power: 0.5
+        states_power:
+          hvac_action|heating: 612 # heater on
+  # Heated Floor Guest Bath 
+    - entity_id: climate.guest_bath
+      name: Guest Bath Heated Floor
+      fixed:
+        power: 0.5
+        states_power:
+          hvac_action|heating: 95 # heater on
