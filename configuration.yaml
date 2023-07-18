@@ -49,6 +49,8 @@ zeroconf:
 
 energy:
 
+media_source:
+
 # Discover some devices automatically
 #discovery:
 
