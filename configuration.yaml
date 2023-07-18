@@ -22,18 +22,6 @@ homeassistant:
   allowlist_external_dirs:
    - /config
 
-# Show links to resources in log and frontend
-# introduction:
-
-# Enables the frontend
-frontend:
-  themes: !include themes.yaml
-
-lovelace:
-#  mode: yaml
-# Enables configuration UI
-config:
-
 http:
   # Secrets are defined in the file secrets.yaml
   #api_password: !secret http_password
@@ -41,56 +29,21 @@ http:
   trusted_proxies:
     - 127.0.0.1
     - 192.168.1.8
+
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+
+lovelace:
+config:
 system_health:
-
 mobile_app:
-
 zeroconf:
-
 energy:
-
 media_source:
-
-# Discover some devices automatically
-#discovery:
-
-# recorder:
-#   exclude:
-#     domains:
-#       - alarm_control_panel
-#       - automation 
-#       - input_boolean
-#       - remote 
-#       - script
-#       - binary_sensor
-#       - climate
-#       - cover
-#       - device_tracker
-#       - fan
-#       - light
-#       - lock
-#       - media_player
-#       - sensor
-#       - switch
-# Allows you to issue voice commands from the frontend in enabled browsers
-#conversation:
-
-# Enables support for tracking state changes over time
-#history:
-
-# View all events in a logbook
-#logbook:
-
-# Enables a map showing the location of tracked devices
 map:
-
-# Track the sun
-sun:
-
-# Text to speech
-#tts:
-#  - platform: google_translate
-#    service_name: google_say 
+sun:  
+wake_on_lan:  
 
 # inputs
 input_boolean:
@@ -113,144 +66,6 @@ template: !include templates.yaml
 mqtt: !include mqtt.yaml
 command_line: !include command_line.yaml
 powercalc: !include powercalc.yaml
-
-#schluter
-schluter:
-  username: !secret schluter_username
-  password: !secret schluter_password
-
-# enable WOL integration    
-wake_on_lan:    
-
-utility_meter:
-  daily_electricity:
-    source: sensor.smart_electric_meter_consumption
-    name: Daily Electricity Usage
-    cycle: daily
-  monthly_electricity:
-    source: sensor.smart_electric_meter_consumption
-    name: Monthly Electricity Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
-  daily_gas:
-    source: sensor.gas_meter_consumption
-    name: Daily Gas Usage
-    cycle: daily
-  monthly_gas:
-    source: sensor.gas_meter_consumption
-    name: Monthly Gas Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
-  daily_water:
-    source: sensor.water_meter_consumption
-    name: Daily Water Usage
-    cycle: daily
-  monthly_water:
-    source: sensor.water_meter_consumption
-    name: Monthly Water Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
-  daily_jag_mileage:
-    source: sensor.the_jag_odometer
-    name: Daily Jag Mileage
-    cycle: daily
-  monthly_jag_mileage:
-    source: sensor.the_jag_odometer
-    name: Monthly Jag Mileage
-    cycle: monthly
-
-influxdb:
-  api_version: 2
-  ssl: false
-  host: !secret influxdb_host
-  port: 8086
-  verify_ssl: false
-  token: !secret influxdb_token
-  organization: Auffinger
-  bucket: home_assistant/autogen
-  max_retries: 3
-  #default_measurement: state
-  # exclude:
-  #   entities:
-  #      - entity.id1
-  #      - entity.id2
-  #   domains:
-  #      - automation
-  include:
-    entities:
-      - device_tracker.caitlin_s21
-      - device_tracker.sean_s_s20
-      - device_tracker.the_jag
-      - sensor.airthings_basement_co2
-      - sensor.airthings_basement_enthalpy
-      - sensor.airthings_basement_humidity
-      - sensor.airthings_basement_pressure
-      - sensor.airthings_basement_radon_1_day_avg
-      - sensor.airthings_basement_radon_longterm_avg
-      - sensor.airthings_basement_temperature
-      - sensor.airthings_basement_voc
-      - sensor.dcp_l2550dw_black_toner_remaining
-      - sensor.dcp_l2550dw_drum_remaining_life
-      - sensor.dcp_l2550dw_page_counter
-      - sensor.dexcom_glucose_value
-      - sensor.diskstation_network_down
-      - sensor.diskstation_network_up
-      - sensor.ecobee_thermostat_current_humidity
-      - sensor.ecobee_thermostat_current_temperature
-      - sensor.ecobee_upstairs_sensor_battery
-      - sensor.ecobee_upstairs_sensor_temperature
-      - sensor.gas_meter_consumption
-      - sensor.hs110_1_power
-      - sensor.hs110_2_power
-      - sensor.hs110_3_power
-      - sensor.hs110_1_today_s_consumption
-      - sensor.hs110_2_today_s_consumption
-      - sensor.hs110_3_today_s_consumption
-      - sensor.hs110_1_total_consumption
-      - sensor.hs110_2_total_consumption
-      - sensor.hs110_3_total_consumption
-      - sensor.myip
-      - sensor.office_tvoc
-      - sensor.smart_electric_meter_consumption
-      - sensor.smart_electric_meter_power
-      - sensor.smart_electric_meter_return
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.the_jag_battery
-      - sensor.the_jag_battery_soc_kwh
-      - sensor.the_jag_odometer
-      - sensor.the_jag_range
-      - sensor.the_jag_tyres
-      - sensor.the_jag_last_trip
-      - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
-      - sensor.u_s_air_quality_index
-      - sensor.ups_battery_charge
-      - sensor.ups_battery_runtime
-      - sensor.ups_load
-      - sensor.upstairs_aq_pm_10um_mass_concentration
-      - sensor.upstairs_aq_pm_1um_mass_concentration
-      - sensor.upstairs_aq_pm_2_5um_mass_concentration
-      - sensor.upstairs_aq_pm_4um_mass_concentration
-      - sensor.upstairs_aq_radiation_cpm
-      - sensor.upstairs_aq_radiation_dose_rate
-      - sensor.upstairs_aq_total_radiation_counts
-      - sensor.water_meter_consumption
-      - sun.sun
-    entity_globs:
-      - sensor.envoy_202316037787_*
-      - sensor.sht30_*_humidity
-      - sensor.sht30_*_temperature
-      - sensor.*_thermal_comfort_moist_air_enthalpy
-  
+schluter: !include schluter.yaml
+utility_meter: !include utility_meter.yaml
+influxdb: !include influxdb.yaml

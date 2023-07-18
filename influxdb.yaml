@@ -1,0 +1,82 @@
+  api_version: 2
+  ssl: false
+  host: !secret influxdb_host
+  port: 8086
+  verify_ssl: false
+  token: !secret influxdb_token
+  organization: Auffinger
+  bucket: home_assistant/autogen
+  max_retries: 3
+  #default_measurement: state
+  # exclude:
+  #   entities:
+  #      - entity.id1
+  #      - entity.id2
+  #   domains:
+  #      - automation
+  include:
+    entities:
+      - device_tracker.caitlin_s21
+      - device_tracker.sean_s_s20
+      - device_tracker.the_jag
+      - sensor.airthings_basement_co2
+      - sensor.airthings_basement_enthalpy
+      - sensor.airthings_basement_humidity
+      - sensor.airthings_basement_pressure
+      - sensor.airthings_basement_radon_1_day_avg
+      - sensor.airthings_basement_radon_longterm_avg
+      - sensor.airthings_basement_temperature
+      - sensor.airthings_basement_voc
+      - sensor.dcp_l2550dw_black_toner_remaining
+      - sensor.dcp_l2550dw_drum_remaining_life
+      - sensor.dcp_l2550dw_page_counter
+      - sensor.dexcom_glucose_value
+      - sensor.diskstation_network_down
+      - sensor.diskstation_network_up
+      - sensor.ecobee_thermostat_current_humidity
+      - sensor.ecobee_thermostat_current_temperature
+      - sensor.ecobee_upstairs_sensor_battery
+      - sensor.ecobee_upstairs_sensor_temperature
+      - sensor.gas_meter_consumption
+      - sensor.hs110_1_power
+      - sensor.hs110_2_power
+      - sensor.hs110_3_power
+      - sensor.hs110_1_today_s_consumption
+      - sensor.hs110_2_today_s_consumption
+      - sensor.hs110_3_today_s_consumption
+      - sensor.hs110_1_total_consumption
+      - sensor.hs110_2_total_consumption
+      - sensor.hs110_3_total_consumption
+      - sensor.myip
+      - sensor.office_tvoc
+      - sensor.smart_electric_meter_consumption
+      - sensor.smart_electric_meter_power
+      - sensor.smart_electric_meter_return
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.the_jag_battery
+      - sensor.the_jag_battery_soc_kwh
+      - sensor.the_jag_odometer
+      - sensor.the_jag_range
+      - sensor.the_jag_tyres
+      - sensor.the_jag_last_trip
+      - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
+      - sensor.u_s_air_quality_index
+      - sensor.ups_battery_charge
+      - sensor.ups_battery_runtime
+      - sensor.ups_load
+      - sensor.upstairs_aq_pm_10um_mass_concentration
+      - sensor.upstairs_aq_pm_1um_mass_concentration
+      - sensor.upstairs_aq_pm_2_5um_mass_concentration
+      - sensor.upstairs_aq_pm_4um_mass_concentration
+      - sensor.upstairs_aq_radiation_cpm
+      - sensor.upstairs_aq_radiation_dose_rate
+      - sensor.upstairs_aq_total_radiation_counts
+      - sensor.water_meter_consumption
+      - sun.sun
+    entity_globs:
+      - sensor.envoy_202316037787_*
+      - sensor.sht30_*_humidity
+      - sensor.sht30_*_temperature
+      - sensor.*_thermal_comfort_moist_air_enthalpy
+  
