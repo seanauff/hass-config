@@ -80,6 +80,30 @@
       unit_of_measurement: '°F'
       state: "{{ states('sensor.office_temperature') | round(0) }}"
 
+  ##For Washer/Dryer Status Cards
+    - name: "Washer Door Lock"
+      state: "{{ state_attr('sensor.washer','door_lock') }}"
+    - name: "Washer Time Display"
+      state: >
+       {% if is_state('sensor.washer_run_state', '-') %}
+       {% elif is_state('sensor.washer_run_state', 'unavailable') %}
+       {% elif is_state('sensor.washer_run_state', 'Standby') %}
+         -:--
+       {% else %}
+         {{ state_attr("sensor.washer","remain_time").split(":")[:-1] | join(':') }}   
+       {% endif %}
+    - name: "Dryer Time Display"
+      state: >
+       {% if is_state('sensor.dryer_run_state', '-') %}
+       {% elif is_state('sensor.dryer_run_state', 'unavailable') %}
+       {% elif is_state('sensor.dryer_run_state', 'Standby') %}
+         -:--
+       {% else %}
+         {{ state_attr("sensor.dryer","remain_time").split(":")[:-1] | join(':') }}
+       {% endif %}
+    - name: "Blank Sensor"
+      state: ""
+
   - binary_sensor:
     - name: "The Jag Charging"
       state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
