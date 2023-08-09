@@ -21,3 +21,17 @@
     target:
       entity_id: button.pura_x_start_resume_cleaning
   mode: single
+- id: '1691625474781'
+  alias: Front Door Notify Sean
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.doorbell
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      base_url: http://hass.auffinger.dev
+      title: Frigate Alert
+      alert_once: true
+      attachment: thumbnail
+      update_thumbnail: true
+      icon: mdi:cctv
