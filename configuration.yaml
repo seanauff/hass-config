@@ -23,6 +23,7 @@ homeassistant:
    - /config
 
 http:
+  use_x_frame_options: false
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1
