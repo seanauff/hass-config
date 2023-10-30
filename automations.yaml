@@ -35,3 +35,36 @@
       attachment: thumbnail
       update_thumbnail: true
       icon: mdi:cctv
+- id: '1697546504085'
+  alias: Charger Fault watchdog
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.cph50_charger_state
+    to: Fault
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 41
+      flash: short
+    target:
+      entity_id: light.bedside
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+    target:
+      entity_id: light.bedside
+  - service: notify.alexa_media_bedroom_echo
+    data:
+      message: Fault detected with Jag charger
+  - service: notify.mobile_app_sean_s_s20
+    data:
+      message: Fault detected with Jag charger!!
+      title: Fault detected
+  - service: notify.mobile_app_caitlin_s21
+    data:
+      message: Charging fault detected for Jag!
+      title: Fault detected
+  mode: single
