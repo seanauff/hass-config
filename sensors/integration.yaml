@@ -90,6 +90,78 @@
     method: trapezoidal
     unique_id: c2f56c8f-79cd-46a5-b528-a61d054cc54e
 
+  - platform: integration
+    source: sensor.s31_11_power
+    name: s31_11_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 80385059-3957-4996-8c9a-de772aaae906
+
+  - platform: integration
+    source: sensor.s31_12_power
+    name: s31_12_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 866586e4-0a02-42f6-a8fa-597a480ce249
+
+  - platform: integration
+    source: sensor.s31_13_power
+    name: s31_13_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 0f9fc354-1991-4a79-a775-c48ee0516b3c
+
+  - platform: integration
+    source: sensor.s31_14_power
+    name: s31_14_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 907ab417-5bac-4a81-9b9f-664f95b660db
+
+  - platform: integration
+    source: sensor.s31_15_power
+    name: s31_15_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 4b6abe83-181c-47cd-b778-21eb7ad2ad32
+
+  - platform: integration
+    source: sensor.s31_16_power
+    name: s31_16_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 40f11a4f-15ec-452f-9ff9-2e1574d0fff5
+
+  - platform: integration
+    source: sensor.s31_17_power
+    name: s31_17_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: 557f8555-c49e-49f2-8bcf-5a69dc24b6c0
+
+  - platform: integration
+    source: sensor.s31_18_power
+    name: s31_18_energy
+    unit_prefix: k
+    unit_time: h
+    round: 3
+    method: trapezoidal
+    unique_id: f0dea098-d4c4-4e9a-96ba-e405669d198a
+
 ## Calculated Jag home charging rate
 
   - platform: integration
