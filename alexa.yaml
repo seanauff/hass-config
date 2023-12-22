@@ -26,6 +26,7 @@
         - sensor.living_room_temperature_alexa
         - sensor.loft_temperature_alexa
         - sensor.office_temperature_alexa
+        - sensor.peters_room_temperature_alexa
         - switch.back_porch_light
         - switch.caitlin_s_computer_wol
         - switch.esw01_1_relay
@@ -116,6 +117,10 @@
       sensor.office_temperature_alexa:
         name: Office
         description: Office Temperature Sensor
+        display_categories: TEMPERATURE_SENSOR
+      sensor.peters_room_temperature_alexa:
+        name: Peter's Room
+        description: Peter's Room Temperature Sensor
         display_categories: TEMPERATURE_SENSOR
       switch.back_porch_light:
         name: Back Porch Light

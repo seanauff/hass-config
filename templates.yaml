@@ -64,6 +64,9 @@
     - name: "Garage Temperature Alexa"
       unit_of_measurement: '°F'
       state: "{{ states('sensor.sht30_03_temperature') | round(0) }}"
+    - name: "Guest Room Temperature Alexa"
+      unit_of_measurement: '°F'
+      state: "{{ states('sensor.sht30_04_temperature') | round(0) }}"
     - name: "Living Room Temperature Alexa"
       unit_of_measurement: '°F'
       state: "{{ states('sensor.sht30_05_temperature') | round(0) }}"
@@ -73,7 +76,7 @@
     - name: "Kitchen Temperature Alexa"
       unit_of_measurement: '°F'
       state: "{{ states('sensor.sht30_07_temperature') | round(0) }}"
-    - name: "Guest Room Temperature Alexa"
+    - name: "Peters Room Temperature Alexa"
       unit_of_measurement: '°F'
       state: "{{ states('sensor.sht30_09_temperature') | round(0) }}"
     - name: "Office Temperature Alexa"
