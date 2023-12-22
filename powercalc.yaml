@@ -2,7 +2,7 @@
     - entity_id: light.kitchen
       manufacturer: signify
       model: LTW010
-      multiply_factor: 7  
+      multiply_factor: 7
     - entity_id: light.expanse
       manufacturer: signify
       model: LCA008
