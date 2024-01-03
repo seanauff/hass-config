@@ -68,3 +68,17 @@
       message: Charging fault detected for Jag!
       title: Fault detected
   mode: single
+- id: '1703882558117'
+  alias: Tag Drying Oven is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: edff2b09-63fe-4b6f-aa0f-f83906cc3517
+  condition: []
+  action:
+  - device_id: 58464f30f82c9c7a559cc717f13b40d3
+    domain: climate
+    entity_id: ac7b9718df070a86bf7758091b3e5e08
+    type: set_hvac_mode
+    hvac_mode: heat
+  mode: single
