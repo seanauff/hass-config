@@ -4,7 +4,7 @@
   port: 8086
   verify_ssl: false
   token: !secret influxdb_token
-  organization: Auffinger
+  organization: !secret influxdb_org
   bucket: home_assistant/autogen
   max_retries: 3
   #default_measurement: state
