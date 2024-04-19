@@ -1,42 +1,42 @@
-  daily_electricity:
-    source: sensor.smart_electric_meter_consumption
-    name: Daily Electricity Usage
-    cycle: daily
-  monthly_electricity:
-    source: sensor.smart_electric_meter_consumption
-    name: Monthly Electricity Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
-  daily_gas:
-    source: sensor.gas_meter_consumption
-    name: Daily Gas Usage
-    cycle: daily
-  monthly_gas:
-    source: sensor.gas_meter_consumption
-    name: Monthly Gas Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
-  daily_water:
-    source: sensor.water_meter_consumption
-    name: Daily Water Usage
-    cycle: daily
-  monthly_water:
-    source: sensor.water_meter_consumption
-    name: Monthly Water Usage
-    cycle: monthly
-    offset:
-    # At least one of these must be specified:
-      days: 13
-      hours: 0
-      minutes: 0
+  # daily_electricity:
+  #   source: sensor.smart_electric_meter_consumption
+  #   name: Daily Electricity Usage
+  #   cycle: daily
+  # monthly_electricity:
+  #   source: sensor.smart_electric_meter_consumption
+  #   name: Monthly Electricity Usage
+  #   cycle: monthly
+  #   offset:
+  #   # At least one of these must be specified:
+  #     days: 13
+  #     hours: 0
+  #     minutes: 0
+  # daily_gas:
+  #   source: sensor.gas_meter_consumption
+  #   name: Daily Gas Usage
+  #   cycle: daily
+  # monthly_gas:
+  #   source: sensor.gas_meter_consumption
+  #   name: Monthly Gas Usage
+  #   cycle: monthly
+  #   offset:
+  #   # At least one of these must be specified:
+  #     days: 13
+  #     hours: 0
+  #     minutes: 0
+  # daily_water:
+  #   source: sensor.water_meter_consumption
+  #   name: Daily Water Usage
+  #   cycle: daily
+  # monthly_water:
+  #   source: sensor.water_meter_consumption
+  #   name: Monthly Water Usage
+  #   cycle: monthly
+  #   offset:
+  #   # At least one of these must be specified:
+  #     days: 13
+  #     hours: 0
+  #     minutes: 0
   daily_jag_mileage:
     source: sensor.the_jag_odometer
     name: Daily Jag Mileage

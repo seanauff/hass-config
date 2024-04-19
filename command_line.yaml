@@ -36,14 +36,14 @@
       unique_id: 325ce10f-9dc2-4c56-bde3-699ff9243101
 
 ### Bluetti Bluetooth service running on AtomicPi ###
-  - switch:
-      name: Bluetti MQTT Service
-      command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl start bluetti-mqtt.service'"
-      command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl stop bluetti-mqtt.service'"
-      command_state: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl is-active bluetti-mqtt.service'"
-      value_template: '{{ value == "active" }}'
-      # icon_template: >
-      #   {% if value == "active" %} mdi:toggle-switch
-      #   {% else %} mdi:toggle-switch-off
-      #   {% endif %}
-      unique_id: 81b5fff4-12f5-4e3d-85a6-6b12fd092b06
+#   - switch:
+#       name: Bluetti MQTT Service
+#       command_on: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl start bluetti-mqtt.service'"
+#       command_off: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl stop bluetti-mqtt.service'"
+#       command_state: "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /config/.ssh_keys/id_rsa root@atomicpi.denver.auffinger.lan 'systemctl is-active bluetti-mqtt.service'"
+#       value_template: '{{ value == "active" }}'
+#       # icon_template: >
+#       #   {% if value == "active" %} mdi:toggle-switch
+#       #   {% else %} mdi:toggle-switch-off
+#       #   {% endif %}
+#       unique_id: 81b5fff4-12f5-4e3d-85a6-6b12fd092b06
