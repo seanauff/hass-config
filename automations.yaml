@@ -35,6 +35,13 @@
       attachment: thumbnail
       update_thumbnail: true
       icon: mdi:cctv
+      labels:
+      - person
+      cooldown: 60
+      state_entity: lock.touchscreen_deadbolt_z_wave_plus
+      state_filter_states:
+      - locked
+      state_filter: true
 - id: '1697546504085'
   alias: Charger Fault watchdog
   description: ''
@@ -43,7 +50,22 @@
     entity_id:
     - sensor.cph50_charger_state
     to: Fault
-  condition: []
+  - platform: numeric_state
+    entity_id:
+    - sensor.cph50_power_output
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    below: 1
+    enabled: false
+  condition:
+  - condition: state
+    entity_id: sensor.cph50_charging_cable
+    state: Plugged In
+  - condition: time
+    after: '21:00:00'
+    before: 05:00:00
   action:
   - service: light.turn_on
     data:
@@ -82,3 +104,36 @@
     type: set_hvac_mode
     hvac_mode: heat
   mode: single
+- id: '1717471460716'
+  alias: Washer/Dyer Remote Start
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:01:00'
+  condition: []
+  action:
+  - service: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - button.washer_remote_start
+      - button.dryer_remote_start
+  mode: single
+- id: '1717557824948'
+  alias: Ofice Motion Lights
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.office_motion
+      light_switch:
+        entity_id:
+        - light.office_lights
+        - switch.s31_9_relay
+      time_delay: 10
+      include_light_control:
+      - use_brightness
+      include_dynamic_lighting: enable_sun_elevation_brightness
+      dynamic_lighting_min_brightness: 15
