@@ -23,7 +23,7 @@
       command_timeout: 5
       unique_id: aea01677-762f-4d1f-a5be-2fea4f9d6637
 
-  # Lifetime Consumption
+  # Lifetime Return
   - sensor:
       name: "Smart Electric Meter Return"
       command: "OPENSSL_CONF=/config/xcelcerts/xcel-openssl.conf /usr/bin/curl --ciphers ECDHE-ECDSA-AES128-CCM8 --insecure --url https://192.168.5.102:8081/upt/1/mr/2/r --cert /config/xcelcerts/cert.pem --key /config/xcelcerts/key.pem 2>&1 | grep -o '<value>.*</value>' | grep -Eo '[0-9]+'"
