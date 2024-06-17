@@ -51,7 +51,7 @@
         min_power: 0
         max_power: 8.8
       multiply_factor: 3  
-    - entity_id: switch.garage_light
+    - entity_id: switch.garage_scene_controller
       fixed:
         power: 80 
     - entity_id: switch.back_porch_light
