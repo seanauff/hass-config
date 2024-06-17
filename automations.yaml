@@ -50,15 +50,16 @@
     entity_id:
     - sensor.cph50_charger_state
     to: Fault
-  - platform: numeric_state
-    entity_id:
-    - sensor.cph50_power_output
+  - type: power
+    platform: device
+    device_id: 13f6cd9848cf2224a1ff3b66a9584d76
+    entity_id: 8be14a7412d380da900f85aa96572ab8
+    domain: sensor
+    below: 1
     for:
       hours: 0
       minutes: 5
       seconds: 0
-    below: 1
-    enabled: false
   condition:
   - condition: state
     entity_id: sensor.cph50_charging_cable
@@ -66,16 +67,21 @@
   - condition: time
     after: '21:00:00'
     before: 05:00:00
+  - condition: device
+    type: is_on
+    device_id: 13f6cd9848cf2224a1ff3b66a9584d76
+    entity_id: 0070a0c0708889ac9427c52293adbf8a
+    domain: switch
   action:
   - service: light.turn_on
     data:
-      brightness_pct: 41
+      brightness_pct: 60
       flash: short
     target:
       entity_id: light.bedside
   - service: light.turn_on
     data:
-      brightness_pct: 50
+      brightness_pct: 35
     target:
       entity_id: light.bedside
   - service: notify.alexa_media_bedroom_echo
@@ -89,6 +95,7 @@
     data:
       message: Charging fault detected for Jag!
       title: Fault detected
+    enabled: true
   mode: single
 - id: '1703882558117'
   alias: Tag Drying Oven is scanned
@@ -121,19 +128,100 @@
       - button.dryer_remote_start
   mode: single
 - id: '1717557824948'
-  alias: Ofice Motion Lights
+  alias: Office Motion Lights
   description: ''
   use_blueprint:
     path: Blackshome/sensor-light.yaml
     input:
       motion_trigger:
-      - binary_sensor.office_motion
+      - binary_sensor.j2ty_motion
       light_switch:
         entity_id:
         - light.office_lights
         - switch.s31_9_relay
-      time_delay: 10
+      time_delay: 12
       include_light_control:
       - use_brightness
       include_dynamic_lighting: enable_sun_elevation_brightness
-      dynamic_lighting_min_brightness: 15
+      dynamic_lighting_min_brightness: 30
+      include_night_lights: night_lights_enabled
+      night_lights:
+        entity_id: light.office_lights
+      include_night_light_control:
+      - use_brightness
+      night_lights_conditions:
+      - sun_enabled
+      night_lights_sun_elevation: -6
+      night_lights_sun_elevation_rising: -6
+- id: '1717786112403'
+  alias: Main Room Motion Lights
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.main_room_presense
+      light_switch:
+        entity_id:
+        - light.kitchen
+        - switch.s31_10_relay
+        - light.living_room
+        - light.expanse
+      time_delay: 10
+      include_light_control: []
+      include_dynamic_lighting: enable_sun_elevation_colour_brightness
+      dynamic_lighting_min_brightness: 50
+      dynamic_lighting_max_colour_temp: 5800
+      dynamic_lighting_min_colour_temp: 2000
+      dynamic_lighting_sun_elevation_end_rising: 30
+      dynamic_lighting_sun_elevation_start_falling: 30
+      include_night_lights: night_lights_enabled
+      night_lights:
+        entity_id:
+        - light.kitchen
+        - light.expanse
+        - light.living_room
+      include_night_light_control:
+      - use_brightness
+      - use_colour_temperature
+      night_light_colour_temperature: 2000
+      night_light_brightness: 9
+      night_lights_conditions:
+      - sun_enabled
+      night_lights_sun_elevation: -8
+      night_lights_sun_elevation_rising: -8
+      dynamic_lighting_sun_elevation_end_falling: -10
+      motion_bypass_lights_on: []
+      motion_bypass_lights_stop:
+      - event.hue_dimmer_switch_2_button_4
+      include_bypass_auto_off:
+      - bypass_auto_off_enabled_stop
+- id: '1717957527006'
+  alias: Garage Motion Lights
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.garage_presence
+      light_switch:
+        entity_id: switch.garage_scene_controller
+      time_delay: 10
+- id: '1718162085772'
+  alias: Activate Brew Sign
+  description: ''
+  trigger:
+  - type: power
+    platform: device
+    device_id: 5cfce8615e6bfa25712677cc0ad83f3e
+    entity_id: 49cfe1ec7ccf3c05f6f227a8f6affb9e
+    domain: sensor
+    above: 100
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 71dfe78cee016ecad7f5c8f7377ea715
+    entity_id: 9b6b5c2e15a01ced4dc2d4d934970e9d
+    domain: light
+    brightness_pct: 100
+  mode: single
