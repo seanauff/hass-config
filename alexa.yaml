@@ -8,9 +8,9 @@
       include_entities:
         - binary_sensor.doorbell_person_occupancy
         - camera.doorbell
-        # - cover.garage_door
+        - cover.garage_door_door
         - button.pura_x_start_resume_cleaning
-        - light.bathroom_lights
+        - light.master_bathroom_lights
         - light.brew_sign
         - light.entry_lights
         - light.front_porch_lights
@@ -46,15 +46,15 @@
         name: Front Door Camera
         description: The Front Door Camera
         display_categories: CAMERA
-      # cover.garage_door:
-      #   name: Garage Door
-      #   description: The Garage Door
-      #   display_categories: GARAGE_DOOR
+      cover.garage_door_door:
+        name: Garage Door
+        description: The Garage Door
+        display_categories: GARAGE_DOOR
       button.pura_x_start_resume_cleaning:
         name: Pura X Cleaning Cycle
         description: Litter Box
         display_categories: SWITCH
-      light.bathroom_lights:
+      light.master_bathroom_lights:
         name: Bathroom Lights
         description: Bathroom Lights
         display_categories: LIGHT
