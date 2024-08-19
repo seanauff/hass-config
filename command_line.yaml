@@ -1,5 +1,6 @@
 ### Xcel Energy Smart Meter via network ###
 # forum thread here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/66
+# udpate here: https://community.home-assistant.io/t/xcel-energy-itron-gen-5-riva/346943/331
 # add static DHCP IP mapping to router for meter
     # Instantaneous Power Reading
   - sensor:
