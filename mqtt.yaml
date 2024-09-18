@@ -23,3 +23,11 @@
          payload_not_available: "Offline"
       json_attributes_topic: !secret water_meter_topic
       unique_id: 815999a5-379a-43ec-bb17-0ccf47219d50
+    - name: "The Jag Starter Battery Voltage"
+      state_topic: wican/f412fa368fbd/voltage
+      value_template: "{{ value_json.battery_voltage }}"
+      unit_of_measurement: 'V'
+      device_class: voltage
+      state_class: 'measurement'
+      unique_id: 29abd855-0451-4861-96af-7a4f970c4c68
+      
