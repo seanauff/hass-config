@@ -29,5 +29,6 @@
       unit_of_measurement: 'V'
       device_class: voltage
       state_class: 'measurement'
+      icon: mdi:current-dc
       unique_id: 29abd855-0451-4861-96af-7a4f970c4c68
       
