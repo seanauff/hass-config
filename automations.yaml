@@ -492,12 +492,12 @@
     metadata: {}
     data:
       title: The Jag 12V Battery Update!
-      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')}}
+      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')|round(1)}}
         V'
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       title: The Jag 12V Battery Update!
-      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')}}
+      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')|round(1)}}
         V'
   mode: single
