@@ -16,17 +16,10 @@
   #      - automation
   include:
     entities:
-      - device_tracker.caitlin_s21
+      - device_tracker.caitlin_s_s24
       - device_tracker.sean_s_s20
       - device_tracker.the_jag
       - sensor.airthings_basement_co2
-      - sensor.airthings_basement_enthalpy
-      - sensor.airthings_basement_humidity
-      - sensor.airthings_basement_pressure
-      - sensor.airthings_basement_radon_1_day_avg
-      - sensor.airthings_basement_radon_longterm_avg
-      - sensor.airthings_basement_temperature
-      - sensor.airthings_basement_voc
       - sensor.dcp_l2550dw_black_toner_remaining
       - sensor.dcp_l2550dw_drum_remaining_life
       - sensor.dcp_l2550dw_page_counter
@@ -48,6 +41,7 @@
       - sensor.the_jag_battery_soc_kwh
       - sensor.the_jag_odometer
       - sensor.the_jag_range
+      - sensor.the_jag_starter_battery_voltage
       - sensor.the_jag_tyres
       - sensor.the_jag_last_trip
       - sensor.touchscreen_deadbolt_z_wave_plus_battery_level
@@ -58,6 +52,7 @@
       - sensor.water_meter_consumption
       - sun.sun
     entity_globs:
+      - sensor.airthings_wave_090595_*
       - sensor.envoy_202316037787_*
       - sensor.sht30_*_humidity
       - sensor.sht30_*_temperature
