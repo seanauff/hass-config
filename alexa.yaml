@@ -14,6 +14,7 @@
         - light.brew_sign
         - light.entry_lights
         - light.front_porch_lights
+        - light.loft_lights
         - light.office_lights
         - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
@@ -31,12 +32,13 @@
         - switch.caitlin_s_computer_wol
         - switch.esw01_1_relay
         - switch.esw01_2_relay
-        - switch.garage_light
+        - switch.garage_scene_controller
         - switch.s31_9_relay
         - switch.s31_10_relay
         - switch.s31_11_relay
         - switch.sean_s_computer_wol
         # - switch.peter_auffinger_timer
+        - switch.shannon_auffinger_timer
     entity_config:
       binary_sensor.doorbell_person_occupancy:
         name: Front Door
@@ -69,6 +71,10 @@
       light.front_porch_lights:
         name: Front Porch Lights
         description: Front Porch Lights
+        display_categories: LIGHT
+      light.loft_lights:
+        name: Loft Lights
+        description: Loft Lights
         display_categories: LIGHT
       light.office_lights:
         name: Office Lights
@@ -138,7 +144,7 @@
         name: Sean's Speakers
         description: Sean's Speakers
         display_categories: SWITCH
-      switch.garage_light:
+      switch.garage_scene_controller:
         name: Garage Light
         description: Garage Light
         display_categories: LIGHT
@@ -162,3 +168,7 @@
       #   name: Peter Timer
       #   description: Peter Timer
       #   display_categories: SWITCH
+      switch.shannon_auffinger_timer:
+        name: Shannon Timer
+        description: Shannon Timer
+        display_categories: SWITCH
