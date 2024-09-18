@@ -66,7 +66,7 @@
     state: Plugged In
   - condition: time
     after: '21:00:00'
-    before: 05:00:00
+    before: 06:00:00
   - condition: device
     type: is_on
     device_id: 13f6cd9848cf2224a1ff3b66a9584d76
@@ -143,16 +143,18 @@
       include_light_control:
       - use_brightness
       include_dynamic_lighting: enable_sun_elevation_brightness
-      dynamic_lighting_min_brightness: 30
+      dynamic_lighting_min_brightness: 40
       include_night_lights: night_lights_enabled
       night_lights:
         entity_id: light.office_lights
       include_night_light_control:
       - use_brightness
       night_lights_conditions:
-      - sun_enabled
+      - time_enabled
       night_lights_sun_elevation: -6
       night_lights_sun_elevation_rising: -6
+      night_lights_after_time: '22:00:00'
+      night_lights_before_time: 04:00:00
 - id: '1717786112403'
   alias: Main Room Motion Lights
   description: ''
@@ -170,11 +172,11 @@
       time_delay: 10
       include_light_control: []
       include_dynamic_lighting: enable_sun_elevation_colour_brightness
-      dynamic_lighting_min_brightness: 50
+      dynamic_lighting_min_brightness: 69
       dynamic_lighting_max_colour_temp: 5800
-      dynamic_lighting_min_colour_temp: 2000
-      dynamic_lighting_sun_elevation_end_rising: 30
-      dynamic_lighting_sun_elevation_start_falling: 30
+      dynamic_lighting_min_colour_temp: 2200
+      dynamic_lighting_sun_elevation_end_rising: 15.5
+      dynamic_lighting_sun_elevation_start_falling: 17
       include_night_lights: night_lights_enabled
       night_lights:
         entity_id:
@@ -184,18 +186,25 @@
       include_night_light_control:
       - use_brightness
       - use_colour_temperature
+      - if_lights_are_on_adjust_when_crossing_over
       night_light_colour_temperature: 2000
       night_light_brightness: 9
       night_lights_conditions:
-      - sun_enabled
-      night_lights_sun_elevation: -8
+      - time_enabled
+      night_lights_sun_elevation: -10
       night_lights_sun_elevation_rising: -8
       dynamic_lighting_sun_elevation_end_falling: -10
       motion_bypass_lights_on: []
-      motion_bypass_lights_stop:
-      - event.hue_dimmer_switch_2_button_4
+      motion_bypass_lights_stop: []
       include_bypass_auto_off:
       - bypass_auto_off_enabled_stop
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 05:00:00
+      dynamic_lighting_heartbeat: 5
+      dynamic_lighting_step_value: 1
+      dynamic_lighting_dead_zone: 4
+      dynamic_lighting_min_lux: 120
+      dynamic_lighting_sun_elevation_start_rising: -3
 - id: '1717957527006'
   alias: Garage Motion Lights
   description: ''
@@ -207,6 +216,11 @@
       light_switch:
         entity_id: switch.garage_scene_controller
       time_delay: 10
+      motion_bypass_lights_on:
+      - event.garage_scene_controller_scene_001
+      motion_bypass_lights_stop: []
+      include_bypass_auto_off:
+      - bypass_auto_off_enabled_on
 - id: '1718162085772'
   alias: Activate Brew Sign
   description: ''
@@ -224,4 +238,266 @@
     entity_id: 9b6b5c2e15a01ced4dc2d4d934970e9d
     domain: light
     brightness_pct: 100
+  mode: single
+- id: '1718774467103'
+  alias: Garage Door Opener Light Toggle from Scene Controller
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 58a201242a168f3bf762f5cc3feddfc0
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+    value: 0
+  condition: []
+  action:
+  - type: toggle
+    device_id: 8fc54637d5f90e9c76205b6630bbce14
+    entity_id: ceb73998755e5a05ea10fce78137f3de
+    domain: light
+  mode: single
+- id: '1718775394503'
+  alias: Garage Door Opener Light Indicator Off
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 8fc54637d5f90e9c76205b6630bbce14
+    entity_id: ceb73998755e5a05ea10fce78137f3de
+    domain: light
+  condition: []
+  action:
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.garage_scene_controller_button_2_indication_binary
+  mode: single
+- id: '1718811305793'
+  alias: Garage Door Opener Indicator light On
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 8fc54637d5f90e9c76205b6630bbce14
+    entity_id: ceb73998755e5a05ea10fce78137f3de
+    domain: light
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.garage_scene_controller_button_2_indication_binary
+  mode: single
+- id: '1722630813296'
+  alias: Master Bathroom Presence Scene Controller
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 16cdc5d373a0033983df00102a80a9a8
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '005'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 005
+    value: 0
+  condition: []
+  action:
+  - service: input_boolean.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.master_bathroom_presence_toggle
+  mode: single
+- id: '1722971310211'
+  alias: Master Bathroom Auto Lights
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.master_bathroom_presence
+      light_switch:
+        entity_id:
+        - light.shower
+        - light.master_bathroom_lights
+        - switch.master_bathroom_scene_controller_button_relay_indication_binary
+      time_delay: 0
+      include_light_control:
+      - use_brightness
+      - use_colour_temperature
+      light_colour_temperature: 4000
+      include_dynamic_lighting: enable_sun_elevation_colour_brightness
+      dynamic_lighting_min_brightness: 6
+      dynamic_lighting_max_colour_temp: 4000
+      dynamic_lighting_min_colour_temp: 2200
+      dynamic_lighting_sun_elevation_end_rising: 30
+      dynamic_lighting_sun_elevation_start_rising: -5
+      dynamic_lighting_sun_elevation_start_falling: 90
+      dynamic_lighting_sun_elevation_end_falling: -5
+      include_night_lights: night_lights_enabled
+      night_lights:
+        entity_id:
+        - light.master_bathroom_lights
+        - light.shower
+        - switch.master_bathroom_scene_controller_button_relay_indication_binary
+      night_time_delay: 0
+      night_light_colour_temperature: 2000
+      night_light_brightness: 1
+      night_lights_conditions:
+      - time_enabled
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 05:00:00
+      include_night_light_control:
+      - use_brightness
+      - use_colour_temperature
+      - if_lights_are_on_adjust_when_crossing_over
+      dynamic_lighting_dead_zone: 3
+- id: '1723777909805'
+  alias: Tag Dyson Stick Vac Start Charging is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 516eb145-b69f-4c8d-bfc6-8dac8d11f7dd
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 204aa4deb9ae013ecfb99871331cfa06
+    entity_id: 2b2f542505922ca9ee1ea1c41ff55f01
+    domain: switch
+  mode: single
+- id: '1723913346506'
+  alias: Dyson Stick Vac Charge Limit
+  description: ''
+  trigger:
+  - type: power
+    platform: device
+    device_id: 204aa4deb9ae013ecfb99871331cfa06
+    entity_id: 18d3e90879c5b64f1c32245ddccf1e70
+    domain: sensor
+    above: 36
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 204aa4deb9ae013ecfb99871331cfa06
+    entity_id: 2b2f542505922ca9ee1ea1c41ff55f01
+    domain: switch
+  mode: single
+- id: '1724554576231'
+  alias: 'Turn off master bathroom auto lights '
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: cad66848944bfa7613e023eb9442e466
+    entity_id: 70e11cc91ee59d1c3422eb43ed8bf5cb
+    domain: light
+  condition: []
+  action:
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.master_bathroom_presence_toggle
+  mode: single
+- id: '1725164302679'
+  alias: Master Bath Scene Controller Button 4
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 16cdc5d373a0033983df00102a80a9a8
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '004'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 004
+    value: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: cad66848944bfa7613e023eb9442e466
+    entity_id: 70e11cc91ee59d1c3422eb43ed8bf5cb
+    domain: light
+    brightness_pct: 1
+  mode: single
+- id: '1725164458453'
+  alias: Master Bath Scene Controller Button 3
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 16cdc5d373a0033983df00102a80a9a8
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '003'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 003
+    value: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 31fd97656bb8773bed76ee1ba3516859
+    entity_id: 5f9305bfc69ce5ad06ce3056a071cb6d
+    domain: light
+  mode: single
+- id: '1726351475455'
+  alias: Moosoo Stick Vac Charge Limit
+  description: ''
+  trigger:
+  - type: power
+    platform: device
+    device_id: 1c9cfa02fa649e2136dda6f5612366a6
+    entity_id: a90c7ce7f83e02fabd85b63e52023af9
+    domain: sensor
+    above: 11.6
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 1c9cfa02fa649e2136dda6f5612366a6
+    entity_id: 468a8e5e9cf14ad276d2ddc998c876a4
+    domain: switch
+  mode: single
+- id: '1726609980402'
+  alias: The Jag 12V Battery Low Alert
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.the_jag_starter_battery_voltage
+    for:
+      hours: 3
+      minutes: 10
+      seconds: 0
+    below: 11.8
+  condition: []
+  action:
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      title: The Jag 12V Battery Update!
+      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')}}
+        V'
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      title: The Jag 12V Battery Update!
+      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')}}
+        V'
   mode: single
