@@ -81,7 +81,7 @@
       state: "{{ states('sensor.sht30_09_temperature') | round(0) }}"
     - name: "Office Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.office_temperature') | round(0) }}"
+      state: "{{ states('sensor.j2ty_temperature') | round(0) }}"
 
   ##For Washer/Dryer Status Cards
     - name: "Washer Door Lock"
