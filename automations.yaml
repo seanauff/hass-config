@@ -45,13 +45,12 @@
 - id: '1697546504085'
   alias: Charger Fault watchdog
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - sensor.cph50_charger_state
     to: Fault
+    trigger: state
   - type: power
-    platform: device
     device_id: 13f6cd9848cf2224a1ff3b66a9584d76
     entity_id: 8be14a7412d380da900f85aa96572ab8
     domain: sensor
@@ -60,7 +59,8 @@
       hours: 0
       minutes: 5
       seconds: 0
-  condition:
+    trigger: device
+  conditions:
   - condition: state
     entity_id: sensor.cph50_charging_cable
     state: Plugged In
@@ -72,30 +72,33 @@
     device_id: 13f6cd9848cf2224a1ff3b66a9584d76
     entity_id: 0070a0c0708889ac9427c52293adbf8a
     domain: switch
-  action:
-  - service: light.turn_on
-    data:
+  - condition: numeric_state
+    entity_id: sensor.wican_batterysoc
+    below: input_number.the_jag_max_soc
+  actions:
+  - data:
       brightness_pct: 60
       flash: short
     target:
       entity_id: light.bedside
-  - service: light.turn_on
-    data:
+    action: light.turn_on
+  - data:
       brightness_pct: 35
     target:
       entity_id: light.bedside
-  - service: notify.alexa_media_bedroom_echo
-    data:
+    action: light.turn_on
+  - data:
       message: Fault detected with Jag charger
-  - service: notify.mobile_app_sean_s_s20
-    data:
+    action: notify.alexa_media_bedroom_echo
+  - data:
       message: Fault detected with Jag charger!!
       title: Fault detected
-  - service: notify.mobile_app_caitlin_s21
-    data:
+    action: notify.mobile_app_sean_s_s20
+  - data:
       message: Charging fault detected for Jag!
       title: Fault detected
     enabled: true
+    action: notify.mobile_app_caitlin_s21
   mode: single
 - id: '1703882558117'
   alias: Tag Drying Oven is scanned
@@ -138,7 +141,7 @@
       light_switch:
         entity_id:
         - light.office_lights
-        - switch.s31_9_relay
+        - switch.s31_09_relay
       time_delay: 12
       include_light_control:
       - use_brightness
@@ -169,20 +172,22 @@
         - switch.s31_10_relay
         - light.living_room
         - light.expanse
+        - switch.s31_11_relay
       time_delay: 10
       include_light_control: []
       include_dynamic_lighting: enable_sun_elevation_colour_brightness
       dynamic_lighting_min_brightness: 69
-      dynamic_lighting_max_colour_temp: 5800
+      dynamic_lighting_max_colour_temp: 5000
       dynamic_lighting_min_colour_temp: 2200
       dynamic_lighting_sun_elevation_end_rising: 15.5
-      dynamic_lighting_sun_elevation_start_falling: 17
+      dynamic_lighting_sun_elevation_start_falling: 26
       include_night_lights: night_lights_enabled
       night_lights:
         entity_id:
         - light.kitchen
         - light.expanse
         - light.living_room
+        - switch.s31_11_relay
       include_night_light_control:
       - use_brightness
       - use_colour_temperature
@@ -224,15 +229,15 @@
 - id: '1718162085772'
   alias: Activate Brew Sign
   description: ''
-  trigger:
+  triggers:
   - type: power
-    platform: device
     device_id: 5cfce8615e6bfa25712677cc0ad83f3e
-    entity_id: 49cfe1ec7ccf3c05f6f227a8f6affb9e
+    entity_id: 9b06e7024c911a62881c8341092f612a
     domain: sensor
-    above: 100
-  condition: []
-  action:
+    trigger: device
+    above: 1000
+  conditions: []
+  actions:
   - type: turn_on
     device_id: 71dfe78cee016ecad7f5c8f7377ea715
     entity_id: 9b6b5c2e15a01ced4dc2d4d934970e9d
@@ -317,6 +322,7 @@
   mode: single
 - id: '1722971310211'
   alias: Master Bathroom Auto Lights
+  enabled: false
   description: ''
   use_blueprint:
     path: Blackshome/sensor-light.yaml
@@ -341,7 +347,7 @@
       dynamic_lighting_sun_elevation_start_rising: -5
       dynamic_lighting_sun_elevation_start_falling: 90
       dynamic_lighting_sun_elevation_end_falling: -5
-      include_night_lights: night_lights_enabled
+      include_night_lights: night_lights_disabled
       night_lights:
         entity_id:
         - light.master_bathroom_lights
@@ -362,38 +368,39 @@
 - id: '1723777909805'
   alias: Tag Dyson Stick Vac Start Charging is scanned
   description: ''
-  trigger:
-  - platform: tag
-    tag_id: 516eb145-b69f-4c8d-bfc6-8dac8d11f7dd
-  condition: []
-  action:
+  triggers:
+  - tag_id: 516eb145-b69f-4c8d-bfc6-8dac8d11f7dd
+    trigger: tag
+  conditions: []
+  actions:
   - type: turn_on
     device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: 2b2f542505922ca9ee1ea1c41ff55f01
+    entity_id: abef98810bd28ed8b71baefa76109c4e
     domain: switch
   mode: single
 - id: '1723913346506'
   alias: Dyson Stick Vac Charge Limit
   description: ''
-  trigger:
+  triggers:
   - type: power
-    platform: device
     device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: 18d3e90879c5b64f1c32245ddccf1e70
+    entity_id: 3fce30a4502102f6e9a179a209a6b616
     domain: sensor
+    trigger: device
     above: 36
     for:
       hours: 0
       minutes: 1
       seconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: 2b2f542505922ca9ee1ea1c41ff55f01
+    entity_id: abef98810bd28ed8b71baefa76109c4e
     domain: switch
   mode: single
 - id: '1724554576231'
+  enabled: false
   alias: 'Turn off master bathroom auto lights '
   description: ''
   trigger:
@@ -456,22 +463,22 @@
 - id: '1726351475455'
   alias: Moosoo Stick Vac Charge Limit
   description: ''
-  trigger:
+  triggers:
   - type: power
-    platform: device
     device_id: 1c9cfa02fa649e2136dda6f5612366a6
-    entity_id: a90c7ce7f83e02fabd85b63e52023af9
+    entity_id: 6f742a3dd56eeba6cffebe1576b26ff4
     domain: sensor
-    above: 11.6
+    trigger: device
+    above: 12
     for:
       hours: 0
       minutes: 1
       seconds: 0
-  condition: []
-  action:
+  conditions: []
+  actions:
   - type: turn_off
     device_id: 1c9cfa02fa649e2136dda6f5612366a6
-    entity_id: 468a8e5e9cf14ad276d2ddc998c876a4
+    entity_id: 5abb4178fa9345b3b5d0177acae0b592
     domain: switch
   mode: single
 - id: '1726609980402'
