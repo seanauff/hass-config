@@ -11,6 +11,7 @@
         - cover.garage_door_door
         - button.pura_x_start_resume_cleaning
         - button.s31_19_restart_connected
+        - fan.living_room_fan
         - light.master_bathroom_lights
         - light.brew_sign
         - light.entry_lights
@@ -62,6 +63,10 @@
         name: Restart CD Player
         description: Restart Peter's Music
         display_categories: SWITCH
+      fan.living_room_fan:
+        name: Living Room Fan
+        description: Living Room Fan
+        display_categories: FAN
       light.master_bathroom_lights:
         name: Bathroom Lights
         description: Bathroom Lights
