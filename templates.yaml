@@ -11,50 +11,50 @@
           {{m - p}}
         {% endif %}
       unique_id: d54d9ea3-ffa5-4f58-a287-b957c0e2266a
-    - name: "The Jag Odometer"
-      unit_of_measurement: "mi"
-      state: "{{ state_attr('sensor.the_jag_info','Odometer') }}"
-    - name: "The Jag Max SOC int"
-      unit_of_measurement: "%"
-      device_class: battery
-      state: "{{ states('input_number.the_jag_max_soc')|int }}"
-    - name: "The Jag Battery SOC kWh"
-      unit_of_measurement: "kWh"
-      device_class: energy
-      state: >
-        {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
-        {% if SOC_kWh == 0 %}
-          Unknown
-        {% else %}
-          {{SOC_kWh}}
-        {% endif %}
-      attributes:
-        SOC: "{{ state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge }}"
-        battery_optimization: >
-          {% set SOC = state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge | float %}
-          {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
-          {% if SOC_kWh == 0 %}
-            Unknown
-          {% else %}
-            {{(SOC_kWh / SOC * 100 / 86 * 100) | round(1)}}
-          {% endif %}
-        SOC_actual: >
-          {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
-          {% if SOC_kWh == 0 %}
-            Unknown
-          {% else %}
-            {{(SOC_kWh / 90 * 100) | round(1)}}
-          {% endif %}
-    - name: "The Jag Charging Rate"
-      unit_of_measurement: "kW"
-      device_class: power
-      state: >
-        {% set rate = states('sensor.the_jag_battery_rate_of_change') | float %}
-        {% if rate < 0 %}
-          0
-        {% else %}
-          {{rate}}
-        {% endif %}
+    # - name: "The Jag Odometer"
+    #   unit_of_measurement: "mi"
+    #   state: "{{ state_attr('sensor.the_jag_info','Odometer') }}"
+    # - name: "The Jag Max SOC int"
+    #   unit_of_measurement: "%"
+    #   device_class: battery
+    #   state: "{{ states('input_number.the_jag_max_soc')|int }}"
+    # - name: "The Jag Battery SOC kWh"
+    #   unit_of_measurement: "kWh"
+    #   device_class: energy
+    #   state: >
+    #     {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
+    #     {% if SOC_kWh == 0 %}
+    #       Unknown
+    #     {% else %}
+    #       {{SOC_kWh}}
+    #     {% endif %}
+    #   attributes:
+    #     SOC: "{{ state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge }}"
+    #     battery_optimization: >
+    #       {% set SOC = state_attr('sensor.the_jag_all_info','ev status').evStateOfCharge | float %}
+    #       {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
+    #       {% if SOC_kWh == 0 %}
+    #         Unknown
+    #       {% else %}
+    #         {{(SOC_kWh / SOC * 100 / 86 * 100) | round(1)}}
+    #       {% endif %}
+    #     SOC_actual: >
+    #       {% set SOC_kWh = state_attr('sensor.the_jag_all_info','ev status').evRangeVscRevisedHvBattEnergyx100 | float %}
+    #       {% if SOC_kWh == 0 %}
+    #         Unknown
+    #       {% else %}
+    #         {{(SOC_kWh / 90 * 100) | round(1)}}
+    #       {% endif %}
+    # - name: "The Jag Charging Rate"
+    #   unit_of_measurement: "kW"
+    #   device_class: power
+    #   state: >
+    #     {% set rate = states('sensor.the_jag_battery_rate_of_change') | float %}
+    #     {% if rate < 0 %}
+    #       0
+    #     {% else %}
+    #       {{rate}}
+    #     {% endif %}
     - name: "Basement Temperature Alexa"
       unit_of_measurement: '°F'
       state: "{{ states('sensor.basement_temperature') | round(0) }}"
@@ -107,6 +107,6 @@
     - name: "Blank Sensor"
       state: ""
 
-  - binary_sensor:
-    - name: "The Jag Charging"
-      state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
+  # - binary_sensor:
+  #   - name: "The Jag Charging"
+  #     state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
