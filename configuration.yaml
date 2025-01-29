@@ -57,6 +57,7 @@ alexa: !include alexa.yaml
 automation: !include automations.yaml
 binary_sensor: !include binary_sensor.yaml
 command_line: !include command_line.yaml
+device_tracker: !include device_tracker.yaml
 fan: !include fans.yaml
 group: !include groups.yaml
 influxdb: !include influxdb.yaml
