@@ -6,183 +6,23 @@
     client_secret: !secret alexa_client_secret
     filter:
       include_entities:
-        - binary_sensor.doorbell_person_occupancy
-        - camera.doorbell
-        - cover.garage_door_door
         - button.pura_x_start_resume_cleaning
-        - button.s31_19_restart_connected
-        - fan.living_room_fan
-        - light.master_bathroom_lights
-        - light.brew_sign
-        - light.entry_lights
-        - light.front_porch_lights
-        - light.loft_lights
-        - light.office_lights
-        - lock.touchscreen_deadbolt_z_wave_plus
         - media_player.samsung_tv
-        - script.alexa_jag_battery_status
-        - sensor.basement_temperature_alexa
-        - sensor.bedroom_temperature_alexa
-        - sensor.garage_temperature_alexa
-        - sensor.guest_room_temperature_alexa
-        - sensor.kitchen_temperature_alexa
-        - sensor.living_room_temperature_alexa
-        - sensor.loft_temperature_alexa
-        - sensor.office_temperature_alexa
-        - sensor.peters_room_temperature_alexa
-        - switch.back_porch_light
-        - switch.caitlin_s_computer_wol
-        - switch.esw01_1_relay
-        - switch.esw01_2_relay
-        - switch.garage_scene_controller
-        - switch.s31_9_relay
-        - switch.s31_10_relay
-        - switch.s31_11_relay
-        - switch.s31_20_relay
         - switch.sean_s_computer_wol
-        # - switch.peter_auffinger_timer
         - switch.shannon_auffinger_timer
     entity_config:
-      binary_sensor.doorbell_person_occupancy:
-        name: Front Door
-        description: Front Door Person Sensor
-        display_categories: CAMERA
-      camera.doorbell:
-        name: Front Door Camera
-        description: The Front Door Camera
-        display_categories: CAMERA
-      cover.garage_door_door:
-        name: Garage Door
-        description: The Garage Door
-        display_categories: GARAGE_DOOR
       button.pura_x_start_resume_cleaning:
         name: Pura X Cleaning Cycle
         description: Litter Box
         display_categories: SWITCH
-      button.s31_19_restart_connected:
-        name: Restart CD Player
-        description: Restart Peter's Music
-        display_categories: SWITCH
-      fan.living_room_fan:
-        name: Living Room Fan
-        description: Living Room Fan
-        display_categories: FAN
-      light.master_bathroom_lights:
-        name: Bathroom Lights
-        description: Bathroom Lights
-        display_categories: LIGHT
-      light.brew_sign:
-        name: Brew Sign
-        description: Brew Sign
-        display_categories: LIGHT
-      light.entry_lights:
-        name: Entry Lights
-        description: Entry Lights
-        display_categories: LIGHT
-      light.front_porch_lights:
-        name: Front Porch Lights
-        description: Front Porch Lights
-        display_categories: LIGHT
-      light.loft_lights:
-        name: Loft Lights
-        description: Loft Lights
-        display_categories: LIGHT
-      light.office_lights:
-        name: Office Lights
-        description: Office Lights
-        display_categories: LIGHT
-      lock.touchscreen_deadbolt_z_wave_plus:
-        name: Front Door
-        description: Front Door Deadbolt
-        display_categories: SMARTLOCK
       media_player.samsung_tv:
         name: TV
         description: The Loft TV
         display_categories: TV
-      script.alexa_jag_battery_status:
-        name: Whats the Jags battery status
-        description: reports the current state of the jag battery and charging
-        display_categories: SWITCH
-      sensor.basement_temperature_alexa:
-        name: Basement
-        description: Basement Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.bedroom_temperature_alexa:
-        name: Bedroom
-        description: Bedroom Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.garage_temperature_alexa:
-        name: Garage
-        description: Garage Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.guest_room_temperature_alexa:
-        name: Guest Room
-        description: Guest Room Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.kitchen_temperature_alexa:
-        name: Kitchen
-        description: Kitchen Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.living_room_temperature_alexa:
-        name: Living Room
-        description: Living Room Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.loft_temperature_alexa:
-        name: Loft
-        description: Loft Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.office_temperature_alexa:
-        name: Office
-        description: Office Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      sensor.peters_room_temperature_alexa:
-        name: Peter's Room
-        description: Peter's Room Temperature Sensor
-        display_categories: TEMPERATURE_SENSOR
-      switch.back_porch_light:
-        name: Back Porch Light
-        description: Back Porch Light
-        display_categories: LIGHT
-      switch.caitlin_s_computer_wol:
-        name: Caitlin's Computer
-        description: Caitlin's Computer
-        display_categories: COMPUTER
-      switch.esw01_1_relay:
-        name: Studio Monitors
-        description: Studio Monitors
-        display_categories: SWITCH
-      switch.esw01_2_relay:
-        name: Sean's Speakers
-        description: Sean's Speakers
-        display_categories: SWITCH
-      switch.garage_scene_controller:
-        name: Garage Light
-        description: Garage Light
-        display_categories: LIGHT
-      switch.s31_9_relay:
-        name: Office Lamp
-        description: Office Lamp
-        display_categories: LIGHT
-      switch.s31_10_relay:
-        name: Reading Lamp
-        description: Reading Lamp
-        display_categories: LIGHT
-      switch.s31_11_relay:
-        name: Christmas Tree
-        description: Christmas Tree
-        display_categories: CHRISTMAS_TREE
-      switch.s31_20_relay:
-        name: Truck Lamp
-        description: Truck Lamp
-        display_categories: LIGHT
       switch.sean_s_computer_wol:
         name: Sean's Computer
         description: Sean's Computer
         display_categories: COMPUTER
-      # switch.peter_auffinger_timer:
-      #   name: Peter Timer
-      #   description: Peter Timer
-      #   display_categories: SWITCH
       switch.shannon_auffinger_timer:
         name: Shannon Timer
         description: Shannon Timer

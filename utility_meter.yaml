@@ -1,8 +1,0 @@
-  # daily_jag_mileage:
-  #   source: sensor.the_jag_odometer
-  #   name: Daily Jag Mileage
-  #   cycle: daily
-  # monthly_jag_mileage:
-  #   source: sensor.the_jag_odometer
-  #   name: Monthly Jag Mileage
-  #   cycle: monthly
