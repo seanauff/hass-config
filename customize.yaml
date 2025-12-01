@@ -1,9 +1,3 @@
-sensor.smart_electric_meter_consumption:
-  device_class: 'energy'
-  state_class: 'total_increasing'
-sensor.smart_electric_meter_return:
-  device_class: 'energy'
-  state_class: 'total_increasing'
 sensor.hvac_system_runtime_hours_energy:
   unit_of_measurement: h
   device_class: duration

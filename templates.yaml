@@ -51,7 +51,4 @@
        {% endif %}
     - name: "Blank Sensor"
       state: ""
-
-  # - binary_sensor:
-  #   - name: "The Jag Charging"
-  #     state: "{{ state_attr('sensor.the_jag_battery','Charging State') == 'Charging' }}"
+      

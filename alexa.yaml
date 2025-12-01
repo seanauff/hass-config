@@ -9,7 +9,6 @@
         - button.pura_x_start_resume_cleaning
         - media_player.samsung_tv
         - switch.sean_s_computer_wol
-        - switch.shannon_auffinger_timer
     entity_config:
       button.pura_x_start_resume_cleaning:
         name: Pura X Cleaning Cycle
@@ -23,7 +22,4 @@
         name: Sean's Computer
         description: Sean's Computer
         display_categories: COMPUTER
-      switch.shannon_auffinger_timer:
-        name: Shannon Timer
-        description: Shannon Timer
-        display_categories: SWITCH
+
