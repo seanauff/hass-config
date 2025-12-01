@@ -1,0 +1,16 @@
+clean_litter_box:
+  use_blueprint:
+    path: homeassistant/confirmable_notification.yaml
+    input:
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      title: Greg used the litter box
+      confirm_text: Clean now
+      confirm_action:
+      - device_id: ef54fbaf3e6246f2c7e7a1f8d3b3a5d4
+        domain: button
+        entity_id: abd9a7028c4fa71014891b0cbfacf893
+        type: press
+      message: Toileting for {{states('sensor.greg_last_use_duration')}} seconds.
+        Run a manual clean cycle now?
+  alias: Clean litter box
+  description: ''
