@@ -42,6 +42,7 @@
       state_filter_states:
       - locked
       state_filter: true
+      critical: 'true'
 - id: '1697546504085'
   alias: Charger Fault watchdog
   description: ''
@@ -137,8 +138,8 @@
   description: ''
   triggers:
   - type: power
-    device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: 3fce30a4502102f6e9a179a209a6b616
+    device_id: 9f39fceaf4e1569f76ca17c4ee28aec8
+    entity_id: 57d7b0e9097d7d361ca35258e9cf3b9b
     domain: sensor
     trigger: device
     above: 36
@@ -149,8 +150,8 @@
   conditions: []
   actions:
   - type: turn_off
-    device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: abef98810bd28ed8b71baefa76109c4e
+    device_id: 9f39fceaf4e1569f76ca17c4ee28aec8
+    entity_id: 179dd7aaf0e1b534f3f332b66eccfa03
     domain: switch
   mode: single
 - id: '1726351475455'
@@ -194,12 +195,16 @@
       title: Explorer 12V Battery Update!
       message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')|round(2)}}
         V'
+      data:
+        notification_icon: mdi:battery-alert-variant-outline
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       title: Explorer 12V Battery Update!
       message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')|round(2)}}
         V'
+      data:
+        notification_icon: mdi:battery-alert-variant-outline
   mode: single
 - id: '1738381307912'
   alias: Space Heater Turn Off
@@ -265,11 +270,15 @@
     data:
       message: Petkit waste collection bin full. Please empty in time.
       title: Petkit Notification
+      data:
+        notification_icon: mdi:cat
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       message: Petkit waste collection bin full. Please empty in time.
       title: Petkit Notification
+      data:
+        notification_icon: mdi:cat
   mode: single
 - id: '1745027897856'
   alias: Tag Moosoo stick vac start charging is scanned
@@ -316,7 +325,7 @@
       - binary_sensor.master_bedroom_motion
       light_switch:
         entity_id: light.bedside
-      include_dynamic_lighting: enable_time_controled_colour_brightness
+      include_dynamic_lighting: enable_sun_elevation_colour_brightness
       dynamic_lighting_min_brightness: 40
       dynamic_lighting_min_colour_temp: 2000
       dynamic_lighting_max_colour_temp: 5800
@@ -325,8 +334,12 @@
       dynamic_lighting_time_end_evening: '19:30:00'
       include_time: time_enabled
       after_time: 07:00:00
-      before_time: '19:00:00'
+      before_time: '21:30:00'
       dynamic_lighting_time_start_evening: '16:00:00'
+      dynamic_lighting_sun_elevation_end_rising: 56.5
+      dynamic_lighting_sun_elevation_start_rising: -10
+      dynamic_lighting_sun_elevation_start_falling: 54.5
+      dynamic_lighting_sun_elevation_end_falling: -10
 - id: '1759078560282'
   alias: Greg used the litter box
   description: ''
@@ -363,6 +376,7 @@
       state_filter_states:
       - locked
       state_filter: true
+      critical: 'true'
 - id: '1759198097266'
   alias: Parlor Lamp Automation
   description: ''
@@ -421,9 +435,9 @@
       include_night_glow_light_colour_control: use_colour_temperature
       night_glow_light_colour_temperature: 2000
       dynamic_lighting_sun_elevation_start_rising: -10
-      dynamic_lighting_sun_elevation_end_rising: 49
-      dynamic_lighting_sun_elevation_start_falling: 29
-      dynamic_lighting_sun_elevation_end_falling: -10
+      dynamic_lighting_sun_elevation_end_rising: 30.5
+      dynamic_lighting_sun_elevation_start_falling: 20
+      dynamic_lighting_sun_elevation_end_falling: -20
       dynamic_lighting_heartbeat: 10
 - id: '1760920019661'
   alias: UPS on battery notification
@@ -532,7 +546,7 @@
     - sensor.s31_02_power
     for:
       hours: 1
-      minutes: 0
+      minutes: 30
       seconds: 0
     below: 10
   conditions: []
@@ -542,11 +556,15 @@
     data:
       title: Aux Fridge Power Anomaly
       message: Is the power on?
+      data:
+        notification_icon: mdi:fridge-alert
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       message: Is the power on?
       title: Aux Fridge Power Anomaly
+      data:
+        notification_icon: mdi:fridge-alert
   mode: single
 - id: '1762522234484'
   alias: Main Fridge Power Watchdog
@@ -583,11 +601,15 @@
     data:
       title: Main Fridge Power Anomaly
       message: Is the power on?
+      data:
+        notification_icon: mdi:fridge-alert
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       message: Is the power on?
       title: Main Fridge Power Anomaly
+      data:
+        notification_icon: mdi:fridge-alert
   mode: single
 - id: '1762634629453'
   alias: Radon Fan Power Watchdog
@@ -624,11 +646,15 @@
     data:
       title: Radon Fan Power Anomaly
       message: Is the power on?
+      data:
+        notification_icon: mdi:radioactive
   - action: notify.mobile_app_caitlin_s_s24
     metadata: {}
     data:
       message: Is the power on?
       title: Radon Fan Power Anomaly
+      data:
+        notification_icon: mdi:radioactive
   mode: single
 - id: '1763001785451'
   alias: Outdoor Lights Schedule
@@ -646,9 +672,12 @@
         - light.backyard_hedge_twinkly_group
         - light.twinkly_lights
         - switch.s31_17_relay
-        - switch.s31_11_relay
-      include_dynamic_lighting: disable_dynamic_lighting
-      dynamic_lighting_min_brightness: 7
+        - light.garage_exterior_lights
+        - switch.s31_22_relay
+        - light.enchanted_grotto
+        - light.breezeway_lights
+      include_dynamic_lighting: enable_sun_elevation_brightness
+      dynamic_lighting_min_brightness: 19
       dynamic_lighting_time_end_evening: '22:00:00'
       dynamic_lighting_time_start_evening: '18:00:00'
       include_sun: sun_enabled
@@ -656,8 +685,27 @@
       before_time: '22:00:00'
       include_time: time_enabled
       time_delay: 0
-      sun_elevation: -1.5
-      sun_elevation_rising: -4
+      sun_elevation: -0.5
+      sun_elevation_rising: 0
+      zone: zone.near_home
+      include_device_tracker: device_tracker_disabled
+      night_light_brightness: 19
+      include_night_light_control:
+      - use_brightness
+      - if_lights_are_on_adjust_when_crossing_over
+      night_lights:
+        entity_id:
+        - light.front_porch_lights_internal
+        - light.garage_exterior_lights
+      include_night_lights: night_lights_disabled
+      night_lights_conditions:
+      - time_enabled
+      night_lights_after_time: '22:00:00'
+      night_lights_before_time: 06:00:00
+      dynamic_lighting_sun_elevation_end_falling: -50
+      dynamic_lighting_sun_elevation_start_falling: 0
+      dynamic_lighting_sun_elevation_end_rising: 0
+      dynamic_lighting_sun_elevation_start_rising: -50
 - id: '1763735088809'
   alias: Space Heater Turn Down
   description: ''
@@ -672,12 +720,22 @@
     - thu
     - fri
     - sat
+  - trigger: time
+    at: '14:30:00'
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
   conditions: []
   actions:
   - action: input_number.set_value
     metadata: {}
     data:
-      value: 60
+      value: 56
     target:
       entity_id: input_number.space_heater_temperature_setpoint
   mode: single
@@ -686,7 +744,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 06:00:00
+    at: 06:30:00
     weekday:
     - sun
     - mon
@@ -725,3 +783,342 @@
       notify_device:
       - b81fa521b01f700193b2b3fe10d60e10
       notify_tag: low-batteries
+      exclude_sensors:
+        entity_id:
+        - sensor.basement_battery
+        - sensor.batterysoc
+        - sensor.batterysocmax
+        - sensor.batterysocmin
+        - sensor.home_energy_meter_battery_level
+        - binary_sensor.home_energy_meter_low_battery_level
+        - sensor.eb3a_total_battery_percent
+        - binary_sensor.front_door_lock_replace_battery_now
+        - binary_sensor.front_door_lock_replace_battery_soon
+        - binary_sensor.mud_room_door_lock_replace_battery_now
+        - binary_sensor.mud_room_door_lock_replace_battery_soon
+        - sensor.ups_battery_charge
+        - sensor.upstairs_repeater_battery_level
+- id: '1765076401301'
+  alias: Pantry Light Automation
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.pantry_door_contact_intrusion
+      light_switch:
+        entity_id: switch.pantry_light
+      time_delay: 0
+- id: '1765724866261'
+  alias: Shannon's Room Power Watchdog
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - camera.nursery
+    to:
+    - unavailable
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - trigger: state
+    entity_id:
+    - media_player.shannon_echo_dot
+    to:
+    - unavailable
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      title: Shannon's Room Power Anomaly
+      message: Is the power on?
+      data:
+        notification_icon: mdi:power-plug-off-outline
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      message: Is the power on?
+      title: Shannon's Room Power Anomaly
+      data:
+        notification_icon: mdi:power-plug-off-outline
+  mode: single
+- id: '1767145595364'
+  alias: "\U0001F6AAFront Door Left Open"
+  description: ''
+  use_blueprint:
+    path: Raukze/contact-sensor-left-open-notification.yaml
+    input:
+      trigger_entity: binary_sensor.front_door_contact_intrusion
+      duration_issue_state:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        days: 0
+      condition_send_notification: []
+      notify_services_string: notify.mobile_app_sean_s_s20
+- id: '1767186401100'
+  alias: Disarm if doors unlocked
+  description: ''
+  triggers:
+  - device_id: de95e81636d4ab516ab7199a08512dbe
+    domain: lock
+    entity_id: 39c887e15967d97035e624872f2330bc
+    type: unlocked
+    trigger: device
+  - device_id: cbc962093fcccd7d74bd828c68f9824c
+    domain: lock
+    entity_id: dabd32fb4e8dc317f879a317c7845b77
+    type: unlocked
+    trigger: device
+  conditions: []
+  actions:
+  - action: alarm_control_panel.alarm_disarm
+    metadata: {}
+    target:
+      device_id: d644515abff66adb10f06cb33b7387ac
+    data: {}
+  mode: single
+- id: '1767236241878'
+  alias: Trident Power Sensor
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: '*'
+    minutes: '*'
+    seconds: /10
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: false
+      qos: '0'
+      topic: 3dprinter/trident/powersensor/output
+      retain: true
+      payload: "{\n          \"power\": {{ states('sensor.s31_08_power') | float(default=0)
+        | round(1) }},\n          \"apparent_power\": {{ states('sensor.s31_08_apparent_power')
+        | float(default=0) | round(1) }},\n          \"current\": {{ states('sensor.s31_08_current')
+        | float(default=0) | round(2) }},\n          \"power_factor\": {{ states('sensor.s31_08_power_factor')
+        | float(default=0) | round(2) }},\n          \"total_daily_energy\": {{ states('sensor.s31_08_total_daily_energy')
+        | float(default=0) | round(3) }},\n          \"voltage\": {{ states('sensor.s31_08_voltage')
+        | float(default=0) | round(1) }},\n          \"energy\": {{ states('sensor.s31_08_energy')
+        | float(default=0) | round(3) }},\n          \"timestamp\": \"{{ now().isoformat()
+        }}\"\n        }"
+  mode: single
+- id: '1767720302961'
+  alias: Shannon Space Heater Power Watchdog
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.s31_14_power
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    below: 100
+  - trigger: state
+    entity_id:
+    - switch.s31_14_relay
+    to:
+    - 'on'
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions:
+  - condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.s31_14_power
+      below: 100
+    - condition: state
+      entity_id: switch.s31_14_relay
+      state:
+      - 'on'
+  actions:
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      title: Shannon Space Heater Anomaly
+      message: Relay on but power draw low. Check space heater thermostat knob.
+      data:
+        notification_icon: mdi:water-boiler-alert
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      message: Relay on but power draw low. Check space heater thermostat knob.
+      title: Shannon Space Heater Anomaly
+      data:
+        notification_icon: mdi:water-boiler-alert
+  mode: single
+- id: '1767754502232'
+  alias: Tag Mud Room Door Lock Tag is scanned - unlock
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: b883fe76-2364-495c-802b-951bb02c067b
+  conditions:
+  - type: is_not_unsafe
+    condition: device
+    device_id: 9d19e744ca6300018deabd394a4436a5
+    entity_id: fb3fe935771d388b67d308cb6508747b
+    domain: binary_sensor
+  actions:
+  - device_id: cbc962093fcccd7d74bd828c68f9824c
+    domain: lock
+    entity_id: dabd32fb4e8dc317f879a317c7845b77
+    type: unlock
+  mode: single
+- id: '1768178253843'
+  alias: Chest Freezer Power Watchdog
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.s31_21_relay
+    to:
+    - unavailable
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  - trigger: state
+    entity_id:
+    - switch.s31_21_relay
+    to:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  - trigger: numeric_state
+    entity_id:
+    - sensor.s31_21_power
+    for:
+      hours: 1
+      minutes: 30
+      seconds: 0
+    below: 10
+  conditions: []
+  actions:
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      title: Chest Freezer Power Anomaly
+      message: Is the power on?
+      data:
+        notification_icon: mdi:fridge-industrial-alert
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      message: Is the power on?
+      title: Chest Freezer Power Anomaly
+      data:
+        notification_icon: mdi:fridge-industrial-alert
+  mode: single
+- id: '1768188769987'
+  alias: Zwave dead watchdog
+  description: ''
+  triggers:
+  - value_template: "{{ expand(states.sensor)\n   | selectattr('entity_id', 'search',
+      '_node_status$')\n   | selectattr('state', 'in', ['dead','unknown'])\n   | map(attribute='entity_id')\n
+      \  | list | count > 0\n}}\n"
+    variables:
+      dead_nodes: "{{ expand(states.sensor)\n   | selectattr('entity_id', 'search',
+        '_node_status$')\n   | selectattr('state', 'in', ['dead','unknown'])\n   |
+        map(attribute='entity_id')\n   | list\n}}\n"
+    trigger: template
+  actions:
+  - repeat:
+      for_each: '{{ dead_nodes }}'
+      sequence:
+      - target:
+          entity_id: '{{ repeat.item }}'
+        action: zwave_js.ping
+      - delay: 5
+  mode: single
+- id: '1768617489261'
+  alias: Humidifer Empty Notification
+  description: ''
+  triggers:
+  - type: power
+    device_id: 3892f68ae0f9f70774a5d42213b55d1d
+    entity_id: 526a0d95f22dd64265c34c9f8288a206
+    domain: sensor
+    trigger: device
+    below: 5
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 3892f68ae0f9f70774a5d42213b55d1d
+    entity_id: 5751e5d9163bc5847bbb79d983f3fc5d
+    domain: switch
+  - type: is_humidity
+    condition: device
+    device_id: 615d0a9a8640760440ced40011ee338b
+    entity_id: f6d464cb0def5f474564b63f2d4d96a9
+    domain: sensor
+    below: 40
+  actions:
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      title: Loft Update
+      message: Evaporative Humidifier is Empty!
+      data:
+        notification_icon: mdi:water-percent-alert
+        tag: humidifier_empty_notification
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      title: Loft Update
+      message: Evaporative Humidifier is Empty!
+      data:
+        notification_icon: mdi:water-percent-alert
+        tag: humidifier_empty_notification
+  mode: single
+- id: '1768660501688'
+  alias: Clear notifications for humidifier refill
+  description: ''
+  triggers:
+  - type: power
+    device_id: 3892f68ae0f9f70774a5d42213b55d1d
+    entity_id: 526a0d95f22dd64265c34c9f8288a206
+    domain: sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    above: 15
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: 3892f68ae0f9f70774a5d42213b55d1d
+    entity_id: 5751e5d9163bc5847bbb79d983f3fc5d
+    domain: switch
+  actions:
+  - action: notify.mobile_app_sean_s_s20
+    metadata: {}
+    data:
+      data:
+        tag: humidifier_empty_notification
+      message: clear_notification
+  - action: notify.mobile_app_caitlin_s_s24
+    metadata: {}
+    data:
+      data:
+        tag: humidifier_empty_notification
+      message: clear_notification
+  mode: single
