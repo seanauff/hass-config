@@ -2,31 +2,34 @@
 
     - name: "Basement Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.basement_temperature') | round(0) }}"
+      state: "{{ states('sensor.airthings_wave_090595_temperature') | round(0) }}"
     - name: "Bedroom Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_02_temperature') | round(0) }}"
+      state: "{{ states('sensor.master_bedroom_temperature') | round(0) }}"
     - name: "Garage Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_03_temperature') | round(0) }}"
+      state: "{{ states('sensor.sht30_05_temperature') | round(0) }}"
     - name: "Guest Room Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_04_temperature') | round(0) }}"
+      state: "{{ states('sensor.sht30_01_temperature') | round(0) }}"
+    - name: "Guest Suite Temperature Alexa"
+      unit_of_measurement: '°F'
+      state: "{{ states('sensor.guest_suite_current_temperature') | round(0) }}"
     - name: "Living Room Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_05_temperature') | round(0) }}"
-    - name: "Loft Temperature Alexa"
-      unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_06_temperature') | round(0) }}"
-    - name: "Kitchen Temperature Alexa"
-      unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_07_temperature') | round(0) }}"
+      state: "{{ states('sensor.living_room_temperature') | round(0) }}"
+    # - name: "Kitchen Temperature Alexa"
+    #   unit_of_measurement: '°F'
+    #   state: "{{ states('sensor.sht30_07_temperature') | round(0) }}"
     - name: "Peters Room Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.sht30_09_temperature') | round(0) }}"
+      state: "{{ states('sensor.peters_room_temperature') | round(0) }}"
+    - name: "Shannons Room Temperature Alexa"
+      unit_of_measurement: '°F'
+      state: "{{ states('sensor.shannons_room_temperature') | round(0) }}"
     - name: "Office Temperature Alexa"
       unit_of_measurement: '°F'
-      state: "{{ states('sensor.j2ty_temperature') | round(0) }}"
+      state: "{{ states('sensor.office_temperature') | round(0) }}"
 
   ##For Washer/Dryer Status Cards
     - name: "Washer Door Lock"
@@ -51,4 +54,3 @@
        {% endif %}
     - name: "Blank Sensor"
       state: ""
-      
