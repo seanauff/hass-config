@@ -1,0 +1,15 @@
+  - platform: group
+    name: sean_phone
+    services:
+      - service: mobile_app_sean_s_s20     # lowercase, no "notify." prefix
+  
+  - platform: group
+    name: caitlin_phone
+    services:
+      - service: mobile_app_caitlin_s_s24     # lowercase, no "notify." prefix 
+  
+  - platform: group
+    name: sean_and_caitlin_phones
+    services:
+      - service: sean_phone     # lowercase, no "notify." prefix
+      - service: caitlin_phone  # same here
