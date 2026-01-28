@@ -38,7 +38,7 @@
       labels:
       - person
       cooldown: 60
-      state_entity: lock.front_door_lock
+      state_entity: lock.front_door_lock_2
       state_filter_states:
       - locked
       state_filter: true
@@ -189,15 +189,7 @@
     trigger: numeric_state
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
-    metadata: {}
-    data:
-      title: Explorer 12V Battery Update!
-      message: 'Low Voltage: {{states(''sensor.the_jag_starter_battery_voltage'')|round(2)}}
-        V'
-      data:
-        notification_icon: mdi:battery-alert-variant-outline
-  - action: notify.mobile_app_caitlin_s_s24
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Explorer 12V Battery Update!
@@ -265,14 +257,7 @@
       seconds: 0
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
-    metadata: {}
-    data:
-      message: Petkit waste collection bin full. Please empty in time.
-      title: Petkit Notification
-      data:
-        notification_icon: mdi:cat
-  - action: notify.mobile_app_caitlin_s_s24
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       message: Petkit waste collection bin full. Please empty in time.
@@ -372,7 +357,7 @@
       labels:
       - person
       cooldown: 60
-      state_entity: lock.front_door_lock
+      state_entity: lock.front_door_lock_2
       state_filter_states:
       - locked
       state_filter: true
@@ -412,8 +397,8 @@
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '21:30:00'
-      night_lights_before_time: 05:00:00
+      night_lights_after_time: '22:00:00'
+      night_lights_before_time: 06:00:00
       night_lights:
         entity_id:
         - light.kitchen
@@ -439,6 +424,8 @@
       dynamic_lighting_sun_elevation_start_falling: 20
       dynamic_lighting_sun_elevation_end_falling: -20
       dynamic_lighting_heartbeat: 10
+      include_dim_before_off: dim_before_off_disabled
+      time_delay: 6
 - id: '1760920019661'
   alias: UPS on battery notification
   description: ''
@@ -454,7 +441,7 @@
     to: On Battery, Battery Discharging
   conditions: []
   actions:
-  - action: notify.mobile_app_caitlin_s_s24
+  - action: notify.caitlin_phone
     metadata: {}
     data:
       message: Network UPS on backup battery power! Power out?
@@ -464,7 +451,7 @@
     enabled: true
   - repeat:
       sequence:
-      - action: notify.mobile_app_sean_s_s20
+      - action: notify.sean_phone
         metadata: {}
         data:
           message: Network UPS on backup battery power ({{states('sensor.ups_battery_charge')}}%)!
@@ -551,18 +538,11 @@
     below: 10
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Aux Fridge Power Anomaly
       message: Is the power on?
-      data:
-        notification_icon: mdi:fridge-alert
-  - action: notify.mobile_app_caitlin_s_s24
-    metadata: {}
-    data:
-      message: Is the power on?
-      title: Aux Fridge Power Anomaly
       data:
         notification_icon: mdi:fridge-alert
   mode: single
@@ -596,18 +576,11 @@
     below: 10
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Main Fridge Power Anomaly
       message: Is the power on?
-      data:
-        notification_icon: mdi:fridge-alert
-  - action: notify.mobile_app_caitlin_s_s24
-    metadata: {}
-    data:
-      message: Is the power on?
-      title: Main Fridge Power Anomaly
       data:
         notification_icon: mdi:fridge-alert
   mode: single
@@ -639,19 +612,21 @@
       minutes: 0
       seconds: 0
     below: 10
+  - trigger: numeric_state
+    entity_id:
+    - sensor.airthings_wave_090595_radon_1_day_average
+    for:
+      hours: 2
+      minutes: 0
+      seconds: 0
+    above: 7
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
-      title: Radon Fan Power Anomaly
-      message: Is the power on?
-      data:
-        notification_icon: mdi:radioactive
-  - action: notify.mobile_app_caitlin_s_s24
-    metadata: {}
-    data:
-      message: Is the power on?
+      message: Is the power on? Basement radon level is ({{states('sensor.airthings_wave_090595_radon_1_day_average')}}
+        pCi/L)!
       title: Radon Fan Power Anomaly
       data:
         notification_icon: mdi:radioactive
@@ -738,6 +713,12 @@
       value: 56
     target:
       entity_id: input_number.space_heater_temperature_setpoint
+  - action: climate.set_temperature
+    metadata: {}
+    target:
+      entity_id: climate.nursery_space_heater
+    data:
+      temperature: 56
   mode: single
 - id: '1764125968271'
   alias: Truck lamp green
@@ -833,18 +814,11 @@
       seconds: 0
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Shannon's Room Power Anomaly
       message: Is the power on?
-      data:
-        notification_icon: mdi:power-plug-off-outline
-  - action: notify.mobile_app_caitlin_s_s24
-    metadata: {}
-    data:
-      message: Is the power on?
-      title: Shannon's Room Power Anomaly
       data:
         notification_icon: mdi:power-plug-off-outline
   mode: single
@@ -861,7 +835,7 @@
         seconds: 0
         days: 0
       condition_send_notification: []
-      notify_services_string: notify.mobile_app_sean_s_s20
+      notify_services_string: notify.sean_and_caitlin_phones
 - id: '1767186401100'
   alias: Disarm if doors unlocked
   description: ''
@@ -943,18 +917,11 @@
       state:
       - 'on'
   actions:
-  - action: notify.mobile_app_caitlin_s_s24
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Shannon Space Heater Anomaly
       message: Relay on but power draw low. Check space heater thermostat knob.
-      data:
-        notification_icon: mdi:water-boiler-alert
-  - action: notify.mobile_app_sean_s_s20
-    metadata: {}
-    data:
-      message: Relay on but power draw low. Check space heater thermostat knob.
-      title: Shannon Space Heater Anomaly
       data:
         notification_icon: mdi:water-boiler-alert
   mode: single
@@ -1008,18 +975,11 @@
     below: 10
   conditions: []
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Chest Freezer Power Anomaly
       message: Is the power on?
-      data:
-        notification_icon: mdi:fridge-industrial-alert
-  - action: notify.mobile_app_caitlin_s_s24
-    metadata: {}
-    data:
-      message: Is the power on?
-      title: Chest Freezer Power Anomaly
       data:
         notification_icon: mdi:fridge-industrial-alert
   mode: single
@@ -1071,15 +1031,7 @@
     domain: sensor
     below: 40
   actions:
-  - action: notify.mobile_app_sean_s_s20
-    metadata: {}
-    data:
-      title: Loft Update
-      message: Evaporative Humidifier is Empty!
-      data:
-        notification_icon: mdi:water-percent-alert
-        tag: humidifier_empty_notification
-  - action: notify.mobile_app_caitlin_s_s24
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Loft Update
@@ -1109,16 +1061,26 @@
     entity_id: 5751e5d9163bc5847bbb79d983f3fc5d
     domain: switch
   actions:
-  - action: notify.mobile_app_sean_s_s20
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       data:
         tag: humidifier_empty_notification
       message: clear_notification
-  - action: notify.mobile_app_caitlin_s_s24
+  mode: single
+- id: '1769444793586'
+  alias: Refresh values for Zwave devices
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    seconds: /30
+  conditions: []
+  actions:
+  - action: zwave_js.refresh_value
     metadata: {}
     data:
-      data:
-        tag: humidifier_empty_notification
-      message: clear_notification
+      entity_id:
+      - light.barn_exterior_lights
+      - switch.driveway_spot_lights
+      refresh_all_values: false
   mode: single
