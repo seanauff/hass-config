@@ -1,5 +1,4 @@
   sensor:
-
     - name: "Explorer Starter Battery Voltage"
       state_topic: wican/f412fa368fbd/voltage
       value_template: "{{ value_json.battery_voltage }}"
