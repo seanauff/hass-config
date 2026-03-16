@@ -102,24 +102,6 @@
       - button.washer_remote_start
       - button.dryer_remote_start
   mode: single
-- id: '1718162085772'
-  alias: Activate Brew Sign
-  description: ''
-  triggers:
-  - type: power
-    device_id: 5cfce8615e6bfa25712677cc0ad83f3e
-    entity_id: 9b06e7024c911a62881c8341092f612a
-    domain: sensor
-    trigger: device
-    above: 1000
-  conditions: []
-  actions:
-  - type: turn_on
-    device_id: 71dfe78cee016ecad7f5c8f7377ea715
-    entity_id: 9b6b5c2e15a01ced4dc2d4d934970e9d
-    domain: light
-    brightness_pct: 100
-  mode: single
 - id: '1723777909805'
   alias: Tag Dyson Stick Vac Start Charging is scanned
   description: ''
@@ -129,8 +111,8 @@
   conditions: []
   actions:
   - type: turn_on
-    device_id: 204aa4deb9ae013ecfb99871331cfa06
-    entity_id: abef98810bd28ed8b71baefa76109c4e
+    device_id: 9f39fceaf4e1569f76ca17c4ee28aec8
+    entity_id: 179dd7aaf0e1b534f3f332b66eccfa03
     domain: switch
   mode: single
 - id: '1723913346506'
@@ -174,6 +156,7 @@
     device_id: 1c9cfa02fa649e2136dda6f5612366a6
     entity_id: 5abb4178fa9345b3b5d0177acae0b592
     domain: switch
+    enabled: false
   mode: single
 - id: '1726609980402'
   alias: Explorer Battery Low Alert
@@ -272,12 +255,7 @@
   - trigger: tag
     tag_id: 0ad40282-6541-4ff7-a2a9-c5cf314fb4ab
   conditions: []
-  actions:
-  - action: switch.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.s31_21_relay
+  actions: []
   mode: single
 - id: '1759075417119'
   alias: Office Motion Lights
@@ -372,10 +350,26 @@
       - schedule.parlor_lamp_schedule
       light_switch:
         entity_id: light.hue_white_lamp_1
-      include_dynamic_lighting: enable_time_controled_brightness
-      dynamic_lighting_min_brightness: 7
+      include_dynamic_lighting: enable_sun_elevation_brightness
+      dynamic_lighting_min_brightness: 39
       dynamic_lighting_time_end_evening: '22:00:00'
       dynamic_lighting_time_start_evening: '18:00:00'
+      dynamic_lighting_sun_elevation_end_rising: 35
+      dynamic_lighting_sun_elevation_start_falling: 35.5
+      dynamic_lighting_sun_elevation_end_falling: -10
+      include_night_lights: night_lights_enabled
+      night_lights_conditions:
+      - time_enabled
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 07:00:00
+      night_lights:
+        entity_id: light.hue_white_lamp_1
+      include_night_glow: night_glow_enabled
+      night_glow_lights:
+        entity_id: light.hue_white_lamp_1
+      include_night_glow_light_control:
+      - use_brightness
+      night_glow_light_brightness: 1
 - id: '1759544329397'
   alias: Kitchen Motion Lights
   description: ''
@@ -392,13 +386,13 @@
       dynamic_lighting_min_brightness: 40
       dynamic_lighting_max_colour_temp: 5800
       dynamic_lighting_min_colour_temp: 2500
-      dynamic_lighting_time_end_morning: '11:00:00'
-      dynamic_lighting_time_end_evening: '21:30:00'
+      dynamic_lighting_time_end_morning: '12:00:00'
+      dynamic_lighting_time_end_evening: '22:30:00'
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '22:00:00'
-      night_lights_before_time: 06:00:00
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 07:00:00
       night_lights:
         entity_id:
         - light.kitchen
@@ -426,6 +420,8 @@
       dynamic_lighting_heartbeat: 10
       include_dim_before_off: dim_before_off_disabled
       time_delay: 6
+      dynamic_lighting_time_start_morning: 07:00:00
+      dynamic_lighting_time_start_evening: '18:00:00'
 - id: '1760920019661'
   alias: UPS on battery notification
   description: ''
@@ -433,12 +429,14 @@
   - trigger: state
     entity_id:
     - sensor.ups_status
-    from: Online
+    from:
+    - Online
     for:
       hours: 0
       minutes: 0
-      seconds: 15
-    to: On Battery, Battery Discharging
+      seconds: 10
+    to:
+    - On Battery, Battery Discharging
   conditions: []
   actions:
   - action: notify.caitlin_phone
@@ -466,8 +464,8 @@
             notification_icon: mdi:transmission-tower-off
       - delay:
           hours: 0
-          minutes: 0
-          seconds: 15
+          minutes: 1
+          seconds: 0
           milliseconds: 0
       while:
       - condition: state
@@ -489,25 +487,36 @@
       light_switch:
         entity_id:
         - switch.s31_11_relay
-      include_dynamic_lighting: enable_time_controled_brightness
+        - light.piano
+        - switch.s31_13_relay
+        - switch.s31_10_relay
+        - light.sunroom
+        - light.living_room
+      include_dynamic_lighting: enable_sun_elevation_colour_brightness
       dynamic_lighting_min_brightness: 30
       dynamic_lighting_time_start_evening: '18:00:00'
       dynamic_lighting_time_end_evening: '21:30:00'
       night_lights:
-        entity_id: light.sunroom
+        entity_id:
+        - light.sunroom
+        - light.piano
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '22:00:00'
-      night_lights_before_time: 06:00:00
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 07:00:00
       include_night_light_control:
       - use_brightness
       night_light_brightness: 12
       night_glow_light_brightness: 1
       night_glow_lights:
-        entity_id: light.sunroom
+        entity_id:
+        - light.piano
       include_time: time_disabled
       after_time: '21:30:00'
+      dynamic_lighting_min_colour_temp: 2100
+      dynamic_lighting_sun_elevation_end_rising: 52
+      dynamic_lighting_sun_elevation_start_falling: 50
 - id: '1762521685326'
   alias: Aux Fridge Power Watchdog
   description: ''
@@ -515,10 +524,11 @@
   - trigger: state
     entity_id:
     - switch.s31_02_relay
-    to: unavailable
+    to:
+    - unavailable
     for:
-      hours: 0
-      minutes: 15
+      hours: 1
+      minutes: 0
       seconds: 0
   - trigger: state
     entity_id:
@@ -647,46 +657,49 @@
         - light.backyard_hedge_twinkly_group
         - light.twinkly_lights
         - switch.s31_17_relay
-        - light.garage_exterior_lights
         - switch.s31_22_relay
         - light.enchanted_grotto
-        - light.breezeway_lights
+        - light.garage_exterior_lights_gamma
+        - light.breezeway_lights_gamma
       include_dynamic_lighting: enable_sun_elevation_brightness
-      dynamic_lighting_min_brightness: 19
+      dynamic_lighting_min_brightness: 16
       dynamic_lighting_time_end_evening: '22:00:00'
       dynamic_lighting_time_start_evening: '18:00:00'
       include_sun: sun_enabled
-      after_time: 06:00:00
-      before_time: '22:00:00'
+      after_time: 07:00:00
+      before_time: '22:30:00'
       include_time: time_enabled
       time_delay: 0
       sun_elevation: -0.5
       sun_elevation_rising: 0
       zone: zone.near_home
       include_device_tracker: device_tracker_disabled
-      night_light_brightness: 19
+      night_light_brightness: 1
       include_night_light_control:
       - use_brightness
       - if_lights_are_on_adjust_when_crossing_over
-      night_lights:
-        entity_id:
-        - light.front_porch_lights_internal
-        - light.garage_exterior_lights
       include_night_lights: night_lights_disabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '22:00:00'
-      night_lights_before_time: 06:00:00
+      night_lights_after_time: '22:30:00'
+      night_lights_before_time: 07:00:00
       dynamic_lighting_sun_elevation_end_falling: -50
       dynamic_lighting_sun_elevation_start_falling: 0
       dynamic_lighting_sun_elevation_end_rising: 0
       dynamic_lighting_sun_elevation_start_rising: -50
+      night_glow_lights:
+        entity_id:
+        - light.garage_exterior_lights_gamma
+        - light.breezeway_lights_gamma
+        - light.barn_exterior_lights_gamma
+      include_night_glow: night_glow_disabled
+      night_glow_light_brightness: 1
 - id: '1763735088809'
   alias: Space Heater Turn Down
   description: ''
   triggers:
   - trigger: time
-    at: 06:30:00
+    at: 07:30:00
     weekday:
     - sun
     - mon
@@ -696,7 +709,7 @@
     - fri
     - sat
   - trigger: time
-    at: '14:30:00'
+    at: '15:30:00'
     weekday:
     - sun
     - mon
@@ -725,7 +738,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 06:30:00
+    at: 07:30:00
     weekday:
     - sun
     - mon
@@ -738,7 +751,7 @@
   - condition: device
     type: is_on
     device_id: d9f5cf5455d42ba47d1f549ab06dced2
-    entity_id: ea86f7bd868d8dfa69e36f508e8e60c1
+    entity_id: 02632841e90c0f62a40b10f3aa9695fb
     domain: light
   actions:
   - action: light.turn_on
@@ -953,8 +966,8 @@
     to:
     - unavailable
     for:
-      hours: 0
-      minutes: 15
+      hours: 1
+      minutes: 0
       seconds: 0
   - trigger: state
     entity_id:
@@ -1083,4 +1096,19 @@
       - light.barn_exterior_lights
       - switch.driveway_spot_lights
       refresh_all_values: false
+  mode: single
+- id: '1771001847408'
+  alias: Bluetti shut down at 80 SoC
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.eb3a2317000707446_battery_soc
+    below: 80
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 86b61a96dbb8fe572be9d798d33c2c4a
+    entity_id: fccc7bc4f1afab56eca63bd1d7b5ce52
+    domain: switch
   mode: single
