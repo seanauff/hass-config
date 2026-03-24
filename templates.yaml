@@ -54,3 +54,10 @@
        {% endif %}
     - name: "Blank Sensor"
       state: ""
+
+    - name: ApCo Electricity Usage
+      unit_of_measurement: kWh
+      device_class: energy
+      default_entity_id: sensor.apco_electricity_usage
+      state: '{{ 0 }}'
+      state_class: total_increasing
