@@ -654,11 +654,6 @@
         - switch.front_porch
         - switch.driveway_entrance
         - switch.front_post_light
-        - light.backyard_hedge_twinkly_group
-        - light.twinkly_lights
-        - switch.s31_17_relay
-        - switch.s31_22_relay
-        - light.enchanted_grotto
         - light.garage_exterior_lights_gamma
         - light.breezeway_lights_gamma
       include_dynamic_lighting: enable_sun_elevation_brightness
@@ -683,10 +678,10 @@
       - time_enabled
       night_lights_after_time: '22:30:00'
       night_lights_before_time: 07:00:00
-      dynamic_lighting_sun_elevation_end_falling: -50
+      dynamic_lighting_sun_elevation_end_falling: -40
       dynamic_lighting_sun_elevation_start_falling: 0
       dynamic_lighting_sun_elevation_end_rising: 0
-      dynamic_lighting_sun_elevation_start_rising: -50
+      dynamic_lighting_sun_elevation_start_rising: -40
       night_glow_lights:
         entity_id:
         - light.garage_exterior_lights_gamma
@@ -849,6 +844,7 @@
         days: 0
       condition_send_notification: []
       notify_services_string: notify.sean_and_caitlin_phones
+      friendly_name: Front Door
 - id: '1767186401100'
   alias: Disarm if doors unlocked
   description: ''
@@ -1112,3 +1108,161 @@
     entity_id: fccc7bc4f1afab56eca63bd1d7b5ce52
     domain: switch
   mode: single
+- id: '1773748145909'
+  alias: Poll UPS
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: '*'
+    minutes: '*'
+    seconds: /15
+  conditions: []
+  actions:
+  - action: homeassistant.update_entity
+    data:
+      entity_id:
+      - sensor.ups_status
+  mode: single
+- id: '1774057447753'
+  alias: Geiger counter radiation warning
+  description: ''
+  triggers:
+  - type: value
+    device_id: 172b950442f3ccdc31dbff6f97514ecc
+    entity_id: 54e3cea6594be659cd7eb52a78cd1387
+    domain: sensor
+    trigger: device
+    above: 1
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: 'Hazardous radiation levels detected:  ({{states(''sensor.geiger_counter_01_radiation_dose_rate'')|
+        round(2)}} µS/hr)!'
+      title: Geiger Counter Warning
+      data:
+        notification_icon: mdi:radioactive
+  mode: single
+- id: '1774187585078'
+  alias: Well pump counter increment
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.well_pump_running
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: counter.increment
+    metadata: {}
+    target:
+      entity_id: counter.well_pump_cycles
+    data: {}
+  mode: single
+- id: '1774366008199'
+  alias: Well Pump - Continuous Run Protection
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.well_pump_running
+    to:
+    - 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.well_pump
+    data: {}
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: "\U0001F6A8 CRITICAL: Well pump has been running continuously for over
+        15 minutes! Power has been automatically turned OFF. Possible major leak or
+        stuck pressure switch. Investigate immediately."
+      title: "\U0001F6A8 Well pump issue!"
+      data:
+        notification_icon: mdi:water-pump
+  mode: single
+- id: '1774367068104'
+  alias: Well Pump - Excessive Use Protection
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.well_pump_water_usage
+    above: 1000
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.well_pump
+    data: {}
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: "\U0001F6A8 CRITICAL: Well pump used {{ states('sensor.well_pump_water_usage')
+        }} gallons today! Pump power has been turned OFF to prevent damage or flooding.
+        Check system immediately."
+      title: "\U0001F6A8 Well pump issue!"
+      data:
+        notification_icon: mdi:water-pump
+  mode: single
+- id: '1774367420488'
+  alias: Well Pump - High Usage Alert
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.well_pump_water_usage
+    above: 500
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: Well pump used {{ states('sensor.well_pump_water_usage') }} gallons
+        today! Check for leaks or high usage.
+      title: "\U0001F6A8 Water usage alert!"
+      data:
+        notification_icon: mdi:water-pump
+  mode: single
+- id: '1774376075963'
+  alias: Outdoor Lights - Force Off During Daytime
+  description: Force off any outdoor lights accidentally turned on while sun elevation
+    > 5° (with 60s grace period)
+  triggers:
+  - entity_id: group.exterior_lights
+    to: 'on'
+    for:
+      seconds: 60
+    trigger: state
+  conditions:
+  - condition: template
+    value_template: '{{ state_attr(''sun.sun'', ''elevation'') | float(default=0)
+      > 5 }}'
+  actions:
+  - action: homeassistant.turn_off
+    metadata: {}
+    target:
+      entity_id: group.exterior_lights
+    data: {}
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: 'Exterior lights were automatically turned off after 60 seconds: {{   expand(''group.exterior_lights'')      |
+        selectattr(''state'', ''eq'', ''on'')      | map(attribute=''name'')      |
+        list      | join('', '')      | default(''Unknown lights'', true) }}'
+      title: Exterior Lights Turned Off
+  mode: queued
+  max_exceeded: silent
