@@ -1,0 +1,13 @@
+  exterior_lights:
+    name: "Exterior Lights"
+    entities:
+      - switch.back_porch_light
+      - switch.living_room_porch
+      - switch.front_porch
+      - switch.front_post_light
+      - switch.driveway_entrance
+      - light.garage_exterior_lights_gamma
+      - light.breezeway_lights_gamma
+      - light.backyard_spot_lights
+      - switch.driveway_spot_lights
+      - light.barn_exterior_lights_gamma
