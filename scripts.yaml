@@ -1,16 +1,75 @@
 clean_litter_box:
-  use_blueprint:
-    path: homeassistant/confirmable_notification.yaml
-    input:
-      notify_device: b81fa521b01f700193b2b3fe10d60e10
+  mode: restart
+  sequence:
+  - alias: Set up variables
+    variables:
+      action_confirm: '{{ ''CONFIRM_'' ~ context.id }}'
+      action_dismiss: '{{ ''DISMISS_'' ~ context.id }}'
+  - alias: Send notification
+    domain: mobile_app
+    type: notify
+    device_id: b81fa521b01f700193b2b3fe10d60e10
+    title: Greg used the litter box
+    message: Toileting for {{states('sensor.greg_last_use_duration')}} seconds. Run
+      a manual clean cycle now?
+    data:
+      actions:
+      - action: '{{ action_confirm }}'
+        title: Clean now
+      - action: '{{ action_dismiss }}'
+        title: Dismiss
+    enabled: true
+  - alias: Send notification
+    action: notify.sean_phone
+    data:
       title: Greg used the litter box
-      confirm_text: Clean now
-      confirm_action:
+      message: Toileting for {{states('sensor.greg_last_use_duration')}} seconds.
+        Run a manual clean cycle now?
+      data:
+        notification_icon: mdi:cat
+        tag: clean_litter_box_notification
+        actions:
+        - action: '{{ action_confirm }}'
+          title: Clean now
+        - action: '{{ action_dismiss }}'
+          title: Dismiss
+    enabled: false
+  - alias: Awaiting response
+    wait_for_trigger:
+    - event_type: mobile_app_notification_action
+      event_data:
+        action: '{{ action_confirm }}'
+      trigger: event
+    - event_type: mobile_app_notification_action
+      event_data:
+        action: '{{ action_dismiss }}'
+      trigger: event
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ wait.trigger.event.data.action == action_confirm }}'
+      sequence:
       - device_id: ef54fbaf3e6246f2c7e7a1f8d3b3a5d4
         domain: button
         entity_id: abd9a7028c4fa71014891b0cbfacf893
         type: press
-      message: Toileting for {{states('sensor.greg_last_use_duration')}} seconds.
-        Run a manual clean cycle now?
+      - alias: clear notification
+        action: notify.sean_phone
+        metadata: {}
+        data:
+          message: clear_notification
+          data:
+            tag: clean_litter_box_notification
+    - conditions:
+      - condition: template
+        value_template: '{{ wait.trigger.event.data.action == action_dismiss }}'
+      sequence:
+      - alias: clear notification
+        action: notify.sean_phone
+        metadata: {}
+        data:
+          message: clear_notification
+          data:
+            tag: clean_litter_box_notification
   alias: Clean litter box
   description: ''
