@@ -8,6 +8,8 @@
       - switch.driveway_entrance
       - light.garage_exterior_lights_gamma
       - light.breezeway_lights_gamma
-      - light.backyard_spot_lights
+      - light.pool_lights_gamma
+      - light.backyard_spot_lights_gamma
       - switch.driveway_spot_lights
       - light.barn_exterior_lights_gamma
+      - light.pool_spot_lights_gamma
