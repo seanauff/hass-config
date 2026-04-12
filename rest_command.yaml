@@ -1,0 +1,67 @@
+# actual for hass items
+  actual_get_budgets:
+    url: !secret actual_get_budgets_url
+    method: GET
+
+  actual_get_accounts:
+    url: !secret actual_get_accounts_url
+    method: GET
+    headers:
+      x-api-key: !secret actual_api_key
+
+  actual_get_groups:
+    url: !secret actual_get_groups_url
+    method: GET
+    headers:
+      x-api-key: !secret actual_api_key
+
+  actual_sync_accounts:
+    url: !secret actual_sync_accounts_url
+    method: post
+    headers:
+      x-api-key: !secret actual_api_key
+    timeout: 300
+
+  actual_get_uncategorized:
+    url: !secret actual_get_uncategorized_url
+    method: post
+    headers:
+      x-api-key: !secret actual_api_key
+    payload: >
+      {
+        "ActualQLquery": {
+          "table": "transactions",
+          "calculate" : {"$count": "*"},
+          "filter" : { "category" : null,"tombstone": false,"is_parent": false,"transfer_id": null,"account.offbudget": false}
+        }
+      }
+    content_type: "application/json"
+
+  actual_get_transactions:
+    url: !secret actual_get_transactions_url
+    method: post
+    headers:
+      x-api-key: !secret actual_api_key
+    payload: >
+      {
+        "ActualQLquery": {
+          "table": "transactions",
+          "select": [
+            "date",{"payee": "payee.name"}, {"category" : "category.name"},"amount"
+          ],
+          "filter" : {"tombstone" : false, "account.offbudget": false},
+          "limit": 12
+        }
+      }
+    content_type: "application/json"
+
+  actual_import_transactions:
+    url: !secret actual_import_transactions_url
+    method: post
+    headers:
+      x-api-key: !secret actual_api_key
+    payload: >
+      {
+        "transactions": {{transaction_list | to_json }}
+      }
+    content_type: "application/json"

@@ -67,6 +67,7 @@ light: !include_dir_merge_list lights/
 mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 powercalc: !include powercalc.yaml
+rest_command: !include rest_command.yaml
 script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 switch: !include switches.yaml
