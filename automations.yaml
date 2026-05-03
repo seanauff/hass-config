@@ -124,7 +124,7 @@
     entity_id: 57d7b0e9097d7d361ca35258e9cf3b9b
     domain: sensor
     trigger: device
-    above: 36
+    above: 33.5
     for:
       hours: 0
       minutes: 1
@@ -446,6 +446,7 @@
       title: Power Outage Notification
       data:
         notification_icon: mdi:transmission-tower-off
+        clickAction: entityId:sensor.power_outage_duration
     enabled: true
   - repeat:
       sequence:
@@ -457,11 +458,11 @@
           title: Power Outage Notification
           data:
             tag: ups_battery
-            progress:
-              '[object Object]':
+            progress: '{{ states(''sensor.ups_battery_charge'') | int }}'
             progress_max: 100
             alert_once: true
             notification_icon: mdi:transmission-tower-off
+            clickAction: entityId:sensor.ups_battery_charge
       - delay:
           hours: 0
           minutes: 1
@@ -1184,7 +1185,7 @@
     - 'on'
     for:
       hours: 0
-      minutes: 15
+      minutes: 10
       seconds: 0
   conditions: []
   actions:
@@ -1197,11 +1198,12 @@
     metadata: {}
     data:
       message: "\U0001F6A8 CRITICAL: Well pump has been running continuously for over
-        15 minutes! Power has been automatically turned OFF. Possible major leak or
+        10 minutes! Power has been automatically turned OFF. Possible major leak or
         stuck pressure switch. Investigate immediately."
       title: "\U0001F6A8 Well pump issue!"
       data:
         notification_icon: mdi:water-pump
+        clickAction: entityId:sensor.well_pump_water_usage
   mode: single
 - id: '1774367068104'
   alias: Well Pump - Excessive Use Protection
@@ -1227,6 +1229,7 @@
       title: "\U0001F6A8 Well pump issue!"
       data:
         notification_icon: mdi:water-pump
+        clickAction: entityId:sensor.well_pump_water_usage
   mode: single
 - id: '1774367420488'
   alias: Well Pump - High Usage Alert
@@ -1246,6 +1249,7 @@
       title: "\U0001F6A8 Water usage alert!"
       data:
         notification_icon: mdi:water-pump
+        clickAction: entityId:sensor.well_pump_water_usage
   mode: single
 - id: '1774376075963'
   alias: Outdoor Lights - Force Off During Daytime
@@ -1269,7 +1273,7 @@
   - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
-      message: 'Exterior lights were automatically turned off after 60 seconds: {{   expand(''group.exterior_lights'')      |
+      message: 'Exterior lights were automatically turned off after 5 minutes: {{   expand(''group.exterior_lights'')      |
         selectattr(''state'', ''eq'', ''on'')      | map(attribute=''name'')      |
         list      | join('', '')      | default(''Unknown lights'', true) }}'
       title: Exterior Lights Turned Off
@@ -1411,6 +1415,36 @@
     - heating
     for:
       hours: 0
+      minutes: 10
+      seconds: 0
+  conditions:
+  - type: is_temperature
+    condition: device
+    device_id: 076ec4ac09ccf593e189816d9c0fdadc
+    entity_id: 7b816d439c0cfa277b2241b4009f52a6
+    domain: sensor
+    below: 10
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      title: Main house HVAC problem!
+      message: Thermostat calling for heat but no heat detected!
+      data:
+        notification_icon: mdi:water-boiler-alert
+  mode: single
+- id: '1775995469170'
+  alias: Main House cooling issue alert
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - climate.main_house
+    attribute: hvac_action
+    to:
+    - cooling
+    for:
+      hours: 0
       minutes: 5
       seconds: 0
   conditions:
@@ -1419,13 +1453,367 @@
     device_id: 076ec4ac09ccf593e189816d9c0fdadc
     entity_id: 7b816d439c0cfa277b2241b4009f52a6
     domain: sensor
-    below: 5
+    above: -5
   actions:
-  - action: notify.sean_phone
+  - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
       title: Main house HVAC problem!
-      message: Thermostat calling for heat but no heat detected!
+      message: Thermostat calling for cooling but no cooling detected!
+      data:
+        notification_icon: mdi:air-conditioner
+  mode: single
+- id: '1775996123804'
+  alias: Water Heater Alert - Low Temp - Main House
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.water_heater_01_water_temperature
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+    below: 105
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      title: Water Heater Issue
+      message: 'Main house water heater temperature seems low: {{states(''sensor.water_heater_01_water_temperature'')|
+        round(1)}} °F'
       data:
         notification_icon: mdi:water-boiler-alert
+        clickAction: entityId:sensor.water_heater_01_water_temperature
+  mode: single
+- id: '1776038814755'
+  alias: Garage - Start Lights Auto-Off Timer
+  description: Restarts 5 min timer when either garage door closes (only if lights
+    are on)
+  triggers:
+  - entity_id:
+    - cover.garage_door_01_door
+    - cover.garage_door_02_door
+    to: closed
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: switch.garage_lights
+    state: 'on'
+  actions:
+  - action: timer.start
+    target:
+      entity_id:
+      - timer.garage_lights_auto_off
+    data:
+      duration:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  mode: single
+- id: '1776039066358'
+  alias: Garage - Cancel Lights Auto-Off Timer
+  description: Cancels timer on manual light change or obstruction sensor trigger
+  triggers:
+  - entity_id: switch.garage_lights
+    id: light_manual
+    trigger: state
+  - entity_id:
+    - binary_sensor.garage_door_01_obstruction
+    - binary_sensor.garage_door_02_obstruction
+    to: 'on'
+    id: obstruction
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: timer.garage_lights_auto_off
+    state: active
+  actions:
+  - target:
+      entity_id: timer.garage_lights_auto_off
+    action: timer.cancel
+    data: {}
+  mode: single
+- id: '1776039118909'
+  alias: Garage - Turn Off Lights When Timer Finishes
+  description: Turns off garage lights after 5 minutes with no cancellation
+  triggers:
+  - event_type: timer.finished
+    event_data:
+      entity_id: timer.garage_lights_auto_off
+    trigger: event
+  actions:
+  - target:
+      entity_id: switch.garage_lights
+    action: switch.turn_off
+  mode: single
+- id: '1776042469565'
+  alias: Well Pump - Record Cut-Out Pressure & Start Leak Timer
+  description: When pump stops, record pressure and start 2-hour idle timer
+  triggers:
+  - entity_id:
+    - binary_sensor.well_pump_running
+    from:
+    - 'on'
+    to:
+    - 'off'
+    trigger: state
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  actions:
+  - target:
+      entity_id: input_number.well_pump_last_stable_pressure
+    data:
+      value: '{{ states(''sensor.water_heater_01_water_pressure'') | float(0) }}'
+    action: input_number.set_value
+  - target:
+      entity_id: timer.well_pump_idle_leak_check
+    data:
+      duration: 02:00:00
+    action: timer.start
+  mode: single
+- id: '1776042700342'
+  alias: Well Pump - Pressure Drop Restarts Leak Timer
+  description: If pressure drops >2 psi in short time while pump is off, update stable
+    pressure and restart timer
+  triggers:
+  - entity_id:
+    - sensor.water_heater_01_water_pressure
+    for:
+      minutes: 5
+    trigger: numeric_state
+    value_template: '{{ states(''input_number.well_pump_last_stable_pressure'') |
+      float(0) - state.state|float }}'
+    above: 2
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.well_pump_running
+    state: 'off'
+  actions:
+  - target:
+      entity_id: input_number.well_pump_last_stable_pressure
+    data:
+      value: '{{ states(''sensor.water_heater_01_water_pressure'') | float(0) }}'
+    action: input_number.set_value
+  - action: timer.start
+    target:
+      entity_id:
+      - timer.well_pump_idle_leak_check
+    data:
+      duration:
+        hours: 2
+        minutes: 0
+        seconds: 0
+  mode: single
+- id: '1776043007350'
+  alias: Well Pump - Small Leak Detected (Timer Finished)
+  description: Alert if pressure dropped significantly while idle for 2 hours
+  triggers:
+  - event_type: timer.finished
+    event_data:
+      entity_id: timer.well_pump_idle_leak_check
+    trigger: event
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.well_pump_running
+    state: 'off'
+  - condition: numeric_state
+    entity_id: sensor.water_heater_01_water_pressure
+    above: 3
+    value_template: '{{ states(''input_number.well_pump_last_stable_pressure'') |
+      float(0) - state.state|float}}'
+  actions:
+  - action: notify.sean_phone
+    data:
+      title: Small Water Leak Alert
+      message: 'Pressure dropped {{ (states(''input_number.well_pump_last_stable_pressure'')
+        | float(0) - states(''sensor.water_heater_01_water_pressure'') | float(0))
+        | round(1) }} psi over ~2 hours with no significant water use.
+
+        Current pressure: {{ states(''sensor.water_heater_01_water_pressure'') | round(1)
+        }} psi.'
+      data:
+        notification_icon: mdi:water-alert
+  mode: single
+- id: '1776043764223'
+  alias: Well Pump - Cancel Leak Timer on Pump Restart
+  description: Cancel leak check if pump turns back on
+  triggers:
+  - entity_id: binary_sensor.well_pump_running
+    to: 'on'
+    trigger: state
+  actions:
+  - target:
+      entity_id: timer.well_pump_idle_leak_check
+    action: timer.cancel
+  mode: single
+- id: '1776276977147'
+  alias: Frigate - Front Door Detection Alert
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.doorbell
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      base_url: https://hass.auffinger.dev
+      title: Frigate Alert - Front Door
+      alert_once: true
+      attachment: thumbnail
+      update_thumbnail: true
+      icon: mdi:cctv
+      labels:
+      - person
+      - car
+      cooldown: 60
+      state_entity: lock.front_door_lock_2
+      state_filter_states:
+      - locked
+      state_filter: true
+      critical: 'true'
+      notify_group: sean_and_caitlin_phones
+- id: '1776277185619'
+  alias: Frigate - Garage Detection Alert
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.garage
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      base_url: https://hass.auffinger.dev
+      title: Frigate Alert - Garage
+      alert_once: true
+      attachment: thumbnail
+      update_thumbnail: true
+      icon: mdi:cctv
+      labels:
+      - person
+      - car
+      cooldown: 60
+      state_entity: cover.garage_door_01_door
+      state_filter_states:
+      - locked
+      state_filter: true
+      critical: 'true'
+      notify_group: sean_and_caitlin_phones
+- id: '1776296754371'
+  alias: Shannon's Lamp Green
+  description: ''
+  triggers:
+  - trigger: time
+    at: 07:30:00
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: f80f61938fc14303afed209392bbadb1
+    entity_id: 5de9e94a4688bfdabe34b9417225e58d
+    domain: light
+  - condition: numeric_state
+    entity_id: light.hue_color_lamp_2_seans
+    attribute: brightness
+    below: 10
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      brightness_pct: 10
+    target:
+      device_id: f80f61938fc14303afed209392bbadb1
+  mode: single
+- id: '1776298927565'
+  alias: Septic Pod - Daily Reminder
+  description: Daily notification if overdue (based on +30 days from last flush)
+  triggers:
+  - hours: 7
+    minutes: 0
+    seconds: 0
+    trigger: time_pattern
+  conditions:
+  - condition: template
+    value_template: '{{ now() >= states(''input_datetime.septic_pod_next_due'') |
+      as_datetime | as_local }}
+
+      '
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    data:
+      title: "\U0001FAA3 Septic Treatment Pod Reminder"
+      message: It's time to flush the septic treatment pod (overdue by {{ ((now()
+        - states('input_datetime.septic_pod_next_due') | as_datetime | as_local).days)
+        }} days).
+      data:
+        actions:
+        - action: septic_pod_flushed
+          title: ✅ I've Flushed It
+  mode: single
+- id: '1776299247015'
+  alias: Septic Pod - Mark as Flushed from Notification
+  description: Handle button tap and schedule next due date 30 days later
+  triggers:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: septic_pod_flushed
+    trigger: event
+  actions:
+  - action: counter.increment
+    metadata: {}
+    target:
+      entity_id: counter.septic_pods_flushed_total
+    data: {}
+  - target:
+      entity_id: input_datetime.septic_pod_next_due
+    data:
+      datetime: '{{ (now() + timedelta(days=30)).strftime(''%Y-%m-%d %H:%M:%S'') }}'
+    action: input_datetime.set_datetime
+  mode: single
+- id: '1776550735838'
+  alias: Well Pump - System Pressure Not Increasing
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.well_pump_running
+    to:
+    - 'on'
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.well_pump_water_pressure_rate_of_change
+    below: 0
+  - condition: numeric_state
+    entity_id: sensor.water_heater_01_water_pressure
+    below: 45
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.well_pump
+    data: {}
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: "\U0001F6A8 CRITICAL: Well pump running but system pressure remains
+        low ({{ states('sensor.water_heater_01_water_pressure') | round(1)}})! Pump
+        power has been turned OFF to prevent damage or flooding. Check system immediately."
+      title: "\U0001F6A8 Well pump issue!"
+      data:
+        notification_icon: mdi:water-pump
+        clickAction: entityId:sensor.water_heater_01_water_pressure
   mode: single
