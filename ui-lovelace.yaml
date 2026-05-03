@@ -7,6 +7,8 @@ resources:
     type: css
   - url: /local/simple-thermostat.js?v=1
     type: module
+  - url: /local/heat-pump-flow-card.js
+    type: module
 
 # Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
 #background: center / cover no-repeat url("/background.png") fixed
