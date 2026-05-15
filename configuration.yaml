@@ -72,5 +72,4 @@ script: !include scripts.yaml
 sensor: !include_dir_merge_list sensors/
 switch: !include switches.yaml
 template: !include templates.yaml
-tts: !include tts.yaml
 utility_meter: !include utility_meter.yaml
