@@ -21,28 +21,6 @@
     target:
       entity_id: button.pura_x_start_resume_cleaning
   mode: single
-- id: '1691625474781'
-  alias: Front Door Notify Sean
-  description: ''
-  use_blueprint:
-    path: SgtBatten/Stable.yaml
-    input:
-      camera: camera.doorbell
-      notify_device: b81fa521b01f700193b2b3fe10d60e10
-      base_url: https://hass.auffinger.dev
-      title: Frigate Alert
-      alert_once: true
-      attachment: thumbnail
-      update_thumbnail: true
-      icon: mdi:cctv
-      labels:
-      - person
-      cooldown: 60
-      state_entity: lock.front_door_lock_2
-      state_filter_states:
-      - locked
-      state_filter: true
-      critical: 'true'
 - id: '1697546504085'
   alias: Charger Fault watchdog
   description: ''
@@ -318,28 +296,6 @@
     target:
       entity_id: script.clean_litter_box
   mode: single
-- id: '1759080581114'
-  alias: 'Front door notify Caitlin '
-  description: ''
-  use_blueprint:
-    path: SgtBatten/Stable.yaml
-    input:
-      camera: camera.doorbell
-      notify_device: 47d3ee7edd83cb7b24fde42239f8837f
-      base_url: https://hass.auffinger.dev
-      title: Frigate Alert
-      alert_once: true
-      attachment: thumbnail
-      update_thumbnail: true
-      icon: mdi:cctv
-      labels:
-      - person
-      cooldown: 60
-      state_entity: lock.front_door_lock_2
-      state_filter_states:
-      - locked
-      state_filter: true
-      critical: 'true'
 - id: '1759198097266'
   alias: Parlor Lamp Automation
   description: ''
@@ -758,7 +714,7 @@
   - condition: numeric_state
     entity_id: light.truck_lamp
     attribute: brightness
-    below: 10
+    below: 30
   actions:
   - action: light.turn_on
     metadata: {}
@@ -1667,8 +1623,8 @@
       labels:
       - person
       - car
-      cooldown: 60
-      state_entity: lock.front_door_lock_2
+      cooldown: 120
+      state_entity: lock.front_door_lock
       state_filter_states:
       - locked
       state_filter: true
@@ -1815,5 +1771,88 @@
       title: "\U0001F6A8 Well pump issue!"
       data:
         notification_icon: mdi:water-pump
+        clickAction: entityId:sensor.water_heater_01_water_pressure
+  mode: single
+- id: '1778117768264'
+  alias: Well Water System HMI Data
+  description: Publishes well water system data to MQTT for Ignition HMI
+  triggers:
+  - trigger: time_pattern
+    hours: '*'
+    minutes: '*'
+    seconds: /10
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: false
+      qos: '0'
+      topic: wellwater/system/output
+      retain: true
+      payload: "{\n          \"pump_running\": {% if states('binary_sensor.well_pump_running')
+        == 'on' %}true{% else %}false{% endif %},\n          \"water_pressure\": {{
+        states('sensor.water_heater_01_water_pressure') | float(default=0) | round(2)
+        }},\n          \"water_temperature\": {{ states('sensor.water_heater_01_water_temperature')
+        | float(default=0) | round(1) }},\n          \"daily_water_usage\": {{ states('sensor.well_pump_water_usage')
+        | float(default=0) | round(2) }},\n          \"pressure_change_rate\": {{
+        states('sensor.well_pump_water_pressure_rate_of_change') | float(default=0)
+        | round(2) }},\n          \"last_stable_pressure\": {{ states('input_number.well_pump_last_stable_pressure')
+        | float(default=0) | round(2) }},\n          \"pump_cycles_total\": {{ states('counter.well_pump_cycles')
+        | int(default=0) }},\n          \"power_watts\": {{ states('sensor.well_pump_electric_consumption_w')
+        | float(default=0) | round(1) }},\n          \"voltage\": {{ states('sensor.well_pump_electric_consumption_v')
+        | float(default=0) | round(1) }},\n          \"current_amps\": {{ states('sensor.well_pump_electric_consumption_a')
+        | float(default=0) | round(2) }},\n          \"timestamp\": \"{{ now().isoformat()
+        }}\"\n        }"
+  mode: single
+- id: '1778379164535'
+  alias: Pool Pump Filter Needs Cleaning
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.pool_pump_house_water_filter_pressure
+    above: 25
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: Pool pump filter pressure is {{ states('sensor.pool_pump_house_water_filter_pressure')
+        }} psi! Empty pump filter basket and complete a backflush of the sand filter.
+      title: "\U0001F6A8 Pool Pump Alert!"
+      data:
+        notification_icon: mdi:pump
+        clickAction: entityId:sensor.pool_pump_house_water_filter_pressure
+  mode: single
+- id: '1778551788585'
+  alias: Well Pump - Slow Leak Detection
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.well_pump_water_pressure_rate_of_change_slow
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+    above: -5
+    below: -1.5
+  conditions: []
+  actions:
+  - action: notify.sean_phone
+    data:
+      title: Small Water Leak Alert
+      message: 'Well pump system pressure steadily decreased over the course of one
+        hour with no significant water use.
+
+        Current pressure: {{ states(''sensor.water_heater_01_water_pressure'') | round(1)
+        }} psi.'
+      data:
+        notification_icon: mdi:water-alert
         clickAction: entityId:sensor.water_heater_01_water_pressure
   mode: single
