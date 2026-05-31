@@ -1,13 +1,13 @@
-- alias: Set theme at startup
-  id: 8bec1ccd-a9e8-4502-8b55-39a947c0ecb7
+- id: 8bec1ccd-a9e8-4502-8b55-39a947c0ecb7
+  alias: Set theme at startup
+  triggers:
+  - event: start
+    trigger: homeassistant
+  actions:
+  - data:
+      name: default
+    action: frontend.set_theme
   initial_state: 'on'
-  trigger:
-  - platform: homeassistant
-    event: start
-  action:
-    service: frontend.set_theme
-    data:
-      name: slate
 - id: '1686672318328'
   alias: Pura X Clean on Tag Scan
   description: ''
@@ -57,10 +57,14 @@
   - data:
       message: Fault detected with Jag charger!!
       title: Fault detected
+      data:
+        tag: charger_fault_alert
     action: notify.mobile_app_sean_s_s20
   - data:
       message: Charging fault detected for Jag!
       title: Fault detected
+      data:
+        tag: charger_fault_alert
     enabled: true
     action: notify.mobile_app_caitlin_s21
   mode: single
@@ -102,7 +106,7 @@
     entity_id: 57d7b0e9097d7d361ca35258e9cf3b9b
     domain: sensor
     trigger: device
-    above: 33.5
+    above: 34.5
     for:
       hours: 0
       minutes: 1
@@ -158,6 +162,7 @@
         V'
       data:
         notification_icon: mdi:battery-alert-variant-outline
+        tag: explorer_battery_low
   mode: single
 - id: '1738381307912'
   alias: Space Heater Turn Off
@@ -225,6 +230,7 @@
       title: Petkit Notification
       data:
         notification_icon: mdi:cat
+        tag: petkit_wastebin_full
   mode: single
 - id: '1745027897856'
   alias: Tag Moosoo stick vac start charging is scanned
@@ -403,6 +409,7 @@
       data:
         notification_icon: mdi:transmission-tower-off
         clickAction: entityId:sensor.power_outage_duration
+        tag: ups_outage
     enabled: true
   - repeat:
       sequence:
@@ -517,6 +524,7 @@
       message: Is the power on?
       data:
         notification_icon: mdi:fridge-alert
+        tag: aux_fridge_power_anomaly
   mode: single
 - id: '1762522234484'
   alias: Main Fridge Power Watchdog
@@ -555,6 +563,7 @@
       message: Is the power on?
       data:
         notification_icon: mdi:fridge-alert
+        tag: main_fridge_power_anomaly
   mode: single
 - id: '1762634629453'
   alias: Radon Fan Power Watchdog
@@ -602,6 +611,7 @@
       title: Radon Fan Power Anomaly
       data:
         notification_icon: mdi:radioactive
+        tag: radon_fan_power_anomaly
   mode: single
 - id: '1763001785451'
   alias: Outdoor Lights Schedule
@@ -796,6 +806,7 @@
       message: Is the power on?
       data:
         notification_icon: mdi:power-plug-off-outline
+        tag: shannon_room_power_anomaly
   mode: single
 - id: '1767145595364'
   alias: "\U0001F6AAFront Door Left Open"
@@ -900,6 +911,7 @@
       message: Relay on but power draw low. Check space heater thermostat knob.
       data:
         notification_icon: mdi:water-boiler-alert
+        tag: shannon_space_heater_anomaly
   mode: single
 - id: '1767754502232'
   alias: Tag Mud Room Door Lock Tag is scanned - unlock
@@ -958,6 +970,7 @@
       message: Is the power on?
       data:
         notification_icon: mdi:fridge-industrial-alert
+        tag: chest_freezer_power_anomaly
   mode: single
 - id: '1768188769987'
   alias: Zwave dead watchdog
@@ -1110,6 +1123,7 @@
       title: Geiger Counter Warning
       data:
         notification_icon: mdi:radioactive
+        tag: geiger_radiation_warning
   mode: single
 - id: '1774187585078'
   alias: Well pump counter increment
@@ -1160,6 +1174,7 @@
       data:
         notification_icon: mdi:water-pump
         clickAction: entityId:sensor.well_pump_water_usage
+        tag: well_pump_continuous_run
   mode: single
 - id: '1774367068104'
   alias: Well Pump - Excessive Use Protection
@@ -1186,6 +1201,7 @@
       data:
         notification_icon: mdi:water-pump
         clickAction: entityId:sensor.well_pump_water_usage
+        tag: well_pump_excessive_use
   mode: single
 - id: '1774367420488'
   alias: Well Pump - High Usage Alert
@@ -1206,6 +1222,7 @@
       data:
         notification_icon: mdi:water-pump
         clickAction: entityId:sensor.well_pump_water_usage
+        tag: well_pump_high_usage
   mode: single
 - id: '1774376075963'
   alias: Outdoor Lights - Force Off During Daytime
@@ -1233,6 +1250,8 @@
         selectattr(''state'', ''eq'', ''on'')      | map(attribute=''name'')      |
         list      | join('', '')      | default(''Unknown lights'', true) }}'
       title: Exterior Lights Turned Off
+      data:
+        tag: exterior_lights_force_off
   - action: homeassistant.turn_off
     metadata: {}
     target:
@@ -1274,6 +1293,7 @@
       message: The dryer cycle has finished.
       data:
         notification_icon: mdi:tumble-dryer
+        tag: dryer_cycle_complete
   mode: single
 - id: '1774577839712'
   alias: Washer Cycle Complete Notification
@@ -1295,6 +1315,7 @@
       message: The washer cycle has finished.
       data:
         notification_icon: mdi:washing-machine
+        tag: washer_cycle_complete
   mode: single
 - id: '1774831892995'
   alias: Sync Opener Lights - On
@@ -1388,6 +1409,7 @@
       message: Thermostat calling for heat but no heat detected!
       data:
         notification_icon: mdi:water-boiler-alert
+        tag: hvac_heat_issue
   mode: single
 - id: '1775995469170'
   alias: Main House cooling issue alert
@@ -1418,6 +1440,7 @@
       message: Thermostat calling for cooling but no cooling detected!
       data:
         notification_icon: mdi:air-conditioner
+        tag: hvac_cooling_issue
   mode: single
 - id: '1775996123804'
   alias: Water Heater Alert - Low Temp - Main House
@@ -1442,6 +1465,7 @@
       data:
         notification_icon: mdi:water-boiler-alert
         clickAction: entityId:sensor.water_heater_01_water_temperature
+        tag: water_heater_low_temp
   mode: single
 - id: '1776038814755'
   alias: Garage - Start Lights Auto-Off Timer
@@ -1593,6 +1617,7 @@
         }} psi.'
       data:
         notification_icon: mdi:water-alert
+        tag: well_pump_small_leak_detected
   mode: single
 - id: '1776043764223'
   alias: Well Pump - Cancel Leak Timer on Pump Restart
@@ -1712,6 +1737,7 @@
         - states('input_datetime.septic_pod_next_due') | as_datetime | as_local).days)
         }} days).
       data:
+        tag: septic_pod_flush_reminder
         actions:
         - action: septic_pod_flushed
           title: ✅ I've Flushed It
@@ -1735,6 +1761,12 @@
     data:
       datetime: '{{ (now() + timedelta(days=30)).strftime(''%Y-%m-%d %H:%M:%S'') }}'
     action: input_datetime.set_datetime
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: clear_notification
+      data:
+        tag: septic_pod_flush_reminder
   mode: single
 - id: '1776550735838'
   alias: Well Pump - System Pressure Not Increasing
@@ -1772,6 +1804,7 @@
       data:
         notification_icon: mdi:water-pump
         clickAction: entityId:sensor.water_heater_01_water_pressure
+        tag: well_pump_pressure_not_increasing
   mode: single
 - id: '1778117768264'
   alias: Well Water System HMI Data
@@ -1822,12 +1855,13 @@
   - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
-      message: Pool pump filter pressure is {{ states('sensor.pool_pump_house_water_filter_pressure')
-        }} psi! Empty pump filter basket and complete a backflush of the sand filter.
+      message: Pool pump filter pressure is high ({{ states('sensor.pool_pump_house_water_filter_pressure')
+        }} psi)! Empty pump filter basket and complete a backflush of the sand filter.
       title: "\U0001F6A8 Pool Pump Alert!"
       data:
         notification_icon: mdi:pump
         clickAction: entityId:sensor.pool_pump_house_water_filter_pressure
+        tag: pool_pump_filter_needs_cleaning
   mode: single
 - id: '1778551788585'
   alias: Well Pump - Slow Leak Detection
@@ -1844,7 +1878,7 @@
     below: -1.5
   conditions: []
   actions:
-  - action: notify.sean_phone
+  - action: notify.sean_and_caitlin_phones
     data:
       title: Small Water Leak Alert
       message: 'Well pump system pressure steadily decreased over the course of one
@@ -1855,4 +1889,87 @@
       data:
         notification_icon: mdi:water-alert
         clickAction: entityId:sensor.water_heater_01_water_pressure
+        tag: well_pump_slow_leak_detected
+  mode: single
+- id: '1779559443183'
+  alias: Pool pump pressure abnormally low
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.pool_pump_house_water_filter_pressure
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+    below: 6
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      message: Pool pump filter pressure is abnormally low ({{ states('sensor.pool_pump_house_water_filter_pressure')
+        | round(1) }} psi)! Check pump to see if it is running.
+      title: "\U0001F6A8 Pool Pump Alert!"
+      data:
+        notification_icon: mdi:pump
+        clickAction: entityId:sensor.pool_pump_house_water_filter_pressure
+        tag: pool_pump_pressure_low
+  mode: single
+- id: '1779710879426'
+  alias: Truck lamp purple
+  description: ''
+  triggers:
+  - trigger: time
+    at: '22:00:00'
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+  conditions:
+  - condition: device
+    type: is_on
+    device_id: d9f5cf5455d42ba47d1f549ab06dced2
+    entity_id: 02632841e90c0f62a40b10f3aa9695fb
+    domain: light
+  - condition: numeric_state
+    entity_id: light.truck_lamp
+    attribute: brightness
+    below: 30
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      rgb_color:
+      - 149
+      - 0
+      - 255
+      brightness_pct: 1
+    target:
+      device_id: d9f5cf5455d42ba47d1f549ab06dced2
+  mode: single
+- id: '1780188756639'
+  alias: Pool pump pressure abnormally low - clear
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.pool_pump_house_water_filter_pressure
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    above: 6
+  conditions: []
+  actions:
+  - action: notify.sean_and_caitlin_phones
+    metadata: {}
+    data:
+      data:
+        tag: pool_pump_pressure_low
+      message: clear_notification
   mode: single
