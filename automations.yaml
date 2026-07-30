@@ -106,7 +106,7 @@
     entity_id: 57d7b0e9097d7d361ca35258e9cf3b9b
     domain: sensor
     trigger: device
-    above: 34.5
+    above: 35
     for:
       hours: 0
       minutes: 1
