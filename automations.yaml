@@ -381,7 +381,7 @@
       dynamic_lighting_sun_elevation_end_falling: -18
       dynamic_lighting_heartbeat: 10
       include_dim_before_off: dim_before_off_disabled
-      time_delay: 6
+      time_delay: 7
       dynamic_lighting_time_start_morning: 07:00:00
       dynamic_lighting_time_start_evening: '18:00:00'
 - id: '1760920019661'
