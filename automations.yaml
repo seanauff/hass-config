@@ -788,15 +788,6 @@
       hours: 0
       minutes: 10
       seconds: 0
-  - trigger: state
-    entity_id:
-    - media_player.shannon_echo_dot
-    to:
-    - unavailable
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
   conditions: []
   actions:
   - action: notify.sean_and_caitlin_phones
