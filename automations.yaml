@@ -1700,14 +1700,16 @@
   - action: notify.sean_and_caitlin_phones
     data:
       title: "\U0001FAA3 Septic Treatment Pod Reminder"
-      message: It's time to flush the septic treatment pod (overdue by {{ ((now()
-        - states('input_datetime.septic_pod_next_due') | as_datetime | as_local).days)
-        }} days).
       data:
         tag: septic_pod_flush_reminder
         actions:
         - action: septic_pod_flushed
           title: ✅ I've Flushed It
+      message: "{% set due = states('input_datetime.septic_pod_next_due') | as_datetime
+        | as_local %} {% set overdue_days = ((now() - due).days) %} It's time to flush
+        the septic treatment pod {%- if overdue_days > 0 -%}\n  {{' '}}(overdue by
+        {{ overdue_days }} \n  {%- if overdue_days == 1 %} day{% else %} days{% endif
+        %})\n{%- endif %}.\n"
   mode: single
 - id: '1776299247015'
   alias: Septic Pod - Mark as Flushed from Notification
