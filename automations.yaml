@@ -1669,7 +1669,7 @@
   - condition: numeric_state
     entity_id: light.hue_color_lamp_2_seans
     attribute: brightness
-    below: 10
+    below: 30
   actions:
   - action: light.turn_on
     metadata: {}
