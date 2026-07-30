@@ -1638,7 +1638,6 @@
       icon: mdi:cctv
       labels:
       - person
-      - car
       cooldown: 120
       state_entity: lock.front_door_lock
       state_filter_states:
@@ -1646,30 +1645,7 @@
       state_filter: true
       critical: 'true'
       notify_group: sean_and_caitlin_phones
-- id: '1776277185619'
-  alias: Frigate - Garage Detection Alert
-  description: ''
-  use_blueprint:
-    path: SgtBatten/Stable.yaml
-    input:
-      camera: camera.garage
-      notify_device: b81fa521b01f700193b2b3fe10d60e10
-      base_url: https://hass.auffinger.dev
-      title: Frigate Alert - Garage
-      alert_once: true
-      attachment: thumbnail
-      update_thumbnail: true
-      icon: mdi:cctv
-      labels:
-      - person
-      - car
-      cooldown: 60
-      state_entity: cover.garage_door_01_door
-      state_filter_states:
-      - locked
-      state_filter: true
-      critical: 'true'
-      notify_group: sean_and_caitlin_phones
+      channel: frigate-notification-front-door
 - id: '1776296754371'
   alias: Shannon's Lamp Green
   description: ''
@@ -1963,4 +1939,120 @@
       data:
         tag: pool_pump_pressure_low
       message: clear_notification
+  mode: single
+- id: '1781842789142'
+  alias: Frigate Notification - Front Yard
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.front_yard
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      base_url: https://hass.auffinger.dev
+      title: Frigate Alert - Front Yard
+      alert_once: true
+      attachment: thumbnail
+      update_thumbnail: true
+      icon: mdi:cctv
+      labels:
+      - car
+      - person
+      cooldown: 120
+      state_entity: lock.front_door_lock
+      state_filter_states:
+      - locked
+      state_filter: true
+      critical: 'true'
+      notify_group: sean_and_caitlin_phones
+      channel: frigate-notification-front-yard
+- id: '1782608360829'
+  alias: Notify - Frigate Any Camera Unavailable
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.frigate_camera_stream_alert
+    to:
+    - 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    trigger: state
+  actions:
+  - data:
+      title: "\U0001F6A8 Frigate Camera(s) Offline"
+      message: 'The following cameras are unavailable: {% for cam in state_attr(''binary_sensor.frigate_camera_stream_alert'',
+        ''offline_cameras'') %} - {{ cam }} {% endfor %}
+
+        '
+    action: notify.sean_and_caitlin_phones
+  mode: single
+- id: '1782834532106'
+  alias: Frigate Alert - Garage Car
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.garage
+      notify_device: b81fa521b01f700193b2b3fe10d60e10
+      base_url: https://hass.auffinger.dev
+      title: Frigate Alert - Garage
+      alert_once: true
+      attachment: thumbnail
+      update_thumbnail: true
+      icon: mdi:cctv
+      labels:
+      - car
+      cooldown: 120
+      state_entity: cover.garage_doors
+      state_filter_states:
+      - Closed
+      state_filter: true
+      critical: 'true'
+      notify_group: sean_and_caitlin_phones
+      channel: frigate-notification-garage
+- id: '1783681562814'
+  alias: Barn Presence Lights
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.barn_presence
+      light_switch:
+        entity_id: switch.barn_lights
+      time_delay: 5
+- id: '1783939558386'
+  alias: Living Room Light - Enforce Minimum Brightness on Turn On
+  description: When turned on below 40%, briefly go to 40% then restore original brightness
+  triggers:
+  - entity_id: light.living_room
+    from: 'off'
+    to: 'on'
+    trigger: state
+  actions:
+  - variables:
+      original_brightness: '{{ state_attr(''light.living_room'', ''brightness'') |
+        int(0) }}'
+      original_brightness_pct: '{{ state_attr(''light.living_room'', ''brightness_pct'')
+        | int(0) }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ original_brightness_pct < 40 and original_brightness_pct
+          > 0 }}'
+      sequence:
+      - target:
+          entity_id: light.living_room
+        data:
+          brightness_pct: 40
+        action: light.turn_on
+      - delay:
+          milliseconds: 800
+      - target:
+          entity_id: light.living_room
+        data:
+          brightness: '{{ original_brightness }}'
+        action: light.turn_on
+    default: []
   mode: single
