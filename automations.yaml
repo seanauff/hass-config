@@ -751,7 +751,6 @@
       notify_tag: low-batteries
       exclude_sensors:
         entity_id:
-        - sensor.basement_battery
         - sensor.batterysoc
         - sensor.batterysocmax
         - sensor.batterysocmin
@@ -763,7 +762,7 @@
         - binary_sensor.mud_room_door_lock_replace_battery_now
         - binary_sensor.mud_room_door_lock_replace_battery_soon
         - sensor.ups_battery_charge
-        - sensor.upstairs_repeater_battery_level
+      battery_level: 5
 - id: '1765076401301'
   alias: Pantry Light Automation
   description: ''
