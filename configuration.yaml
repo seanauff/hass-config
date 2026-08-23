@@ -22,15 +22,6 @@ homeassistant:
   allowlist_external_dirs:
    - /config
 
-http:
-  use_x_frame_options: false
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 127.0.0.1
-    - 192.168.1.8
-    - 192.168.1.12
-    - 10.201.0.0/16
-
 # Enables the frontend
 frontend:
   themes: !include themes.yaml
