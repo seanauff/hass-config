@@ -632,7 +632,6 @@
       - schedule.outdoor_lights_schedule
       light_switch:
         entity_id:
-        - switch.front_porch
         - switch.driveway_entrance
         - switch.front_post_light
         - light.garage_exterior_lights_gamma
