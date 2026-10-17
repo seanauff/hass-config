@@ -453,7 +453,7 @@
         - light.living_room
         - light.sunroom_light
       include_dynamic_lighting: enable_sun_elevation_colour_brightness
-      dynamic_lighting_min_brightness: 30
+      dynamic_lighting_min_brightness: 40
       dynamic_lighting_time_start_evening: '18:00:00'
       dynamic_lighting_time_end_evening: '21:30:00'
       night_lights:
@@ -477,12 +477,13 @@
       after_time: '21:30:00'
       dynamic_lighting_min_colour_temp: 2100
       dynamic_lighting_sun_elevation_end_rising: 52
-      dynamic_lighting_sun_elevation_start_falling: 50
-      dynamic_lighting_max_brightness: 70
+      dynamic_lighting_sun_elevation_start_falling: 20
+      dynamic_lighting_max_brightness: 100
       time_delay: 8
       include_dim_before_off: dim_before_off_enabled
       dim_before_off_boolean: input_boolean.living_room_motion_lights_dim_before_off_toggle_helper
       include_night_glow: night_glow_enabled
+      dynamic_lighting_sun_elevation_end_falling: -18
 - id: '1762521685326'
   alias: Aux Fridge Power Watchdog
   description: ''
