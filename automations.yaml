@@ -615,12 +615,12 @@
   - action: notify.sean_and_caitlin_phones
     metadata: {}
     data:
-      message: Is the power on? Basement radon level is ({{states('sensor.airthings_wave_090595_radon_1_day_average')}}
-        pCi/L)!
       title: Radon Fan Power Anomaly
       data:
         notification_icon: mdi:radioactive
         tag: radon_fan_power_anomaly
+      message: Is the power on? Basement radon level is ({{ states('sensor.airthings_wave_090595_radon_1_day_average')
+        | float | round(1) }} pCi/L)!
   mode: single
 - id: '1763001785451'
   alias: Outdoor Lights Schedule
