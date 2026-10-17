@@ -1980,22 +1980,23 @@
   alias: Notify - Frigate Any Camera Unavailable
   description: ''
   triggers:
-  - entity_id:
-    - binary_sensor.frigate_camera_stream_alert
-    to:
-    - 'on'
+  - trigger: numeric_state
+    entity_id:
+    - sensor.doorbell_camera_fps
+    - sensor.garage_camera_fps
+    - sensor.nursery_camera_fps
+    - sensor.peter_camera_fps
+    - sensor.pool_camera_fps
+    - sensor.front_yard_camera_fps
+    below: 1
     for:
       hours: 0
       minutes: 5
       seconds: 0
-    trigger: state
   actions:
   - data:
       title: "\U0001F6A8 Frigate Camera(s) Offline"
-      message: 'The following cameras are unavailable: {% for cam in state_attr(''binary_sensor.frigate_camera_stream_alert'',
-        ''offline_cameras'') %} - {{ cam }} {% endfor %}
-
-        '
+      message: Some cameras are having problems. Check frigate for status.
     action: notify.sean_and_caitlin_phones
   mode: single
 - id: '1782834532106'
