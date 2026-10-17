@@ -644,7 +644,7 @@
       dynamic_lighting_time_end_evening: '22:00:00'
       dynamic_lighting_time_start_evening: '18:00:00'
       include_sun: sun_enabled
-      after_time: 07:00:00
+      after_time: 06:30:00
       before_time: '22:30:00'
       include_time: time_enabled
       time_delay: 0
