@@ -2083,3 +2083,79 @@
       state_control_activation_state: 'on'
       state_control_entity: binary_sensor.barn_barn_multisensor_barn_fans_setpoint
 - id: '1790047010680'
+  alias: Low blood sugar alert
+  description: Tiered low glucose alerts with value + trend
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dexcom_glucose_value
+    below: 50
+    id: urgent
+  - trigger: numeric_state
+    entity_id: sensor.dexcom_glucose_value
+    below: 60
+    for:
+      minutes: 6
+    id: low
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dexcom_glucose_value
+    below: 70
+    for:
+      minutes: 16
+    id: mild
+  conditions:
+  - condition: template
+    value_template: '{{ states(''sensor.dexcom_glucose_value'') not in [''unknown'',
+      ''unavailable''] }}
+
+      '
+  actions:
+  - variables:
+      glucose: '{{ states(''sensor.dexcom_glucose_value'') }}'
+      trend: '{{ states(''sensor.dexcom_glucose_trend'') | default(''unknown'') }}'
+      trend_arrow: '{% set t = trend | lower %} {% if t == ''rising_quickly'' %} ↑↑
+        {% elif t == ''rising'' %} ↑ {% elif t == ''rising_slightly'' %} ↗ {% elif
+        t == ''steady'' %} → {% elif t == ''falling_slightly'' %} ↘ {% elif t == ''falling''
+        %} ↓ {% elif t == ''falling_quickly'' %} ↓↓ {% else %} ? {% endif %}
+
+        '
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: urgent
+      sequence:
+      - action: notify.sean_and_caitlin_phones
+        data:
+          title: "\U0001F6A8 URGENT Low Glucose"
+          message: '{{ glucose }} mg/dL {{ trend_arrow }} ({{ trend }}) — treat now!'
+          data:
+            priority: high
+            ttl: 0
+            channel: alarm_stream
+            tag: glucose_urgent
+    - conditions:
+      - condition: trigger
+        id: low
+      sequence:
+      - action: notify.sean_and_caitlin_phones
+        data:
+          title: ⚠️ Low Glucose
+          message: '{{ glucose }} mg/dL {{ trend_arrow }} ({{ trend }}) — check and
+            treat'
+          data:
+            priority: high
+            ttl: 0
+            tag: glucose_low
+    - conditions:
+      - condition: trigger
+        id: mild
+      sequence:
+      - action: notify.sean_and_caitlin_phones
+        data:
+          title: Low Glucose Watch
+          message: '{{ glucose }} mg/dL {{ trend_arrow }} ({{ trend }}) — monitor
+            closely'
+          data:
+            tag: glucose_mild
+  mode: single
