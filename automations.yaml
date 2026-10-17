@@ -591,6 +591,17 @@
       minutes: 0
       seconds: 0
     below: 10
+  - trigger: state
+    entity_id:
+    - binary_sensor.s31_07_connected_device_status
+    to:
+    - 'off'
+    - unavailable
+    - unknown
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
   - trigger: numeric_state
     entity_id:
     - sensor.airthings_wave_090595_radon_1_day_average
