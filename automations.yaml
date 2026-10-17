@@ -450,16 +450,16 @@
         - light.piano
         - switch.s31_13_relay
         - switch.s31_10_relay
-        - light.sunroom
         - light.living_room
+        - light.sunroom_light
       include_dynamic_lighting: enable_sun_elevation_colour_brightness
       dynamic_lighting_min_brightness: 30
       dynamic_lighting_time_start_evening: '18:00:00'
       dynamic_lighting_time_end_evening: '21:30:00'
       night_lights:
         entity_id:
-        - light.sunroom
         - light.piano
+        - light.sunroom_light
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
@@ -472,6 +472,7 @@
       night_glow_lights:
         entity_id:
         - light.piano
+        - light.sunroom_light
       include_time: time_disabled
       after_time: '21:30:00'
       dynamic_lighting_min_colour_temp: 2100
