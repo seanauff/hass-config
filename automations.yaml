@@ -2068,3 +2068,18 @@
         action: light.turn_on
     default: []
   mode: single
+- id: '1788259495019'
+  alias: Barn Presence Fans
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.barn_presence
+      light_switch:
+        entity_id: switch.barn_fans
+      time_delay: 5
+      include_state_control: state_control_enabled
+      state_control_activation_state: 'on'
+      state_control_entity: binary_sensor.barn_barn_multisensor_barn_fans_setpoint
+- id: '1790047010680'
