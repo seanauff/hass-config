@@ -393,10 +393,6 @@
     - sensor.ups_status
     from:
     - Online
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 10
     to:
     - On Battery, Battery Discharging
   conditions: []
