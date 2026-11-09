@@ -353,8 +353,8 @@
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '22:30:00'
-      night_lights_before_time: 07:00:00
+      night_lights_after_time: '21:30:00'
+      night_lights_before_time: 06:00:00
       night_lights:
         entity_id:
         - light.kitchen
@@ -463,8 +463,8 @@
       include_night_lights: night_lights_enabled
       night_lights_conditions:
       - time_enabled
-      night_lights_after_time: '22:30:00'
-      night_lights_before_time: 07:00:00
+      night_lights_after_time: '21:30:00'
+      night_lights_before_time: 06:00:00
       include_night_light_control:
       - use_brightness
       night_light_brightness: 12
@@ -644,8 +644,8 @@
       dynamic_lighting_time_end_evening: '22:00:00'
       dynamic_lighting_time_start_evening: '18:00:00'
       include_sun: sun_enabled
-      after_time: 06:30:00
-      before_time: '22:30:00'
+      after_time: 06:00:00
+      before_time: '21:30:00'
       include_time: time_enabled
       time_delay: 0
       sun_elevation: -0.5
@@ -716,7 +716,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 07:30:00
+    at: 06:30:00
     weekday:
     - sun
     - mon
@@ -1660,7 +1660,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 07:30:00
+    at: 06:30:00
     weekday:
     - sun
     - mon
@@ -1899,7 +1899,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: '22:00:00'
+    at: '21:00:00'
     weekday:
     - sun
     - mon
