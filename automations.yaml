@@ -2077,3 +2077,32 @@
     data:
       brightness_pct: 35
   mode: single
+- id: '1792582095556'
+  alias: Back Porch Light
+  description: ''
+  use_blueprint:
+    path: Blackshome/sensor-light.yaml
+    input:
+      motion_trigger:
+      - binary_sensor.sunroom_kitchen_door_contact_intrusion
+      - binary_sensor.klrl_contact
+      light_switch:
+        entity_id: light.back_porch_light
+      include_dim_before_off: dim_before_off_enabled
+      include_dynamic_lighting: enable_sun_elevation_brightness
+      dynamic_lighting_min_brightness: 20
+      dynamic_lighting_sun_elevation_start_rising: -35
+      dynamic_lighting_sun_elevation_end_falling: -35
+      include_sun: sun_enabled
+      night_glow_lights:
+        entity_id: light.back_porch_light
+      night_glow_light_brightness: 1
+      include_night_glow: night_glow_enabled
+      night_lights:
+        entity_id: light.back_porch_light
+      night_light_include_dim_before_off: dim_before_off_enabled
+      include_night_lights: night_lights_enabled
+      night_lights_conditions:
+      - sun_enabled
+      include_night_light_control:
+      - use_brightness
