@@ -2106,3 +2106,17 @@
       - sun_enabled
       include_night_light_control:
       - use_brightness
+- id: '1794232545797'
+  alias: Set AD110 WDR On
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: /1
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.ad110_wdr
+    data: {}
+  mode: single

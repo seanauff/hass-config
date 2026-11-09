@@ -1,0 +1,8 @@
+
+  - switch:
+      name: "AD110 WDR"
+      unique_id: ad110_wdr_switch
+      command_on: !secret ad110_wdr_switch_command_on
+      command_off: !secret ad110_wdr_switch_command_off
+      command_state: !secret ad110_wdr_switch_command_state
+      value_template: '{{ "WideDynamicRange=1" in value }}'
