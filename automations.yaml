@@ -638,7 +638,6 @@
         - light.breezeway_lights_gamma
         - light.pool_lights_gamma
         - light.living_room_porch_light
-        - light.back_porch_light
       include_dynamic_lighting: enable_sun_elevation_brightness
       dynamic_lighting_min_brightness: 16
       dynamic_lighting_time_end_evening: '22:00:00'
@@ -669,7 +668,6 @@
         entity_id:
         - light.garage_exterior_lights_gamma
         - light.breezeway_lights_gamma
-        - light.barn_exterior_lights_gamma
       include_night_glow: night_glow_disabled
       night_glow_light_brightness: 1
 - id: '1763735088809'
