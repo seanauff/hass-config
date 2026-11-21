@@ -1391,12 +1391,12 @@
     - heating
     for:
       hours: 0
-      minutes: 10
+      minutes: 15
       seconds: 0
   conditions:
   - type: is_temperature
     condition: device
-    device_id: 076ec4ac09ccf593e189816d9c0fdadc
+    device_id: fd7d9b79bb3102c4055024e3a01b9e79
     entity_id: 7b816d439c0cfa277b2241b4009f52a6
     domain: sensor
     below: 10
