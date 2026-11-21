@@ -9,7 +9,7 @@
           equipment_running|fan: 400 # fan only
           equipment_running|auxHeat1,fan: 9000 # Heat (Electric Strips Stage 1)
           #equipment_running|auxHeat1,auxHeat2,fan: 12000 # Heat (Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
-          equipment_running|heatPump,fan: 3500 # Heat (Heat Pump)
+          equipment_running|fan,heatPump: 3500 # Heat (Heat Pump)
           equipment_running|heatPump,auxHeat1,fan: 12500 # Heat (Heat Pump + Electric Strips Stage 1)
           #equipment_running|heatPump,auxHeat1,auxHeat2,fan: 15500 # Heat (Heat Pump + Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
           equipment_running|compCool1,fan: 3500 # AC
@@ -23,7 +23,7 @@
           equipment_running|fan: 250 # fan only
           equipment_running|auxHeat1,fan: 6000 # Heat (Electric Strips Stage 1)
           #equipment_running|auxHeat1,auxHeat2,fan: 8000 # Heat (Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
-          equipment_running|heatPump,fan: 2500 # Heat (Heat Pump)
+          equipment_running|fan,heatPump: 2500 # Heat (Heat Pump)
           equipment_running|heatPump,auxHeat1,fan: 8500 # Heat (Heat Pump + Electric Strips Stage 1)
           #equipment_running|heatPump,auxHeat1,auxHeat2,fan: 10500 # Heat (Heat Pump + Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
           equipment_running|compCool1,fan: 2500 # AC
@@ -37,7 +37,7 @@
           equipment_running|fan: 250 # fan only
           equipment_running|auxHeat1,fan: 6000 # Heat (Electric Strips Stage 1)
           #equipment_running|auxHeat1,auxHeat2,fan: 8000 # Heat (Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
-          equipment_running|heatPump,fan: 2500 # Heat (Heat Pump)
+          equipment_running|fan,heatPump: 2500 # Heat (Heat Pump)
           equipment_running|heatPump,auxHeat1,fan: 8500 # Heat (Heat Pump + Electric Strips Stage 1)
           #equipment_running|heatPump,auxHeat1,auxHeat2,fan: 10500 # Heat (Heat Pump + Electric Strips Stage 1+2) Stage 2 is disabled by circuit breaker, so this state is not used
           equipment_running|compCool1,fan: 2500 # AC
